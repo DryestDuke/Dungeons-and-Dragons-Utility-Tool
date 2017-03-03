@@ -1,0 +1,198 @@
+Abacus
+Vial of Acid
+Flask of Alchemist's Fire
+3d10 Arrows
+3d10x10 Blowgun Needles
+2d8 Crossbow Bolts
+2d8 Sling Bullets
+Crystal (Arcane Focus)
+Orb (Arcane Focus)
+Rod (Arcane Focus)
+Staff (Arcane Focus)
+Wand (Arcane Focus)
+Backpack
+Bag full of Ball Bearings
+Barrel
+Basket
+Bedroll
+Bell
+Blanket
+Block and Tackle
+Book
+Glass Bottle
+Bucket
+Handful of Caltrops
+1d4 Unlit Candles
+Case of 3d6 Crossbow Bolt
+Case Containg a Scroll of 1d4 Level
+1d10x10 ft of Chain
+1d4 Piece of Chalk
+Climber's Kit
+Common Clothes
+Costume Clothes
+Fine Clothes
+Traveler's Clothes
+Leather Clothes
+Canvas Clothes
+Ripped Clothes
+Rather Fashionable Clothes
+Beautiful Dress
+Component Pouch
+Totem (Druidic Focus)
+Yew Wand (Druidic Focus)
+Fishing Tackle
+Flask
+Tankard
+Grappling Hook
+Hammer
+Healer's Kit
+Healer's Kit
+Healer's Kit
+Healer's Kit
+Healer's Kit
+Amulet Holy Symbol
+Emblem Holy Symbol
+Reliquary of Holy Symbols
+Flask
+Hunting Trap
+1d4 Oz Bottle of Ink
+Ink Pen
+Tall Jug
+18 ft Collapsable Ladder
+Lamp
+Bullseye Lantern
+Hooded Lantern
+Lantern
+Lock
+Manacles
+Steel Mess Kit
+Wooden Mess Kit
+Mudden Mess Kit
+[Material] Mirror]
+Flask of Oil
+Flask of Oil
+Flask of Oil
+3d8 Sheets of Paper, with Notes/Maps/ETC
+Vial of Perfume
+Miner's Pick
+Piton
+1d4 Vial of Poison
+10 FT Pole
+Iron Pot
+Steel Pot
+Redwood Pot
+Potion of Healing
+Pouch
+Quiver with 2d4 Fletched Arrows
+1d10 Day(s) of Rations
+1d10x10 ft of Hempen Rope
+1d10x10 ft of Silk Rope
+Sack
+Merchant's Scale
+Sealing Wax
+Shovel
+Signal Whistle
+Signet Ring
+Soap
+Spellbook of 1d4th Level
+Spellbook of 1d4th Level
+3d10 Iron Spikes
+Spyglass
+Two-Person Tent
+One-Person Tent
+Three-Person Tent
+Four-Person Tent
+Tarp
+Tarp
+Tarp
+Tarp
+Tinderbox
+1d6 Torches
+1d6 Torches
+Vial
+Waterskin
+Waterskin
+Waterskin
+Whetstone
+Disguise Kit
+Forgery Kit
+Dice Set
+Dragon Chess Set
+Playing Card Set
+Three-Dragon Ante Set
+Herbalism Set
+Bagpipes
+Drum
+Dulcimer
+Flute
+Lute
+Lyre
+Horn
+Panflute
+Shawm
+Viol
+A fabric scrap
+A single arrow tipped with [material]
+A [material] statuette of [creature]
+A Strongbox filled with Gems
+A large glass jar filled with holy water
+A Broken Weapon
+A neatly folded set of clean clothes
+A Nice Ring, inlaid with a Gem(s)
+A Document bearing a Prominent Seal
+A Tattered Cloak
+A piece of bread and cheese wrapped in cloth
+A small cask of ale
+A small bound book
+A blank parchment containing a hidden secret message
+A Large Container of Ashes
+A *relatively* small pouch of pipe weed
+A leather pouch of dried plant leaves
+A leather pouch of dried and salted animal meats
+An ornate coin with the symbol of a Deity engraved on it
+A colored glass eye
+An adventurer's bound journal
+An empty bottle of drink
+A pair of eating utensils
+A thin wand
+A parchment with a list of names on it
+A handful of colored chalk
+A Key
+A roughly drawn map of the surrounding area, set on Papyrus
+A tangled bundle of string
+1d6+1 chunks of charcoal
+A flask, full with some beverage
+A desecrated holy symbol
+A distorted painting of a fantastical creature
+A glass vial of some creature's blood
+A dyed candle
+A pair of grimy goggles
+A Padlock
+A darkly dyed leather backpack
+A darkly dyed leather sword belt
+A set of playing cards
+A ceramic tile depicting a creature or historical scene
+A mining pick and shovel
+A bag of dead beastie
+A sundial
+A leather bundle containing medical tools(dentistry and others)
+A rusty set of manacles
+A container of oil
+A set of gaming dice
+A wooden instrument
+A mortar and pestle
+A glass vial of colored acid
+A container of wax
+A ceramic pot sealed with wax
+A crystalline vial of [color] ink
+A bell
+A mirror
+A Recipre
+A linen bandage
+A shard of flint
+A worn whetstone
+A vial of antitoxin
+A container of spices
+An unadorned ring
+A wooden smoking pipe
+A container of bars of precious metals

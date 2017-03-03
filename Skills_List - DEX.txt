@@ -1,0 +1,6 @@
+Acrobatics
+Disable Device
+Forgery
+Lockpicking
+Sleight of Hand
+Stealth
