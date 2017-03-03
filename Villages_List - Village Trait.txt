@@ -1,0 +1,85 @@
+Canals in the place of streets.
+Massive statue.
+Massive monument.
+Grand temple.
+Large fortress.
+Verdant parks and orchards.
+River that divides the town.
+Major trade center.
+Headquarters of a powerful family.
+Headquarters of a powerful guild.
+Population that is mostly wealthy.
+Destitute, rundown.
+Awful smell (tanneries, open sewers, etc).
+Center of trade for one specific good.
+Site of many battles.
+Site of a mythic or magical event.
+The village is built around a odd-stone outcrop, accessible by a single road.
+The village is a chaotic patchwork of architectural styles.
+The village is built around a very deep mine, no longer functioning.
+The village is built around a very deep mine, still functioning.
+The village is built around a soon-to-be-very-deep mine, freshly built.
+The village is built around a stronghold of iron and stone.
+The village is built atop a mountainous crag, accessible by stone bridges.
+The village is defended by magical constructs and wards.
+The village is built around a weathered outcrop, accesible by a single road.
+Important library or archive.
+Worship of all gods banned.
+Sinister reputation.
+Notable library or academy.
+It has many alchemists, and the air tingles with static electricity.
+The village is built upon a grid of streets and alleys.
+Site of important tomb or graveyard.
+Most of the town is delved into the sides of a mountainous crag.
+The town sits in the fork of a large river.
+The village stands elevated over the floodplains of a quick flowing river.
+The village stands elevated over the slow-moving waters of a nearby river's delta.
+The village is built around a ring of ancient stone monoliths.
+Built atop ancient ruins.
+The village is dominated by a single tall tower.
+The village is delved into the sides of a small hill.
+The village is labyrinth of winding, narrow streets and dark alleys.
+The village is defended by a series of arcane runes.
+The vilalge is defended by a series of divine wards.
+The village is defended by a stone wall and a nearby castle.
+The village lies in the shadows of ancient stone statues.
+Cute goats are chained to the front doors of many buildings in the village, clearly a symbol of status.
+The village sits upon an island in the middle of a lake.
+The town sits upon the banks of a river, spanned by several bridges.
+The town sits on cold, dark, hard rock - no plants grow easily here. All food is imported from other villages.
+Several major roads run through the center of the village.
+The village is watched over by an order of Knights and Warriors.
+Most of the buildings in the village were constructed from living trees, trees still alive (and growing) today.
+Most of the buildings are constructed from massive stone blocks.
+Most of the buildings are dug into the ground.
+Most of the buildings are constructed ontop of stilts.
+Many of it's buildings are thatched with a dark sedge to honor a deity of the long past.
+The village is a tangle of narrow streets and thin buildings.
+The village is defended by a strong stone wall and a gatehouse.
+The village is built around the statue of a recent figure (gen an NPC for this).
+The village is built around a great market square, through which all life moves.
+The village is encircled by a crumbling stone wall.
+Xenophobic culture.
+Large stores of goods, great for traders.
+Incredibly friendly.
+Sour earth.
+Hanging tree.
+Evidence of some recent natural disturbance.
+Mystically placed patterns of stones.
+Site of recent slaughter.
+Oily, sludgy slum, terrific brewhouses.
+Inhabited below the streets in the sewers and tunnels and carven halls, the lavish buildings above abandoned to superstition
+The pages of religious texts and pamphlets plaster the walls.
+The pages of political texts and pamphlets plaster the walls.
+Newspapers from a nearby city line the streets, always delivered but rarely opened.
+Carrion birds wait patiently on cracked tile rooftops, the people throw birdseed about them as they walk to no avail.
+Thick layers of soot coat every visible surface, communal fires are kept burning in the streets near alley entrances.
+The buildings are well-kept but the people are anaemic, a blue-and-white walled mansion of turrets and balconies looms in the centre of it all.
+The door of every building is carved with a mass of tiny figures and the people walk mice on leashes of string.
+Fruit vines grow up the faces of buildings, bats are everywhere, heavy round seeds underfoot are the foremost cause of injury and guano is scraped from the streets.
+An abnormal amount of lanterns both on the street and hanging from building walls, lamplighters work in packs here.
+The walls are plated with thin pressed sheets of bronze depicting battles that never happened, great romances that never were, fables taken deathly seriously.
+Shambling buildings leaning out over the streets to drape silks and lanterns over the heads of those below, waiting for the next celebration to begin.
+The entire village subscribes to a sect that forbids cleaning of any kind or severity, but the craftsmen are some of the best.
+The ground is sour, like a marshy mangrove mud flats type deal. The entire borough is built on one big stilted platform over the top of it. You can see crabs and breeding insects through the gaps.
+Clean white walls enscrawled with symbols in living green moss, constantly trimmed and watered.

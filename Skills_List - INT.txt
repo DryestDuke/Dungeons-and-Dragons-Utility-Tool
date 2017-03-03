@@ -1,0 +1,22 @@
+Appraise
+Dungeoneering
+Engineering
+Folklore
+Forbidden Lore
+Local Culture
+Current Events
+Heraldry
+History
+Medicine
+Nature
+Religion
+Sciences
+Philosophy
+Arts
+Arcane Magic
+Celestial Magic
+Divine Magic
+Elemental Magic
+Fey Magic
+Infernal Magic
+Nature Magic
