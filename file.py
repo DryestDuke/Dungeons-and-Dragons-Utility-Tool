@@ -99,7 +99,6 @@ def start(): #\t = 8 spaces #credit for ascii art below to: http://www.ascii-art
 	print(" <----------------------------------------------------------------------------------------------------------------------------------------> ")
 	print(toprint + "\n")
 	print(" <----------------------------------------------------------------------------------------------------------------------------------------> ")
-	print("\n--------To-Do: GUI, --------\n")
 	run()
 	
 #main line of the program - takes in input (as option chosen) and then runs that option... simple!
