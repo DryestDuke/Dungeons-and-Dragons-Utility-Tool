@@ -1,0 +1,497 @@
+Giant Fire Beetle, Beast, 10, mm325
+Myconid Sprout, Plant, 10, mm230
+Shrieker, Plant, 10, mm138
+Flumph, Aberration, 25, mm135
+Giant Rat, Beast, 25, mm327
+Kobold, Humanoid, 25, mm195
+Stirge, Beast, 25, mm284
+Drow, Humanoid, 50, mm128
+Giant Bat, Beast, 50, mm323
+Giant Centipede, Beast, 50, mm323
+Giant Lizard, Beast, 50, mm326
+Giant Poisonous Snake, Beast, 50, mm327
+Goblin, Humanoid, 50, mm166
+Grimlock, Humanoid, 50, mm175
+Kuo-toa, Humanoid, 50, mm199
+Swarm of Bats, Beast, 50, mm337
+Troglodyte, Humanoid, 50, mm290
+Violet Fungus, Plant, 50, mm138
+Winged Kobold, Humanoid, 50, mm195
+Darkmantle, Monstrosity, 100, mm46
+Gas Spore, Plant, 100, mm138
+Gray Ooze, Ooze, 100, mm243
+Hobgoblin, Humanoid, 100, mm186
+Magma Mephit, Elemental, 100, mm216
+Myconid Adult, Plant, 100, mm232
+Orc, Humanoid, 100, mm246
+Piercer, Monstrosity, 100, mm252
+Rust Monster, Monstrosity, 100, mm262
+Shadow, Undead, 100, mm269
+Svirfneblin, Humanoid, 100, mm164
+Swarm of Insects, Beast, 100, mm338
+Bugbear, Humanoid, 200, mm33
+Duergar, Humanoid, 200, mm122
+Fire Snake, Elemental, 200, mm265
+Ghoul, Undead, 200, mm148
+Giant Spider, Beast, 200, mm328
+Giant Toad, Beast, 200, mm329
+Goblin Boss, Humanoid, 200, mm166
+Half-ogre, Giant, 200, mm238
+Kuo-toa Whip, Humanoid, 200, mm200
+Quaggoth Spore Servant, Plant, 200, mm230
+Specter, Undead, 200, mm279
+Carrion Crawler, Monstrosity, 450, mm37
+Gargoyle, Elemental, 450, mm140
+Gelatinous Cube, Ooze, 450, mm242
+Ghast, Undead, 450, mm148
+Giant Constrictor Snake, Beast, 450, mm324
+Gibbering Mouther, Aberration, 450, mm157
+Grick, Monstrosity, 450, mm173
+Intellect Devourer, Aberration, 450, mm191
+Mimic, Monstrosity, 450, mm220
+Minotaur Skeleton, Undead, 450, mm273
+Nothic, Aberration, 450, mm236
+Ochre Jelly, Ooze, 450, mm243
+Ogre, Giant, 450, mm237
+Orc Eye of Gruumsh, Humanoid, 450, mm247
+Orog, Humanoid, 450, mm247
+Polar Bear, Beast, 450, mm334
+Quaggoth, Humanoid, 450, mm256
+Doppelganger, Monstrosity, 700, mm82
+Grell, Aberration, 700, mm172
+Hell Hound, Fiend, 700, mm182
+Hobgoblin Captain, Humanoid, 700, mm186
+Hook Horror, Monstrosity, 700, mm189
+Minotaur, Monstrosity, 700, mm223
+Phase Spider, Monstrosity, 700, mm334
+Quaggoth Thonot, Humanoid, 700, mm256
+Spectator, Aberration, 700, mm30
+Water Weird, Elemental, 700, mm299
+Wight, Undead, 700, mm300
+Black Pudding, Ooze, 1100, mm241
+Bone Naga, Undead, 1100, mm233
+Chuul, Aberration, 1100, mm40
+Ettin, Giant, 1100, mm132
+Flameskull, Undead, 1100, mm134
+Ghost, Undead, 1100, mm147
+Beholder Zombie, Undead, 1800, mm316
+Drow Elite Warrior, Humanoid, 1800, mm128
+Earth Elemental, Elemental, 1800, mm124
+Otyugh, Aberration, 1800, mm248
+Roper, Monstrosity, 1800, mm261
+Salamander, Elemental, 1800, mm266
+Troll, Giant, 1800, mm291
+Umber Hulk, Monstrosity, 1800, mm292
+Vampire Spawn, Undead, 1800, mm298
+Wraith, Undead, 1800, mm302
+Xorn, Elemental, 1800, mm304
+Chimera, Monstrosity, 2300, mm39
+Cyclops, Giant, 2300, mm45
+Drider, Monstrosity, 2300, mm120
+Hobgoblin Warlord, Humanoid, 2300, mm187
+Kuo-toa Archpriest, Humanoid, 2300, mm200
+Drow Mage, Humanoid, 2900, mm129
+Grick Alpha, Monstrosity, 2900, mm173
+Mind Flayer, Aberration, 2900, mm222
+Stone Giant, Giant, 2900, mm156
+Cloaker, Aberration, 3900, mm41
+Fomorian, Giant, 3900, mm136
+Mind Flayer Arcanist, Aberration, 3900, mm222
+Spirit Naga, Monstrosity, 3900, mm234
+Fire Giant, Giant, 5000, mm154
+Aboleth, Aberration, 5900, mm13
+Behir, Monstrosity, 7200, mm25
+Dao, Elemental, 7200, mm143
+Beholder, Aberration, 10000, mm28
+Young Red Shadow Dragon, Dragon, 10000, mm85
+Death Tyrant, Undead, 11500, mm29
+Purple Worm, Monstrosity, 13000, mm255
+Abominable Beauty, Elemental, 7200, ToB-11
+Ala, Fey, 3900, ToB-13
+Algorith, Celestial, 5900, ToB-14
+Andrenjinyi, Celestial, 13000, ToB-17
+Amphiptere, Beast, 700, ToB-16
+Angatra, Undead, 2300, ToB-19
+Chained Angel, Celestial, 3900, ToB-20
+Fidele (Angel), Celestial, 1800, ToB-21
+Angler Worm, Monstrosity, 1100, ToB-22
+Giant Ant, Beast, 400, ToB-23
+Giant Ant Queen, Beast, 1100, ToB-23
+Aridni, Fey, 1800, ToB-26
+Bearfolk, Humanoid, 700, ToB-33
+Behtu, Humanoid, 400, ToB-34
+Bereginyas, Fey, 1100, ToB-36
+Blemmyes, Monstrosity, 3900, ToB-37
+Bone Collective, Undead, 3900, ToB-39
+Bone Swarm, Undead, 5900, ToB-41
+Bouda, Fiend, 1800, ToB-44
+Broodiken, Construct, 200, ToB-45
+Bucca, Fey, 100, ToB-46
+Carrion Beetle, Beast, 1100, ToB-52
+Cavelight Moss, Plant, 1100, ToB-53
+Chelicerae, Aberration, 2900, ToB-54
+Chernomoi, Fey, 200, ToB-55
+Chronalmental, Elemental, 3900, ToB-57
+Clockwork Abomination, Construct, 1800, ToB-59
+Clockwork Abomination, Fiend, 1800, ToB-59
+Clockwork Beetle, Construct, 100, ToB-60
+Clockwork Beetle Swarm, Construct, 700, ToB-61
+Clockwork Hound, Construct, 400, ToB-62
+Clockwork Huntsman, Construct, 700, ToB-63
+Clockwork Myrmidon, Construct, 2300, ToB-64
+Clockwork Watchman, Construct, 100, ToB-65
+Clockwork Weaving Spider, Construct, 200, ToB-66
+Cobbleswarm, Monstrosity, 400, ToB-68
+Corpse Mound, Undead, 7200, ToB-69
+Death Butterfly Swarm, Beast, 1100, ToB-71
+Greater Death Butterfly Swarm, Beast, 2300, ToB-71
+Deathwisp, Undead, 2900, ToB-72
+Deep One, Humanoid, 400, ToB-73
+Deep One Hybrid Priest, Humanoid, 1100, ToB-73
+Deep One Archimandrite, Humanoid, 3900, ToB-74
+Apau Perape (Demon), Fiend, 2300, ToB-75
+Berstuc Demon, Fiend, 7200, ToB-76
+Kishi Demon, Fiend, 3900, ToB-77
+Malakbel Demon, Fiend, 5000, ToB-78
+Rubezahl Demon, Fiend, 5900, ToB-80
+Demon Lord of Cockroaches Akyishigal, Fiend, 8400, ToB-82
+Spawn of Akyishigal, Fiend, 1800, ToB-83
+Demon Lord of Night Alquam, Fiend, 33000, ToB-84
+Demon Lord of Bats and Fire Camazotz, Fiend, 41000, ToB-85
+Skin Bat, Fiend, 100, ToB-87
+Mechuiti (Demon Lord of Apes), Fiend, 105000, ToB-88
+Demon Lord of the Devouring Worm Qorgeth, Fiend, 50000, ToB-90
+Derro Fetal Savant, Humanoid, 1100, ToB-92
+Derro Shadow Antipaladin, Humanoid, 1800, ToB-93
+Arbeyach Devil, Fiend, 33000, ToB-95
+Spawn of Arbeyach, Fiend, 1800, ToB-97
+Ia'Affrat Devil, Fiend, 13000, ToB-98
+Mammon Devil, Fiend, 75000, ToB-99
+Totivillus Devil (Scribe of Hell), Fiend, 62000, ToB-101
+Automata Devil, Fiend, 5900, ToB-102
+Chort Devil, Fiend, 8400, ToB-104
+Crystalline Devil, Fiend, 2300, ToB-105
+Gilded Devil, Fiend, 2900, ToB-106
+Ink Devil, Fiend, 400, ToB-108
+Koralk (Harvester Devil), Fiend, 7200, ToB-108
+Lunar Devil, Fiend, 3900, ToB-110
+Orobas Devil, Fiend, 11500, ToB-111
+Salt Devil, Fiend, 2300, ToB-113
+Dipsa, Ooze, 50, ToB-118
+Dissimortuum, Undead, 2900, ToB-119
+Dogmole, Beast, 200, ToB-120
+Dogmole Juggernaut, Monstrosity, 1800, ToB-121
+Domovoi, Fey, 1100, ToB-122
+Doppelrat, Monstrosity, 400, ToB-123
+Dorreq, Aberration, 1100, ToB-124
+Adult Cave Dragon, Dragon, 15000, ToB-125
+Cave Dragon Wyrmling, Dragon, 400, ToB-127
+Young Cave Dragon, Dragon, 3900, ToB-127
+Ancient Flame Dragon, Dragon, 62000, ToB-128
+Adult Flame Dragon, Dragon, 15000, ToB-129
+Young Flame Dragon, Dragon, 5000, ToB-130
+Flame Dragon Wyrmling, Dragon, 700, ToB-131
+Ancient Mithral Dragon, Dragon, 20000, ToB-132
+Adult Mithral Dragon, Dragon, 11500, ToB-133
+Young Mithral Dragon, Dragon, 2300, ToB-134
+Adult Sea Dragon, Dragon, 15000, ToB-135
+Ancient Sea Dragon, Dragon, 41000, ToB-135
+Sea Dragon Qyrmling, Dragon, 400, ToB-136
+Young Sea Dragon, Dragon, 5000, ToB-136
+Ancient Void Dragon, Dragon, 62000, ToB-138
+Adult Void Dragon, Dragon, 11500, ToB-139
+Void Dragon Wyrmling, Dragon, 400, ToB-140
+Young Void Dragon, Dragon, 5000, ToB-140
+Ancient Wind Dragon, Dragon, 41000, ToB-142
+Adult Wind Dragon, Dragon, 18000, ToB-143
+Young Wind Dragon, Dragon, 2300, ToB-144
+Wind Dragon Wyrmling, Dragon, 200, ToB-145
+Ash Drake, Dragon, 1100, ToB-149
+Crimson Drake, Dragon, 200, ToB-151
+Deep Drake, Dragon, 5000, ToB-152
+Elder Shadow Drake, Dragon, 2900, ToB-153
+Paper Drake, Dragon, 400, ToB-154
+Rust Drake, Dragon, 3900, ToB-155
+Star Drake, Dragon, 13000, ToB-156
+Eala, Monstrosity, 400, ToB-163
+Eater of Dust, Aberration, 5000, ToB-164
+Elemental Locus, Elemental, 18000, ToB-169
+Shadow Fey, Humanoid, 50, ToB-171
+Duelist (Shadow Fey), Humanoid, 2300, ToB-171
+Enchantress (Shadow Fey), Humanoid, 2900, ToB-172
+Forest Hunter (Shadow Fey), Humanoid, 1800, ToB-173
+Guardian (Shadow Fey), Humanoid, 1100, ToB-174
+Emerald Eye, Construct, 200, ToB-175
+Empty Cloak, Construct, 100, ToB-176
+Eonic Drifter, Humanoid, 200, ToB-177
+Erina Scrounger, Humanoid, 50, ToB-178
+Erina Defender, Humanoid, 200, ToB-178
+Far Darrig, Fey, 700, ToB-179
+Fate Eater, Aberration, 2300, ToB-180
+Fear Smith, Fey, 5900, ToB-181
+Fellforged, Construct, 1800, ToB-182
+Fext, Undead, 2300, ToB-183
+Bear King (Fey Lord), Fey, 8400, ToB-186
+Fey Lord of the Hunt, Fey, 20000, ToB-188
+Moonlit King (Fey Lord), Fey, 18000, ToB-190
+Fey Queen of Night and Magic, Fey, 33000, ToB-192
+Fey Queen of Witches, Fey, 18000, ToB-194
+River King (Fey Lord), Fey, 15000, ToB-196
+Fey Snow Queen, Fey, 15000, ToB-198
+Firebird, Celestial, 1100, ToB-201
+Firegeist, Elemental, 400, ToB-202
+Flutterflesh, Undead, 8400, ToB-203
+Folk of Leng, Humanoid, 400, ToB-204
+Gbahali, Beast, 2300, ToB-209
+Gearforged Templar, Humanoid, 2300, ToB-210
+Al-Aeshma (Genie), Elemental, 5000, ToB-211
+Gerridae, Fey, 200, ToB-212
+Beggar (Ghoul), Undead, 100, ToB-213
+Bonepowder Ghoul, Undead, 8400, ToB-214
+Darakhul (Ghoul), Undead, 700, ToB-216
+Emperor Ghoul, Undead, 25000, ToB-218
+Imperial (Ghoul), Undead, 1100, ToB-220
+Iron Ghoul, Undead, 1800, ToB-221
+Flab Giant, Giant, 1100, ToB-223
+Gnarljak, Construct, 2300, ToB-229
+Gnoll Havoc Runner, Humanoid, 700, ToB-230
+Goat-Man, Monstrosity, 700, ToB-231
+Dust Goblin, Humanoid, 50, ToB-232
+Eye Golem, Construct, 7200, ToB-233
+Hoard Golem, Construct, 8400, ToB-234
+Salt Golem, Construct, 5900, ToB-235
+Smaragdine Golem, Construct, 11500, ToB-236
+Steam Golem, Construct, 10000, ToB-237
+Gray Thirster, Undead, 400, ToB-238
+Rum Gremlin, Fey, 100, ToB-239
+Grim Jester, Undead, 7200, ToB-240
+Gug, Giant, 8400, ToB-241
+Blood Hag, Fey, 7200, ToB-242
+Mirror Hag, Fey, 2300, ToB-243
+Red Hag, Fey, 2900, ToB-244
+Sand Hag, Fey, 1800, ToB-245
+Owl Harpy, Monstrosity, 1800, ToB-246
+Haugbui, Undead, 10000, ToB-247
+Herald of Blood, Fiend, 8400, ToB-248
+Herald of Darkness, Fiend, 2900, ToB-249
+Horakh, Monstrosity, 5000, ToB-250
+Hound of the Night, Monstrosity, 1800, ToB-251
+Hulking Whelp, Fey, 1800, ToB-252
+Hundun, Celestial, 5900, ToB-253
+Ice Maiden, Fey, 2300, ToB-254
+Idolic Deity, Construct, 3900, ToB-255
+Imy-Ut Ushabti, Monstrosity, 700, ToB-256
+Kobold Alchemist, Humanoid, 400, ToB-261
+Kobold Chieftain, Humanoid, 1100, ToB-263
+Kobold Trapsmith, Humanoid, 200, ToB-264
+Kongamato, Beast, 1800, ToB-265
+Koschei, Fiend, 18000, ToB-266
+Kot Bayun, Monstrosity, 400, ToB-268
+Library Automaton, Construct, 100, ToB-273
+Lich Hound, Undead, 1100, ToB-274
+Likho, Monstrosity, 2300, ToB-275
+Lindwurm, Dragon, 1800, ToB-276
+Liosalfar, Elemental, 3900, ToB-277
+Living Wick, Construct, 50, ToB-278
+Lorelei, Fey, 1800, ToB-279
+Mallqui, Undead, 3900, ToB-282
+Malphas, Fey, 2300, ToB-283
+Mamura, Aberration, 2300, ToB-284
+Mamura, Fey, 2300, ToB-284
+Mask Wight, Undead, 10000, ToB-285
+Mavka, Fey, 8400, ToB-286
+Mavka, Undead, 8400, ToB-286
+Mi-Go, Plant, 1800, ToB-287
+Millitaur, Monstrosity, 700, ToB-288
+Map Mimic, Aberration, 50, ToB-289
+Kalke, Fiend, 50, ToB-289
+Mindrot Thrall, Plant, 700, ToB-290
+Mirager, Fey, 700, ToB-291
+Miremal, Fey, 100, ToB-292
+Mngwa, Aberration, 1100, ToB-293
+Monolith Champion, Construct, 3900, ToB-294
+Monolith Footman, Construct, 700, ToB-295
+Mordant Snare, Aberration, 13000, ToB-296
+Morphoi, Plant, 100, ToB-297
+Naina, Dragon, 7200, ToB-302
+Naina (in humanoid form), Fey, 7200, ToB-302
+Nichny, Fey, 2300, ToB-303
+Noctiny, Humanoid, 400, ToB-308
+Oculo Swarm, Monstrosity, 1100, ToB-309
+Ostinato, Aberration, 1100, ToB-312
+Pombero, Fey, 700, ToB-313
+Possessed Pillar, Construct, 2900, ToB-314
+Putrid Haunt, Undead, 400, ToB-315
+Qwyllion, Aberration, 3900, ToB-316
+Qwyllion, Fey, 3900, ToB-316
+Ramag, Humanoid, 50, ToB-317
+Rat King, Monstrosity, 1800, ToB-318
+Ratatosk, Celestial, 1100, ToB-319
+Ratfolk, Humanoid, 50, ToB-320
+Ratfolk Rogue, Humanoid, 200, ToB-320
+Ravenfolk Scout (Kenku), Humanoid, 100, ToB-322
+Ravenfolk Warrior (Kenku), Humanoid, 700, ToB-322
+Ravenfolk Doom Croaker (Kenku), Humanoid, 1800, ToB-322
+Redcap, Fey, 2300, ToB-325
+Rift Swine, Aberration, 1800, ToB-326
+Rime Worm Grub, Elemental, 200, ToB-327
+Adult Rime Worm, Elemental, 2300, ToB-327
+Risen Reaver, Undead, 2900, ToB-328
+Roachling Skirmisher, Humanoid, 50, ToB-329
+Roachling Lord, Humanoid, 400, ToB-329
+Rotting Wind, Undead, 2300, ToB-330
+Sap Demon, Ooze, 1100, ToB-335
+Sarcophagus Slime, Undead, 1800, ToB-336
+Sathaq Worm, Elemental, 5900, ToB-337
+Savager, Beast, 3900, ToB-338
+Scheznyki, Fey, 2300, ToB-339
+Night Scorpion, Beast, 700, ToB-340
+Stygian Fat-Tailed Scorpion, Beast, 700, ToB-340
+Selang, Fey, 1100, ToB-341
+Serpopard, Beast, 1100, ToB-342
+Shabti, Construct, 3900, ToB-343
+Shadhavar, Monstrosity, 400, ToB-344
+Shadow Beast, Fey, 2900, ToB-345
+Shellycoat, Fey, 400, ToB-346
+Shoggoth, Aberration, 22000, ToB-347
+Shroud, Undead, 75000, ToB-348
+Skein Witch, Celestial, 8400, ToB-349
+Sharkjaw (Skeleton), Undead, 200, ToB-350
+Vine Troll (Skeleton), Plant, 5000, ToB-351
+Skitterhaunt, Ooze, 1100, ToB-352
+Slow Storm, Elemental, 13000, ToB-353
+Swamp Adder Snake, Beast, 50, ToB-354
+Zanskaran Viper Snake, Beast, 200, ToB-354
+Son of Fenris, Monstrosity, 8400, ToB-355
+Soul Eater, Fiend, 2900, ToB-356
+Spark, Elemental, 2900, ToB-357
+Spectral Guardian, Undead, 2300, ToB-358
+Gypsosphinx, Monstrosity, 11500, ToB-359
+Ghostwalk Spider, Monstrosity, 5000, ToB-361
+J'ba Fofi (Spider), Beast, 700, ToB-362
+Red-Banded Line Spider, Beast, 50, ToB-363
+Sand Spider, Beast, 2900, ToB-364
+Spider of Leng, Aberration, 2900, ToB-365
+Spider Thief, Construct, 400, ToB-366
+Spire Walker, Fey, 700, ToB-367
+Star-Spawn of Cthulhu, Fiend, 13000, ToB-368
+Stryx, Monstrosity, 75000, ToB-369
+Stuhac, Fiend, 10000, ToB-370
+Subek, Humanoid, 1800, ToB-371
+Suturefly, Beast, 50, ToB-372
+Fire Dancer Swarm, Elemental, 2900, ToB-373
+Manabane Scarab Swarm, Beast, 1100, ToB-374
+Prismatic Beetle Swarm, Beast, 700, ToB-375
+Sluagh Swarm, Fey, 700, ToB-376
+Wolf Spirit Swarm, Undead, 2300, ToB-377
+Temple Dog, Celestial, 1800, ToB-378
+Theullai, Elemental, 5900, ToB-379
+Ancient Titan, Celestial, 8400, ToB-380
+Degenerate Titan, Giant, 3900, ToB-381
+Titanoboa, Beast, 8400, ToB-382
+Tophet, Construct, 3900, ToB-383
+Tosculi Hive Queen, Monstrosity, 8400, ToB-385
+Tosculi Drone, Monstrosity, 100, ToB-386
+Tosculi Warrior, Monstrosity, 400, ToB-386
+Tosculi Elite Bow Raider, Monstrosity, 1800, ToB-386
+Treacle, Ooze, 50, ToB-387
+Weeping Treant, Plant, 2300, ToB-388
+Lake Troll, Giant, 2900, ToB-389
+Trollkin Reaver, Humanoid, 1100, ToB-390
+Tusked Skyfish, Aberration, 1100, ToB-391
+Uraeus, Celestial, 400, ToB-392
+Urochar, Aberration, 18000, ToB-393
+Ushabti, Construct, 5000, ToB-394
+Vaettir, Undead, 1100, ToB-395
+Valkyrie, Celestial, 7200, ToB-396
+Umbral Vampire, Fiend, 2900, ToB-397
+Vapor Lynx, Monstrosity, 1800, ToB-398
+Vesiculosa, Plant, 7200, ToB-399
+Vila, Fey, 1800, ToB-400
+Vile Barber, Fey, 400, ToB-401
+Vine Lord, Plant, 2900, ToB-402
+Tendril Puppet, Plant, 400, ToB-403
+Voidling, Aberration, 7200, ToB-404
+Wampus Cat, Monstrosity, 200, ToB-405
+Water Leaper, Monstrosity, 1100, ToB-406
+Wharfling, Beast, 75000, ToB-407
+Wharfling Swarm, Beast, 1100, ToB-407
+White Ape, Monstrosity, 2300, ToB-408
+Witchlight, Construct, 50, ToB-409
+Wormhearted Suffragan, Undead, 1800, ToB-410
+Xanka, Construct, 50, ToB-411
+Xhkarsh, Aberration, 3900, ToB-412
+Ychen Bannog, Beast, 7200, ToB-413
+Zaratan, Monstrosity, 90000, ToB-414
+Zimwi, Giant, 1100, ToB-415
+Zmey, Dragon, 11500, ToB-416
+Bandit Lord, Humanoid, 1100, ToB-418
+Black Knight Commander, Humanoid, 1800, ToB-418
+City Watch Captain, Humanoid, 1100, ToB-419
+Dwarven Ringmage, Humanoid, 2900, ToB-420
+Devilbound Gnomish Prince, Humanoid, 5000, ToB-420
+Emerald Order Cult Leader, Humanoid, 3900, ToB-421
+Elvish Veteran Archer, Humanoid, 700, ToB-422
+Ogre Chieftain (Corrupted), Giant, 2300, ToB-423
+Ghost Knight, Humanoid, 2300, ToB-423
+Scorpion Cultist, Humanoid, 100, ToB-425
+Wolf Reaver Dwarf, Humanoid, 700, ToB-426
+Cranium Rat, Beast, 10, VGtM-133
+Boggle, Fey, 25, VGtM-128
+Neogi Hatchling, Aberration, 25, VGtM-179
+Xvart, Humanoid, 25, VGtM-200
+Cow (Deep Rothe), Beast, 50, VGtM-207
+Kobold Inventor, Humanoid, 50, VGtM-166
+Chitine, Monstrosity, 100, VGtM-131
+Darkling, Fey, 100, VGtM-134
+Firenewt, Humanoid, 100, VGtM-142
+Gazer, Aberration, 100, VGtM-126
+Orc (Nurtured One of Yurtrus), Humanoid, 100, VGtM-184
+Swarm of Rot Grubs, Beast, 100, VGtM-208
+Firenewt (Warlock of Imix), Humanoid, 200, VGtM-143
+Giant Strider, Monstrosity, 200, VGtM-143
+Kobold Dragonshield, Humanoid, 200, VGtM-165
+Kobold Scale Sorceror, Humanoid, 200, VGtM-167
+Maw Demon, Fiend, 200, VGtM-137
+Nilbog, Humanoid, 200, VGtM-182
+Vargouille, Fiend, 200, VGtM-195
+Warlock of Raxivort (Xvart), Humanoid, 200, VGtM-200
+Darkling Elder, Fey, 450, VGtM-134
+Guard Drake (Red), Dragon, 450, VGtM-158
+Orc (Claw of Luthic), Humanoid, 450, VGtM-183
+Orc (Hand of Yurtrus), Humanoid, 450, VGtM-184
+Yuan-Ti Broodguard, Humanoid, 450, VGtM-203
+Cave Fisher, Monstrosity, 700, VGtM-130
+Choldrith, Monstrosity, 700, VGtM-132
+Flail Snail, Elemental, 700, VGtM-144
+Neogi, Aberration, 700, VGtM-180
+Red Fang of Shargaas (Orc), Humanoid, 700, VGtM-185
+Slithering Tracker, Ooze, 700, VGtM-191
+Trapper, Monstrosity, 700, VGtM-194
+Babau, Fiend, 1100, VGtM-136
+Barghest, Fiend, 1100, VGtM-123
+Neogi Master, Aberration, 1100, VGtM-180
+Orc Blade of Ilneval, Humanoid, 1100, VGtM-183
+Yuan-Ti Mind Whisperer, Monstrosity, 1100, VGtM-204
+Yuan-Ti Nightmare Speaker, Monstrosity, 1100, VGtM-205
+Mindwitness, Aberration, 1800, VGtM-176
+Spawn of Kyuss, Undead, 1800, VGtM-192
+Swarm of Cranium Rats, Beast, 1800, VGtM-133
+Tanarukk, Fiend, 1800, VGtM-186
+Yuan-Ti Pit Master, Monstrosity, 1800, VGtM-206
+Bodak, Undead, 2300, VGtM-127
+Gauth, Aberration, 2300, VGtM-125
+Warlock of the Great Old One, Humanoid, 2300, VGtM-220
+Draegloth, Fiend, 2900, VGtM-141
+Warlock of the Fiend, Humanoid, 2900, VGtM-219
+Blackguard, Humanoid, 3900, VGtM-211
+Ulitharid, Aberration, 5000, VGtM-175
+Alhoon, Undead, 5900, VGtM-197
+Death Kiss, Aberration, 5900, VGtM-124
+Froghemoth, Monstrosity, 5900, VGtM-145
+Yuan-Ti Anathema, Monstrosity, 8400, VGtM-202
+Devourer, Fiend, 10000, VGtM-138
+Neothelid, Aberration, 10000, VGtM-181
+Elder Brain, Aberration, 11500, VGtM-174
+Fire Giant Dreadnought, Giant, 11500, VGtM-147
+Mind Flayer Lich (Alhoon variant), Undead, 41000, VGtM-192
