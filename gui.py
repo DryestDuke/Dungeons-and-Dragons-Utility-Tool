@@ -1,4 +1,5 @@
 from appJar import gui
+import npc
 
 #initializing application
 app = gui()
@@ -49,7 +50,9 @@ app.addButton("Proceed", proceed)
 
 #defining runXX methods to implement overall functionality
 def runNPCs():
-	print("NPC time.")
+	npcApp = npc("my string")
+	npcApp.display()
+	
 	
 def runBuildings():
 	print("Building time.")
