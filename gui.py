@@ -7,41 +7,82 @@ app.setTitle("D&D Utility Tool")
 app.setGeometry("300x300")
 
 #setting up widgets
-fList = ["NPCs", "Buildings", "Village", "Rumors", "Encounters", "Loot", "XP Budget Calculator", "Combat Encounter Generator", "Monster Lists", "Wild Magical Effect", "Print a List", "Spell Cards"]
+fList = ["NPCs", "Buildings", "Village", "Rumors", "Encounters", "Loot", "XP Budget Calculator", "Combat Encounter Generator", "Monster Lists", "Wild Magical Effects", "Print a List", "Spell Cards"]
 app.addListBox("functionsList", fList)
 app.setListBoxRows("functionsList", len(fList))
 
-#setting up basic functionality - via "Proceed" button
-choice = 0
-
+#setting up proceed button
 def proceed(choice):
-	choice_str = app.getListItems("functionsList")[0]
-	if choice_str == "NPCs":
-		choice = 1
-	elif choice_str == "Buildings":
-		choice = 2
-	elif choice_str == "Village":
-		choice = 3
-	elif choice_str == "Rumors":
-		choice = 4
-	elif choice_str == "Encounters":
-		choice = 5
-	elif choice_str == "Loot":
-		choice = 6
-	elif choice_str == "XP Budget Calculator":
-		choice = 7
-	elif choice_str == "Combat Encounter Generator":
-		choice = 8
-	elif choice_str == "Monster Lists":
-		choice = 9
-	elif choice_str == "Wild Magical Effect":
-		choice = 10
-	elif choice_str == "Print a List":
-		choice = 11
-	elif choice_str == "Spell Cards":
-		choice = 12
+	choice_list = app.getListItems("functionsList")
+	if len(choice_list) < 1:
+		print("Nothing was chosen.")
+		return
+	choice = choice_list[0]
+	if choice == "NPCs":
+		runNPCs()
+	elif choice == "Buildings":
+		runBuildings()
+	elif choice == "Village":
+		runVillage()
+	elif choice == "Rumors":
+		runRumors()
+	elif choice == "Encounters":
+		runEncounters()
+	elif choice == "Loot":
+		runLoot()
+	elif choice == "XP Budget Calculator":             
+		runXPBudgetCalculator()
+	elif choice == "Combat Encounter Generator":
+		runCombatEncounterGenerator()
+	elif choice == "Monster Lists":
+		runMonsterLists()
+	elif choice == "Wild Magical Effects":
+		runWildMagicalEffects()
+	elif choice == "Print a List":
+		runPrintAList()
+	elif choice == "Spell Cards":
+		runSpellCards()
+	else:
+		print("Choice/s: ", app.getListItems("functionsList"))
 		
 app.addButton("Proceed", proceed)
+
+#defining runXX methods to implement overall functionality
+def runNPCs():
+	print("NPC time.")
+	
+def runBuildings():
+	print("Building time.")
+	
+def runVillage():
+	print("Village time.")
+	
+def runRumors():
+	print("Rumor time.")
+	
+def runEncounters():
+	print("Encounter time.")
+	
+def runLoot():
+	print("Loot time.")
+	
+def runXPBudgetCalculator():
+	print("XP Budget Calculating time.")
+	
+def runCombatEncounterGenerator():
+	print("Combat Encounter Generating time.")
+	
+def runMonsterLists():
+	print("Monster Lists time.")
+	
+def runWildMagicalEffects():
+	print("Wild Magical Effects time.")
+	
+def runPrintAList():
+	print("List printing time.")
+	
+def runSpellCards():
+	print("Spell cards time.")
 
 #starts app
 app.go()
