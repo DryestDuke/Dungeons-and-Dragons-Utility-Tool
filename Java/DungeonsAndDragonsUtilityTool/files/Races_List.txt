@@ -1,0 +1,70 @@
+Hill Dwarf
+Mountain Dwarf
+Gray Dwarf (Duergar)
+High-Elf
+Wood-Elf
+Dark-Elf
+Stout Halfling
+Lightfoot Halfling
+Human
+Black Dragonborn (Acid)
+Blue Dragonborn (Lightning)
+Brass Dragonborn (Fire)
+Bronze Dragonborn (Lightning)
+Copper Dragonborn (Acid)
+Gold Dragonborn (Fire)
+Green Dragonborn (Poison)
+Red Dragonborn (Fire)
+Silver Dragonborn (Cold)
+White Dragonborn (Cold)
+Forest Gnome
+Rock Gnome
+Deep Gnome (Svirfneblin)
+Half-Elf from High-Elf
+Half-Elf from Wood-Elf
+Half-Elf from Dark-Elf
+Half-Orc
+Tiefling with Small Horns
+Tiefling with Fangs or Sharp Teeth
+Tiefling with Forked Tongue
+Tiefling with Catlike Eyes
+Tiefling with Six Fingers on One Hand
+Tiefling with Goat-Like Legs
+Tiefling with Cloven Hoofs
+Tiefling with a Forked Tail
+Tiefling with Leathery or Scaly Skin
+Tiefling with Red Skin
+Tiefling with Dark Blue Skin
+Tiefling with Gray Skin
+Tiefling with No Shadow
+Tiefling with No Reflection
+Tiefling with a Smell of Brimstone
+Air Genasi
+Water Genasi
+Fire Genasi
+Earth Genasi
+Goliath
+Changeling
+Beasthide Shifter
+Cliffwalk Shifter
+Longstride Shifter
+Longtooth Shifter
+Razorclaw Shifter
+Wildhunt Shifter
+Warforged
+Minotaur
+Aarakocra
+Protecter Aasimar
+Scourge Aasimar
+Fallen Aasimar
+Firbolg
+Kenku
+Lizardfolk
+Tabaxi
+Triton
+Bugbear
+Goblin
+Hobgoblin
+Kobold
+Orc
+Yuan-ti Pureblood
