@@ -6,4 +6,13 @@ View then responds to user input, as appropriate.
 
 Dashboard: 
 *A text box to type in a roll, click roll, then see the results.
-*
+*NPC generator.	
+	> W/ sexuality. Most are bi.
+	> W/ (current) emotion wheel. 3 levels. in Gmail: D&D || Fantasy Lands
+	> Ability to save (to file/for seassion)/edit/load.
+		: saving uses a header with important info.
+		: each npc is a different block in one text file called NPCs.txt
+*Encounter XP Calculator.
+*Encounter Generator.
+*Monster searcher.
+	>books = strings, page numbers = integers.
