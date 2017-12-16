@@ -1,0 +1,9 @@
+Program begins in Controller.
+
+Controller then creates View, which should create the opening dashboard.
+
+View then responds to user input, as appropriate.
+
+Dashboard: 
+*A text box to type in a roll, click roll, then see the results.
+*
