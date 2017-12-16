@@ -1,0 +1,1 @@
+Fill this with all values in the emotion wheel - then setup the program to randomly return a degree of emotion (1-3) that determines how deep down the tree we go.

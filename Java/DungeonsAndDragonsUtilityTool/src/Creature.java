@@ -1,11 +1,11 @@
 public class Creature {
 	
-	String environment = null;
-	String name = null;
-	String type = null;
-	int xp = -1;
-	String book = null;
-	int pageNumber = -1;
+	public String environment = null;
+	public String name = null;
+	public String type = null;
+	public int xp = -1;
+	public String book = null;
+	public int pageNumber = -1;
 	
 	public Creature(String environment, String name, String type, int xp, String book, int page) {
 		this.environment = environment;

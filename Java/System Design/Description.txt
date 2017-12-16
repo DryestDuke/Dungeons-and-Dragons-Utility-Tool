@@ -9,7 +9,7 @@ Dashboard:
 *NPC generator.	
 	> W/ sexuality. Most are bi.
 	> W/ (current) emotion wheel. 3 levels. in Gmail: D&D || Fantasy Lands
-	> Ability to save (to file/for seassion)/edit/load.
+	> Ability to save (to file/for session)/edit/load.
 		: saving uses a header with important info.
 		: each npc is a different block in one text file called NPCs.txt
 *Encounter XP Calculator.
