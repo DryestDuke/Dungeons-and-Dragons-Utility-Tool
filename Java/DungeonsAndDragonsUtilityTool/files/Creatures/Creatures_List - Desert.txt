@@ -422,7 +422,7 @@ Wolf Reaver Dwarf, Humanoid, 700, ToB-426
 Firenewt, Humanoid, 100, VGtM-142
 Vargouille, Fiend, 200, VGtM-195
 Guard Drake (Blue), Dragon, 450, VGtM-158
-Yuan-Ti Brood Guard, Humanoid, 450, VGtM-
+Yuan-Ti Brood Guard, Humanoid, 450, VGtM-0
 Leucrotta, Monstrosity, 700, VGtM-169
 Yuan-Ti Mind Whisperer, Monstrosity, 1100, VGtM-204
 Yuan-Ti Nightmare Speaker, Monstrosity, 1100, VGtM-205

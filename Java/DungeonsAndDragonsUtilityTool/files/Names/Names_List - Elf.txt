@@ -1,7 +1,7 @@
 Aelasar
 Aelorothi
 Aendryr
-Aerasumé
+Aerasume
 Aeravansel
 Agayous
 Agrivar
@@ -70,7 +70,7 @@ Duskmere
 Duthjuth
 Ealoeth
 Echorn
-Elaéyadar
+Elaeyadar
 Elassidil
 Elian
 Ellarian
@@ -175,7 +175,7 @@ Neirdre
 Nelnueve
 Never
 Nhachashaal
-Nhaéslal
+Nhaeslal
 Nharimlur
 Nightstar
 Nightwing
@@ -198,7 +198,7 @@ Ongluth
 Orama
 Orbryn
 Orbryn
-Ortauré
+Ortaure
 Oumryn
 Phenthae
 Pholont
@@ -308,7 +308,7 @@ Aeson
 Afamrail
 Agis
 Aglanthol
-Ainésilver
+Ainesilver
 Aithlin
 Ajaar
 Akhelbhen
@@ -413,7 +413,7 @@ Elbereth
 Eldaernth
 Eldar
 Eldrin
-Elénaril
+Elenaril
 Elenshaer
 Elephon
 Elhieardacil
@@ -439,7 +439,7 @@ Eschallus
 Estelar
 Ethlando
 Ettrian
-Euchoé
+Euchoe
 Evindal
 Eyrynnhv
 Faahresc
@@ -669,7 +669,7 @@ Orlpar
 Orndacil
 Ornthalas
 Ornthalas
-Ortauré
+Ortaure
 Orym
 Oslarelar
 Otaehryn
@@ -953,7 +953,7 @@ Elanalue
 Elanil
 Elasha
 Eldratha
-Elénaril
+Elenaril
 Eletha
 Ellarian
 Ellifain
@@ -1108,7 +1108,7 @@ Ruavia
 Rubrae
 Ryllae
 Saelihn
-Saélihn
+Saelihn
 Saida
 Sakaala
 Sariandi
@@ -1117,7 +1117,7 @@ Schimae
 Seirye
 Seldanna
 Selussa
-Séonais
+Seonais
 Shael
 Shadowmoon
 Shalana
@@ -1186,7 +1186,7 @@ Xiiltharra
 Yaereene
 Yalanilue
 Yathlanae
-Yeshelné
+Yeshelne
 Yghiilra
 Ygrainne
 Ynshael

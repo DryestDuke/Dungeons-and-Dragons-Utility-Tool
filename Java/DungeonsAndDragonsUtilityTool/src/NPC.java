@@ -1,5 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class NPC {
@@ -26,7 +29,21 @@ public class NPC {
 	public String trade;
 	
 	public String toString() {
-		return "" + name;
+		return "Header: " + header
+				+ "\nName: " + name
+				+ "\n Race: " + race
+				+ "\n Age: " + age
+				+ "\n Gender: " + gender
+				+ "\n Sexuality: " + sexuality
+				+ "\n Emotion: " + emotion
+				+ "\n   Stats: " + stats
+				+ "\n   Moral: " + moral
+				+ "\n   Ideal: " + ideal
+				+ "\n   Trait: " + trait
+				+ "\n Trade: " + trade
+				+ "\n Skill: " + skill
+				+ "\n Worth: " + worth;
+				
 	}
 	
 	public NPC(long serialNumber, String header, String name, String race, String age, String gender, String sexuality, 
@@ -62,25 +79,28 @@ public class NPC {
 	}
 	
 	public static NPC generateNPC() {
+		Model model = new Model();
+		
 		long serialNumber_ = new Random().nextLong();
 		String header_ = "";
 		
-		String race_ = Model.getRace();
-		String name_ = Model.getName(race_);
-		String age_ = Model.generateAge();
+		String race_ = model.getRace();
 		
-		String gender_ = Model.generateGender();
-		String sexuality_ = Model.generateSexuality();
-		String emotion_ = Model.getEmotion();
+		String name_ = model.getName(race_) + " " + model.getName(race_);
+		String age_ = model.generateAge();
 		
-		String stats_ = Model.generateStats();
+		String gender_ = model.generateGender();
+		String sexuality_ = model.generateSexuality();
+		String emotion_ = model.getEmotion();
 		
-		String moral_ = Model.getMoral();
-		String worth_ = Model.getWorth();
-		String trait_ = Model.getTrait();
-		String ideal_ = Model.getMoral();
-		String skill_ = Model.getSkill(stats_);
-		String trade_ = Model.getTrade();
+		String stats_ = model.generateStats();
+		
+		String moral_ = model.generateMoral();
+		String worth_ = model.getWorth();
+		String trait_ = model.getTrait();
+		String ideal_ = model.getIdeal();
+		String skill_ = model.getSkill();
+		String trade_ = model.getTrade();
 		
 		return new NPC(serialNumber_, header_, name_, race_, age_, gender_, sexuality_, 
 				 emotion_, stats_, moral_, worth_, trait_, ideal_, skill_, 
