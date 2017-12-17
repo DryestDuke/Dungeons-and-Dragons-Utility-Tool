@@ -1,13 +1,10 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
-
 
 public class NPC {
-	private long serialNumber;
-	static ArrayList<Long> serialNumbers = new ArrayList<Long>();
+	
+	private static Model model = new Model();
+	
+	private int serialNumber;
 	
 	public String header;
 	
@@ -30,35 +27,39 @@ public class NPC {
 	
 	public String toString() {
 		return "Header: " + header
+				+ "\nSN: " + serialNumber
 				+ "\nName: " + name
 				+ "\n Race: " + race
 				+ "\n Age: " + age
 				+ "\n Gender: " + gender
 				+ "\n Sexuality: " + sexuality
-				+ "\n Emotion: " + emotion
 				+ "\n   Stats: " + stats
 				+ "\n   Moral: " + moral
 				+ "\n   Ideal: " + ideal
 				+ "\n   Trait: " + trait
+				+ "\n Emotion: " + emotion
 				+ "\n Trade: " + trade
 				+ "\n Skill: " + skill
 				+ "\n Worth: " + worth;
 				
 	}
 	
-	public NPC(long serialNumber, String header, String name, String race, String age, String gender, String sexuality, 
+	public NPC(int serialNumber, String header, String name, String race, String age, String gender, String sexuality, 
 			String emotion, String stats, String moral, String worth, String trait, String ideal, String skill, 
 			String trade) {
-		if(serialNumbers.contains(serialNumber)) {
+		if(model.serialNumbers.contains(serialNumber)) {
 			Random rand = new Random();
-			long sn = rand.nextLong();
-			while(serialNumbers.contains(sn)) {
-				sn = rand.nextLong();
+			int sn = rand.nextInt(Integer.MAX_VALUE);
+			while(model.serialNumbers.contains(sn)) {
+				sn = rand.nextInt(Integer.MAX_VALUE);
 			}
-			serialNumbers.add(sn);
+			model.serialNumbers.add(sn);
+		}else {
+			model.serialNumbers.add(serialNumber);
 		}
 		
 		this.header = header;
+		this.serialNumber = serialNumber;
 		
 		this.name = name;
 		this.race = race;
@@ -79,9 +80,7 @@ public class NPC {
 	}
 	
 	public static NPC generateNPC() {
-		Model model = new Model();
-		
-		long serialNumber_ = new Random().nextLong();
+		int serialNumber_ = new Random().nextInt(Integer.MAX_VALUE);
 		String header_ = "";
 		
 		String race_ = model.getRace();

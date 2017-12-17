@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Model {
 	
+	ArrayList<Integer> serialNumbers = new ArrayList<Integer>();;
+	
 	ArrayList<Creature> creatures;
 	ArrayList<NPC> npcs;
 	ArrayList<String> races;
@@ -132,6 +134,7 @@ public class Model {
 	 * @return all saved NPCs.
 	 */
 	public ArrayList<NPC> loadNPCs(){
+		//make sure to also add all serial numbers to serialNumbers (which is used during creation of NPCs). SNs are needed for editing NPCs.
 		return null;
 	}
 	
@@ -142,16 +145,39 @@ public class Model {
 	 * @return a Roll.
 	 */
 	public Roll makeRoll(int numberDice, int numberSides) {
-		return null;
+		int max = numberSides;
+		int min = 1;
+		
+		int total = 0;
+		ArrayList<Integer> rolls = new ArrayList<Integer>(numberDice);
+		
+		while(numberDice != 0) {
+			int roll = random.nextInt(max - min + 1) + min;
+			rolls.add(roll);
+			total += roll;
+			numberDice--;
+		}
+		
+		return new Roll(rolls, total);
 	}
 	
 	/**
 	 * This method makes a roll, returning the result within the result set given by the roll.
-	 * @param some roll - two numbers split by some string, usually just the character 'd' however.
-	 * @return a Roll.
+	 * @param some roll - two numbers split by the character 'd'. 
+	 * The first number is the number of die & the second number is the number of sides on all of the die.
+	 * @return a Roll, or null if the roll expression was not correct.
 	 */
 	public Roll roll(String roll) {
-		return null;
+		//format of roll is some amount of digits, followed by some amount of non-digits, followed by some amount of digits.
+		String regex = "([0-9]+)(d)([0-9]+)";
+		if(!roll.matches(regex)) {
+			return null;
+		}
+		else {
+			int numberDice = Integer.parseInt(roll.substring(0, roll.indexOf("d")));
+			int numberSides = Integer.parseInt(roll.substring(roll.indexOf("d")+1, roll.length()));
+			return makeRoll(numberDice, numberSides);
+		}
 	}
 	
 	/**
@@ -160,8 +186,11 @@ public class Model {
 	 * @param averageLevel the average levels of all players in the party.
 	 * @return the xp budget for such a party.
 	 */
-	public int calculateXP(int numberPlayers, int averageLevel) {
-		return 0;
+	public int calculateXP(int numberPlayers, int averageLevel, int difficulty) {
+		int difficulty = -1;
+		int xpBudget = -1;
+		int temp = -1;
+		
 	}
 	
 	/**
@@ -258,7 +287,7 @@ public class Model {
 	}
 
 	private int generateModifier() {
-		Integer[] weightedOptions = new Integer[] {1, 1, 1, 2, 2, 3};
+		Integer[] weightedOptions = new Integer[] {1, 1, 1, 1, 2, 2, 3};
 		return weightedOptions[random.nextInt(weightedOptions.length)];
 	}
 	
@@ -267,6 +296,11 @@ public class Model {
 		
 		int numberBadAt = weightedOptions[random.nextInt(weightedOptions.length)];
 		int numberGoodAt = weightedOptions[random.nextInt(weightedOptions.length)];
+		
+		while(numberBadAt == 0 && numberGoodAt == 0) {
+			numberBadAt = weightedOptions[random.nextInt(weightedOptions.length)];
+			numberGoodAt = weightedOptions[random.nextInt(weightedOptions.length)];
+		}
 		
 		ArrayList<String> abilityScores = new ArrayList<String>();
 		abilityScores.add("STR");
@@ -277,25 +311,67 @@ public class Model {
 		abilityScores.add("CHA");
 		abilityScores.add("BEA");
 		
+		ArrayList<String> moddedScores = new ArrayList<String>();
+		
 		for(int c=0;c<numberGoodAt;c++) {
 			String x = getRandomElement(abilityScores);
+			abilityScores.remove(x);
 			x += " +" + generateModifier();
+			moddedScores.add(x);
 		}
 		
 		for(int c=0;c<numberBadAt;c++) {
 			String x = getRandomElement(abilityScores);
+			abilityScores.remove(x);
 			x += " -" + generateModifier();
+			moddedScores.add(x);
 		}
 		
-		String output = "";
-		for(String as : abilityScores) {
-			output += as;
-			if(!as.equals("BEA")) {
-				output += " | ";
+		ArrayList<String> orderedScores = new ArrayList<String>();
+		
+		//order moddedScores into orderedScores
+		for(String entry : moddedScores) {
+			if(entry.contains("STR")) {
+				orderedScores.add(entry);
+			}
+		}
+		for(String entry : moddedScores) {
+			if(entry.contains("DEX")) {
+				orderedScores.add(entry);
+			}
+		}
+		for(String entry : moddedScores) {
+			if(entry.contains("CON")) {
+				orderedScores.add(entry);
+			}
+		}
+		for(String entry : moddedScores) {
+			if(entry.contains("INT")) {
+				orderedScores.add(entry);
+			}
+		}
+		for(String entry : moddedScores) {
+			if(entry.contains("WIS")) {
+				orderedScores.add(entry);
+			}
+		}
+		for(String entry : moddedScores) {
+			if(entry.contains("CHA")) {
+				orderedScores.add(entry);
+			}
+		}
+		for(String entry : moddedScores) {
+			if(entry.contains("BEA")) {
+				orderedScores.add(entry);
 			}
 		}
 		
-		return output;
+		String output = "";
+		for(String element : orderedScores) {
+			output += element + " | ";
+		}
+		
+		return output.substring(0, output.length()-3);
 	}
 
 	public String generateMoral() {
