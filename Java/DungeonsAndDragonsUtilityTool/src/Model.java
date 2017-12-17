@@ -119,11 +119,12 @@ public class Model {
 					pageNumber = Integer.parseInt(splitLine[3].substring(3, splitLine[3].length()));
 				}else if(splitLine[3].contains("VGtM")) {
 					book = "Volo's Guide to Monsters";
-					pageNumber = Integer.parseInt(splitLine[3].substring(splitLine[3].indexOf('-'), splitLine[3].length()));
+					pageNumber = Integer.parseInt(splitLine[3].substring(splitLine[3].indexOf('-')+1, splitLine[3].length()));
 				}else if(splitLine[3].contains("ToB")) {
 					book = "Tome of Beasts";
-					pageNumber = Integer.parseInt(splitLine[3].substring(splitLine[3].indexOf('-'), splitLine[3].length()));
+					pageNumber = Integer.parseInt(splitLine[3].substring(splitLine[3].indexOf('-')+1, splitLine[3].length()));
 				}
+				
 				Creature creature = new Creature(fn, splitLine[0], splitLine[1], Integer.parseInt(splitLine[2].trim()), book, pageNumber);
 				output.add(creature);
 			}
@@ -606,6 +607,24 @@ public class Model {
 			System.err.println("sortBy value used in searchCreatures(...) was invalid - failed to sort creatures.");
 		}
 		
+		//the exact same creature, but in a different environment, is treated as a different type of creature.
+		//so delete all creatures whose attributes are all identical, excluding environment
+		ArrayList<Creature> temp = new ArrayList<Creature>(output);
+		
+		for(int c=0;c<output.size();c++) {
+			Creature cr = output.get(c);
+			
+			for(Creature cre : output) {
+				if(cr.equals(cre)) {
+					temp.remove(cre);
+				}
+			}
+			
+			temp.add(cr);
+			
+		}
+		
+		output = temp;
 		return output;
 	}
 	
@@ -623,10 +642,19 @@ public class Model {
 	 * @return the list of all creatures in the encounter (not including the PCs, obviously).
 	 */
 	public ArrayList<Creature> generateEncounter(int numberCreatures, int numberBosses, int numberMinions, int xpBudget, ArrayList<Creature> creatures) {
-		//ensure numberBosses + numberMinions !>< numberCreaturessqaa
-		return null;
+		//ensure numberBosses + numberMinions == numberCreatures
+		ArrayList<Creature> encounter = new ArrayList<Creature>(numberCreatures);
+		
+		
+		
+		return encounter;
 	}
 	
+	/**
+	 * Given some ArrayList<String>, it returns a random element from that list.
+	 * @param list
+	 * @return
+	 */
 	private String getRandomElement(ArrayList<String> list) {
 		return getRandomElement(list, 0);
 	}
@@ -674,30 +702,50 @@ public class Model {
 		return getRandomElement(generic, 1);
 	}
 	
+	/**
+	 * @return some age from {"Younger", "Middle-Aged", "Middle-Aged", "Older"}.
+	 */
 	public String generateAge() {
 		String[] ages = new String[] {"Younger", "Middle-Aged", "Middle-Aged", "Older"};
 		return ages[random.nextInt(ages.length)];
 	}
 
+	/**
+	 * @return return some gender from {"Male", "Female"}.
+	 */
 	public String generateGender() {
 		String[] genders = new String[] {"Male", "Female"};
 		return genders[random.nextInt(genders.length)];
 	}
 
+	/**
+	 * @return return some sexuality from {"Straight", "Bisexual", "Bisexual", "Bisexual", "Gay"}.
+	 */
 	public String generateSexuality() {
 		String[] sexualities = new String[] {"Straight", "Bisexual", "Bisexual", "Bisexual", "Gay"};
 		return sexualities[random.nextInt(sexualities.length)];
 	}
 
+	/**
+	 * @return a random element from emotions.
+	 */
 	public String getEmotion() {
 		return getRandomElement(emotions);
 	}
 
+	/**
+	 * @return a random modifier from {1, 1, 1, 1, 2, 2, 3}
+	 */
 	private int generateModifier() {
 		Integer[] weightedOptions = new Integer[] {1, 1, 1, 1, 2, 2, 3};
 		return weightedOptions[random.nextInt(weightedOptions.length)];
 	}
 	
+	/**
+	 * This method chooses some number of stats to make good or bad, and uses generateModifier() to figure out just how good/bad
+	 * the character is at these stats.
+	 * @return returns the String correlating to the good/bad stats, ordered in the classic order.
+	 */
 	public String generateStats() {
 		Integer[] weightedOptions = new Integer[] {0, 0, 1, 1, 1, 2};
 		
@@ -781,6 +829,10 @@ public class Model {
 		return output.substring(0, output.length()-3);
 	}
 
+	/**
+	 * This method randomly generate a position on the alignment grid - weighted to prefer Lawful & Neutral, then Good. Chaotic Evil is the least likely.
+	 * @return as above.
+	 */
 	public String generateMoral() {
 		String[] lawchaos_ = new String[] {"Lawful", "Lawful", "Lawful", "Neutral", "Neutral", "Chaotic"};
 		String[] goodevil_ = new String[] {"Good", "Good", "Neutral", "Neutral", "Neutral", "Evil"};
@@ -795,22 +847,37 @@ public class Model {
 		}
 	}
 
+	/**
+	 * Returns a random element from worths.
+	 */
 	public String getWorth() {
 		return getRandomElement(worths);
 	}
 
+	/**
+	 * Returns a random element from traits.
+	 */
 	public String getTrait() {
 		return getRandomElement(traits);
 	}
 	
+	/**
+	 * Returns a random element from ideals.
+	 */
 	public String getIdeal() {
 		return getRandomElement(ideals);
 	}
 
+	/**
+	 * Returns a random element from skills.
+	 */
 	public String getSkill() {
 		return getRandomElement(skills);
 	}
 
+	/**
+	 * Returns a random element from trades.
+	 */
 	public String getTrade() {
 		return getRandomElement(trades);
 	}	
