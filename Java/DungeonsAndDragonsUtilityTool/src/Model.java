@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Model {
 	
-	ArrayList<Integer> serialNumbers = new ArrayList<Integer>();;
+	ArrayList<Integer> serialNumbers;
 	
 	ArrayList<Creature> creatures;
 	ArrayList<NPC> npcs;
@@ -23,6 +23,7 @@ public class Model {
 	static Random random = new Random();
 	
 	public Model() {
+		serialNumbers = new ArrayList<Integer>();
 		creatures = loadCreatures();
 		npcs = loadNPCs();
 		races = loadFile("files\\Races\\Races_List - Weighted.txt");
@@ -34,7 +35,6 @@ public class Model {
 		skills = loadFiles(new String[] {"files\\Skills\\Skills_List - BEA.txt", "files\\Skills\\Skills_List - CHA.txt", "files\\Skills\\Skills_List - CON.txt", "files\\Skills\\Skills_List - DEX.txt", "files\\Skills\\Skills_List - INT.txt", "files\\Skills\\Skills_List - STR.txt", "files\\Skills\\Skills_List - WIS.txt"});
 		trades = loadFile("files\\Jobs_List.txt");
 	}
-
 
 	/**
 	 * For each filename in filenames, it calls loadFile and appends the array lists together.
@@ -53,7 +53,6 @@ public class Model {
 		
 		return output;
 	}
-
 
 	/**
 	 * Returns two nested ArrayList<String>'s, for all names files.
@@ -160,6 +159,8 @@ public class Model {
 			total += roll;
 			numberDice--;
 		}
+		
+		Collections.sort(rolls);
 		
 		return new Roll(rolls, total);
 	}
@@ -521,7 +522,8 @@ public class Model {
 	 * Passes through the creatures object in this object, and compiles a list of all creatures whose attributes match those given in attributes.
 	 * @param attributes - the values must be in order of the criteria given for creatures. The order is Environment, Name, Type, XP, Book, Page Number.
 	 * However, you cannot use page number to select/sort creatures.
-	 * @param sortBy - this is the attribute by which the creatures will be sorted. The values are any of the attributes, including "Book + PageNumber".
+	 * For the names, it checks the name being searched for (from attributes) is contained by the name of any creature we look at.
+	 * @param sortBy - this is the attribute by which the creatures will be sorted. The values are any of the attributes, including "Book + PageNumber". If it set as null, we do not sort.
 	 * @return a list of all creatures whose attributes fit the values given in attributes.
 	 */
 	public ArrayList<Creature> searchCreatures(ArrayList<String> attributes, String sortBy) {
@@ -540,7 +542,7 @@ public class Model {
 		
 		for(Creature creature : creatures) {
 			if((creature.environment.equals(chosenEnvironment) || chosenEnvironment.equals("Any")) && 
-					(creature.name.equals(chosenName) || chosenName.equals("Any")) &&
+					(creature.name.contains(chosenName) || chosenName.equals("Any")) &&
 					(creature.type.equals(chosenType) || chosenType.equals("Any")) &&
 					(creature.xp == chosenXP || chosenXP == -1) &&
 					(creature.book.equals(chosenBook) || chosenBook.equals("Any"))) {
@@ -548,7 +550,9 @@ public class Model {
 			}
 		}
 		
-		if(sortBy.equals("Environment")) {
+		if(sortBy == null) {
+			//do nothing
+		}else if(sortBy.equals("Environment")) {
 			Collections.sort(output, new Comparator<Creature>() {
 			    @Override
 			    public int compare(Creature o1, Creature o2) {
@@ -628,7 +632,6 @@ public class Model {
 		return output;
 	}
 	
-	
 	/**
 	 * For all creatures in this.creatures, it chooses a number of them based off of the xpBudget given.
 	 * It tries to find a number of bosses (xp > 50% * xpBudget) = numberBosses, and a number of minions
@@ -658,6 +661,9 @@ public class Model {
 		ArrayList<Creature> minions = new ArrayList<Creature>();
 		
 		for(Creature c : chosenCreatures) {
+			if(c.xp > xpBudget) {
+				continue;
+			}
 			if(c.xp >= bossMinionDivide) {
 				bosses.add(c);
 			}
@@ -666,26 +672,34 @@ public class Model {
 			}
 		}
 		
-		while(encounter.size() < numberCreatures && xpBudget > 0) {
+		while(xpBudget > 0) {
 			//we need more creatures
-			
-			if(numberBosses > actualNumberBosses) {
-				//we need more bosses
-				int max = bosses.size()-1;
-				int min = 0;
-				Creature newCreature = bosses.get(random.nextInt((max - min) + 1) + min);
-				xpBudget -= newCreature.xp;
-				encounter.add(newCreature);
+			if(random.nextBoolean()) {
+				if(numberBosses > actualNumberBosses) {
+					//we need more bosses
+					int max = bosses.size()-1;
+					int min = 0;
+					Creature newCreature = bosses.get(random.nextInt((max - min) + 1) + min);
+					xpBudget -= newCreature.xp;
+					encounter.add(newCreature);
+					actualNumberBosses++;
+				}
+			}else {
+				if(numberMinions > actualNumberMinions) {
+					//we need more minions
+					int max = minions.size()-1;
+					int min = 0;
+					Creature newCreature = minions.get(random.nextInt((max - min) + 1) + min);
+					xpBudget -= newCreature.xp;
+					encounter.add(newCreature);
+					actualNumberMinions++;
+				}
 			}
 			
-			if(numberMinions > actualNumberMinions) {
-				//we need more minions
-				int max = minions.size()-1;
-				int min = 0;
-				Creature newCreature = minions.get(random.nextInt((max - min) + 1) + min);
-				xpBudget -= newCreature.xp;
-				encounter.add(newCreature);
+			if(numberBosses <= actualNumberBosses && numberMinions <= actualNumberMinions) {
+				System.out.println("all out of bosses & minions");
 			}
+			
 		}
 		
 		return encounter;

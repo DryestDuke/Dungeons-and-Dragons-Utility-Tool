@@ -9,4 +9,9 @@ public class Roll {
 		this.sortedRolls = sortedRolls;
 		this.total = total;
 	}
+
+	public String getSortedRollsAsString() {
+		String output = sortedRolls.toString();
+		return output.replaceAll("(.{100})", "$1\n");
+	}
 }
