@@ -1,5 +1,7 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -184,22 +186,427 @@ public class Model {
 	 * Calculates & returns the XP budget for some number of characters with some average level.
 	 * @param numberPlayers the number of the players.
 	 * @param averageLevel the average levels of all players in the party.
+	 * @param difficulty the difficulty of the encounter. Can be 1 (Easy), 2 (Medium), 3 (Hard), or 4 (Deadly).
 	 * @return the xp budget for such a party.
 	 */
 	public int calculateXP(int numberPlayers, int averageLevel, int difficulty) {
-		int difficulty = -1;
-		int xpBudget = -1;
-		int temp = -1;
-		
+		int xpBudget = 0;
+		switch(averageLevel) {
+		case(1):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 25;
+				break;
+			case(2):
+				xpBudget = 50;
+				break;
+			case(3):
+				xpBudget = 75;
+				break;
+			case(4):
+				xpBudget = 100;
+				break;
+			}
+		break;
+		case(2):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 50;
+				break;
+			case(2):
+				xpBudget = 100;
+				break;
+			case(3):
+				xpBudget = 150;
+				break;
+			case(4):
+				xpBudget = 200;
+				break;
+			}
+		break;
+		case(3):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 75;
+				break;
+			case(2):
+				xpBudget = 150;
+				break;
+			case(3):
+				xpBudget = 225;
+				break;
+			case(4):
+				xpBudget = 400;
+				break;
+			}
+		break;
+		case(4):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 125;
+				break;
+			case(2):
+				xpBudget = 250;
+				break;
+			case(3):
+				xpBudget = 375;
+				break;
+			case(4):
+				xpBudget = 500;
+				break;
+			}
+		break;
+		case(5):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 250;
+				break;
+			case(2):
+				xpBudget = 500;
+				break;
+			case(3):
+				xpBudget = 750;
+				break;
+			case(4):
+				xpBudget = 1100;
+				break;
+			}
+		break;
+		case(6):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 300;
+				break;
+			case(2):
+				xpBudget = 600;
+				break;
+			case(3):
+				xpBudget = 900;
+				break;
+			case(4):
+				xpBudget = 1400;
+				break;
+			}
+		break;
+		case(7):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 350;
+				break;
+			case(2):
+				xpBudget = 750;
+				break;
+			case(3):
+				xpBudget = 1100;
+				break;
+			case(4):
+				xpBudget = 1700;
+				break;
+			}
+		break;
+		case(8):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 450;
+				break;
+			case(2):
+				xpBudget = 900;
+				break;
+			case(3):
+				xpBudget = 1400;
+				break;
+			case(4):
+				xpBudget = 2100;
+				break;
+			}
+		break;
+		case(9):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 550;
+				break;
+			case(2):
+				xpBudget = 1100;
+				break;
+			case(3):
+				xpBudget = 1600;
+				break;
+			case(4):
+				xpBudget = 2400;
+				break;
+			}
+		break;
+		case(10):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 600;
+				break;
+			case(2):
+				xpBudget = 1200;
+				break;
+			case(3):
+				xpBudget = 1900;
+				break;
+			case(4):
+				xpBudget = 2800;
+				break;
+			}
+		break;
+		case(11):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 800;
+				break;
+			case(2):
+				xpBudget = 1600;
+				break;
+			case(3):
+				xpBudget = 2400;
+				break;
+			case(4):
+				xpBudget = 3600;
+				break;
+			}
+		break;
+		case(12):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 1000;
+				break;
+			case(2):
+				xpBudget = 2000;
+				break;
+			case(3):
+				xpBudget = 3000;
+				break;
+			case(4):
+				xpBudget = 4500;
+				break;
+			}
+		break;
+		case(13):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 1100;
+				break;
+			case(2):
+				xpBudget = 2200;
+				break;
+			case(3):
+				xpBudget = 3400;
+				break;
+			case(4):
+				xpBudget = 5100;
+				break;
+			}
+		break;
+		case(14):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 1250;
+				break;
+			case(2):
+				xpBudget = 2500;
+				break;
+			case(3):
+				xpBudget = 3800;
+				break;
+			case(4):
+				xpBudget = 5700;
+				break;
+			}
+		break;
+		case(15):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 1400;
+				break;
+			case(2):
+				xpBudget = 2800;
+				break;
+			case(3):
+				xpBudget = 4300;
+				break;
+			case(4):
+				xpBudget = 6400;
+				break;
+			}
+		break;
+		case(16):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 1600;
+				break;
+			case(2):
+				xpBudget = 3200;
+				break;
+			case(3):
+				xpBudget = 4800;
+				break;
+			case(4):
+				xpBudget = 7200;
+				break;
+			}
+		break;
+		case(17):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 2000;
+				break;
+			case(2):
+				xpBudget = 3900;
+				break;
+			case(3):
+				xpBudget = 5900;
+				break;
+			case(4):
+				xpBudget = 8800;
+				break;
+			}
+		break;
+		case(18):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 2100;
+				break;
+			case(2):
+				xpBudget = 4200;
+				break;
+			case(3):
+				xpBudget = 6300;
+				break;
+			case(4):
+				xpBudget = 9500;
+				break;
+			}
+		break;
+		case(19):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 2400;
+				break;
+			case(2):
+				xpBudget = 4900;
+				break;
+			case(3):
+				xpBudget = 7300;
+				break;
+			case(4):
+				xpBudget = 10900;
+				break;
+			}
+		break;
+		case(20):
+			switch(difficulty) {
+			case(1):
+				xpBudget = 2800;
+				break;
+			case(2):
+				xpBudget = 5700;
+				break;
+			case(3):
+				xpBudget = 8500;
+				break;
+			case(4):
+				xpBudget = 12700;
+				break;
+			}
+		break;
+		}
+		return xpBudget*numberPlayers;
 	}
 	
 	/**
 	 * Passes through the creatures object in this object, and compiles a list of all creatures whose attributes match those given in attributes.
-	 * @param attributes - the values must be in order of the criteria given for creatures. The order is Environment, Name, Type, XP, Book, Page Number. 
+	 * @param attributes - the values must be in order of the criteria given for creatures. The order is Environment, Name, Type, XP, Book, Page Number.
+	 * However, you cannot use page number to select/sort creatures.
+	 * @param sortBy - this is the attribute by which the creatures will be sorted. The values are any of the attributes, including "Book + PageNumber".
 	 * @return a list of all creatures whose attributes fit the values given in attributes.
 	 */
-	public ArrayList<Creature> searchCreatures(ArrayList<String> attributes) {
-		return null;
+	public ArrayList<Creature> searchCreatures(ArrayList<String> attributes, String sortBy) {
+		String chosenEnvironment = attributes.get(0);
+		String chosenName = attributes.get(1);
+		String chosenType = attributes.get(2);
+		
+		int chosenXP = -1;
+		if(!attributes.get(3).equals("Any")) {
+			chosenXP = Integer.parseInt(attributes.get(3));
+		} 
+		
+		String chosenBook = attributes.get(4);
+		
+		ArrayList<Creature> output = new ArrayList<Creature>(creatures.size()/2);
+		
+		for(Creature creature : creatures) {
+			if((creature.environment.equals(chosenEnvironment) || chosenEnvironment.equals("Any")) && 
+					(creature.name.equals(chosenName) || chosenName.equals("Any")) &&
+					(creature.type.equals(chosenType) || chosenType.equals("Any")) &&
+					(creature.xp == chosenXP || chosenXP == -1) &&
+					(creature.book.equals(chosenBook) || chosenBook.equals("Any"))) {
+				output.add(creature);
+			}
+		}
+		
+		if(sortBy.equals("Environment")) {
+			Collections.sort(output, new Comparator<Creature>() {
+			    @Override
+			    public int compare(Creature o1, Creature o2) {
+			        return o1.environment.compareTo(o2.environment);
+			    }
+			});
+		}else if(sortBy.equals("Name")) {
+			Collections.sort(output, new Comparator<Creature>() {
+			    @Override
+			    public int compare(Creature o1, Creature o2) {
+			        return o1.name.compareTo(o2.name);
+			    }
+			});
+		}else if(sortBy.equals("Type")) {
+			Collections.sort(output, new Comparator<Creature>() {
+			    @Override
+			    public int compare(Creature o1, Creature o2) {
+			        return o1.type.compareTo(o2.type);
+			    }
+			});
+		}else if(sortBy.equals("XP")) {
+			Collections.sort(output, new Comparator<Creature>() {
+			    @Override
+			    public int compare(Creature o1, Creature o2) {
+			        return new Integer(o1.xp).compareTo(new Integer(o2.xp));
+			    }
+			});
+		}else if(sortBy.equals("Book")) {
+			Collections.sort(output, new Comparator<Creature>() {
+			    @Override
+			    public int compare(Creature o1, Creature o2) {
+			        return o1.book.compareTo(o2.book);
+			    }
+			});
+		}else if(sortBy.equals("Page Number")) {
+			Collections.sort(output, new Comparator<Creature>() {
+			    @Override
+			    public int compare(Creature o1, Creature o2) {
+			        return new Integer(o1.pageNumber).compareTo(new Integer(o2.pageNumber));
+			    }
+			});
+		}else if(sortBy.equals("Book + PageNumber")) {
+			Collections.sort(output, new Comparator<Creature>() {
+			    @Override
+			    public int compare(Creature o1, Creature o2) {
+			        return new Integer(o1.pageNumber).compareTo(new Integer(o2.pageNumber));
+			    }
+			});
+			Collections.sort(output, new Comparator<Creature>() {
+			    @Override
+			    public int compare(Creature o1, Creature o2) {
+			        return o1.book.compareTo(o2.book);
+			    }
+			});
+		}else {
+			System.err.println("sortBy value used in searchCreatures(...) was invalid - failed to sort creatures.");
+		}
+		
+		return output;
 	}
 	
 	

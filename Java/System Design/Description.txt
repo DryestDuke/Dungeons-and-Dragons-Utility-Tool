@@ -15,4 +15,3 @@ Dashboard:
 *Encounter XP Calculator.
 *Encounter Generator.
 *Monster searcher.
-	>books = strings, page numbers = integers.
