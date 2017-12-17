@@ -632,8 +632,9 @@ public class Model {
 	/**
 	 * For all creatures in this.creatures, it chooses a number of them based off of the xpBudget given.
 	 * It tries to find a number of bosses (xp > 50% * xpBudget) = numberBosses, and a number of minions
-	 * (xp < 50% * xpBudget) = numberMinions. numberBosses + numberMinions must equal numberCreatures.
+	 * (xp < 50% * xpBudget) = numberMinions. Please have numberBosses + numberMinions equal numberCreatures.
 	 * If the value of creatures != null, then the list of creatures used will be the list provided.
+	 * Otherwise it uses the list of creatures present in Model.
 	 * @param numberCreatures The number of creatures to be in the mob.
 	 * @param numberBosses The number of bosses (a boss is a creature whose XP value > 50% * xpBudget).
 	 * @param numberMinions The number of minions (a minion is a creature whose XP value < 50% * xpBudget).
@@ -642,10 +643,50 @@ public class Model {
 	 * @return the list of all creatures in the encounter (not including the PCs, obviously).
 	 */
 	public ArrayList<Creature> generateEncounter(int numberCreatures, int numberBosses, int numberMinions, int xpBudget, ArrayList<Creature> creatures) {
-		//ensure numberBosses + numberMinions == numberCreatures
+		ArrayList<Creature> chosenCreatures = creatures;
+		if(creatures == null) {
+			chosenCreatures = this.creatures;
+		}
+		
 		ArrayList<Creature> encounter = new ArrayList<Creature>(numberCreatures);
 		
+		int actualNumberBosses = 0;
+		int actualNumberMinions = 0;
+		int bossMinionDivide = xpBudget/2;
 		
+		ArrayList<Creature> bosses = new ArrayList<Creature>();
+		ArrayList<Creature> minions = new ArrayList<Creature>();
+		
+		for(Creature c : chosenCreatures) {
+			if(c.xp >= bossMinionDivide) {
+				bosses.add(c);
+			}
+			if(c.xp <= bossMinionDivide) {
+				minions.add(c);
+			}
+		}
+		
+		while(encounter.size() < numberCreatures && xpBudget > 0) {
+			//we need more creatures
+			
+			if(numberBosses > actualNumberBosses) {
+				//we need more bosses
+				int max = bosses.size()-1;
+				int min = 0;
+				Creature newCreature = bosses.get(random.nextInt((max - min) + 1) + min);
+				xpBudget -= newCreature.xp;
+				encounter.add(newCreature);
+			}
+			
+			if(numberMinions > actualNumberMinions) {
+				//we need more minions
+				int max = minions.size()-1;
+				int min = 0;
+				Creature newCreature = minions.get(random.nextInt((max - min) + 1) + min);
+				xpBudget -= newCreature.xp;
+				encounter.add(newCreature);
+			}
+		}
 		
 		return encounter;
 	}
