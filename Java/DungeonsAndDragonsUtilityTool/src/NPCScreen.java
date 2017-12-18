@@ -92,7 +92,7 @@ public class NPCScreen extends JFrame {
 		textPane_savedToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
 		
 		String temp = "";
-		for(NPC npc : model.npcs) {
+		for(NPC npc : model.savedNPCs) {
 			if(temp.equals("")) {
 				temp += npc.toString();
 			}else {
@@ -291,7 +291,7 @@ public class NPCScreen extends JFrame {
 		btn_randomizeAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textField_race.setText(model.getRace());
-				textField_name.setText(model.getName(textField_race.getText()) + " " + model.getName(textField_race.getText()));
+				textField_name.setText(model.getName(textField_race.getText()));
 				textField_age.setText(model.generateAge());
 				textField_gender.setText(model.generateGender());
 				textField_sexuality.setText(model.generateSexuality());
@@ -326,11 +326,36 @@ public class NPCScreen extends JFrame {
 		JButton btn_deleteSaved = new JButton("Delete Saved NPC");
 		btn_deleteSaved.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//delete them from the file
-				//remove them from textPane_savedToFile (which will take some work).
+				try {
+					int sn = Integer.parseInt(textField_sn.getText());
+					//delete them from savedNPCs
+					NPC toDelete = null;
+					for(NPC npc : model.savedNPCs) {
+						if(npc.serialNumber == sn) {
+							toDelete = npc;
+						}
+					}
+					model.savedNPCs.remove(toDelete);
+					//rewrite save file
+					model.saveNPCs();
+					//rewrite textPane_savedToFile with savedNPCs (as per usual)
+					String temp = "";
+					for(NPC npc_ : model.savedNPCs) {
+						if(temp.equals("")) {
+							temp += npc_.toString();
+						}else {
+							temp += "\n-----------------------\n" + npc_.toString();
+						}
+					}
+					textPane_savedToFile.setText(temp);
+				}catch (Exception e1) {
+					System.err.println(e1);
+					new JErrorPane("Error in deleting the saved NPC. Make sure you've filled in the SN correctly!");
+					return;
+				}
 			}
 		});
-		btn_deleteSaved.setToolTipText("Click this to delete some NPC from the file (not from the pane on the left).");
+		btn_deleteSaved.setToolTipText("Click this to delete some NPC from the file.");
 		btn_deleteSaved.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_deleteSaved.setBounds(296, 504, 136, 23);
 		contentPane.add(btn_deleteSaved);
@@ -338,8 +363,121 @@ public class NPCScreen extends JFrame {
 		JButton btn_editSaved = new JButton("Edit Saved NPC");
 		btn_editSaved.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//use the dropdowns/text boxes where you fill in information to generate an NPC as the information that will be overwriting
-				//the values for the NPC you are editing. this should also update the entry on the left hand side.
+				try {
+					//use the dropdowns/text boxes where you fill in information to generate an NPC as the information that will be overwriting
+					//the values for the NPC you are editing. 
+				NPC ourNPC = null;
+				
+				for(NPC npc : model.savedNPCs) {
+					if(npc.serialNumber == Integer.parseInt(textField_sn.getText())) {
+						ourNPC = npc;
+						break;
+					}
+				}
+				
+				String header = textField_header.getText();
+				String name = textField_name.getText();
+				String race = textField_race.getText();
+				String age = textField_age.getText();
+				String gender = textField_gender.getText();
+				String sexuality = textField_sexuality.getText();
+				String emotion = textField_emotion.getText();
+				String stats = textField_stats.getText();
+				String moral = textField_moral.getText();
+				String worth = textField_worth.getText();
+				String trait = textField_trait.getText();
+				String ideal = textField_ideal.getText();
+				String skill = textField_skill.getText();
+				String trade = textField_trade.getText();
+				
+				if(header.equals("")) {
+					header = ourNPC.header;
+				}
+				
+				if(name.equals("")) {
+					name = ourNPC.name;
+				}
+				
+				if(race.equals("")) {
+					race = ourNPC.race;
+				}
+				
+				if(age.equals("")) {
+					age = ourNPC.age;
+				}
+				
+				if(gender.equals("")) {
+					gender = ourNPC.gender;
+				}
+				
+				if(sexuality.equals("")) {
+					sexuality = ourNPC.sexuality;
+				}
+				
+				if(emotion.equals("")) {
+					emotion = ourNPC.emotion;
+				}
+				
+				if(stats.equals("")) {
+					stats = ourNPC.stats;
+				}
+				
+				if(moral.equals("")) {
+					moral = ourNPC.moral;
+				}
+				
+				if(worth.equals("")) {
+					worth = ourNPC.worth;
+				}
+				
+				if(trait.equals("")) {
+					trait = ourNPC.trait;
+				}
+				
+				if(ideal.equals("")) {
+					ideal = ourNPC.ideal;
+				}
+				
+				if(skill.equals("")) {
+					skill = ourNPC.skill;
+				}
+				
+				if(trade.equals("")) {
+					trade = ourNPC.trade;
+				}
+				
+				ourNPC = new NPC(header, ourNPC.serialNumber, name, race, age, gender, sexuality, emotion, stats, moral, 
+						worth, trait, ideal, skill, trade);
+				
+				int indexOldNPC = -1;
+				for(NPC npc : model.savedNPCs) {
+					if(npc.serialNumber == ourNPC.serialNumber) {
+						indexOldNPC = model.savedNPCs.indexOf(npc);
+						model.savedNPCs.remove(npc);
+						break;
+					}
+				}
+				
+				model.savedNPCs.add(indexOldNPC, ourNPC);
+								
+				model.saveNPCs();
+				
+				//this should also update the entry on the left hand side
+				String temp = "";
+				for(NPC npc_ : model.savedNPCs) {
+					if(temp.equals("")) {
+						temp += npc_.toString();
+					}else {
+						temp += "\n-----------------------\n" + npc_.toString();
+					}
+				}
+				textPane_savedToFile.setText(temp);
+				
+				}catch(Exception e1) {
+					System.err.println(e1);
+					new JErrorPane("Error in editing the saved NPC. Make sure you've filled in the SN and the attributes correctly! Also the NPC should exist on the left-hand side.");
+					return;
+				}
 			}
 		});
 		btn_editSaved.setToolTipText("Click this to edit the values of some saved NPC.");
@@ -352,7 +490,76 @@ public class NPCScreen extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				//for all of the values in the textFields, create an NPC with those values.
 					//if some value is empty, don't fret. it's the user's fault :-)
-				NPC npc = model.generateNPC(textField_header.getText(), textField_name.getText(), textField_race.getText(), textField_age.getText(), textField_gender.getText(), textField_sexuality.getText(), textField_emotion.getText(), textField_stats.getText(), textField_moral.getText(), textField_worth.getText(), textField_trait.getText(), textField_ideal.getText(), textField_skill.getText(), textField_trade.getText());
+				
+				String header = textField_header.getText();
+				String name = textField_name.getText();
+				String race = textField_race.getText();
+				String age = textField_age.getText();
+				String gender = textField_gender.getText();
+				String sexuality = textField_sexuality.getText();
+				String emotion = textField_emotion.getText();
+				String stats = textField_stats.getText();
+				String moral = textField_moral.getText();
+				String worth = textField_worth.getText();
+				String trait = textField_trait.getText();
+				String ideal = textField_ideal.getText();
+				String skill = textField_skill.getText();
+				String trade = textField_trade.getText();
+				
+				if(race.equals("")) {
+					race = model.getRace();
+				}
+				
+				if(name.equals("")) {
+					name = model.getName(race);
+				}
+				
+				if(age.equals("")) {
+					age = model.generateAge();
+				}
+				
+				if(gender.equals("")) {
+					gender = model.generateGender();
+				}
+				
+				if(sexuality.equals("")) {
+					sexuality = model.generateSexuality();
+				}
+				
+				if(emotion.equals("")) {
+					emotion = model.getEmotion();
+				}
+				
+				if(stats.equals("")) {
+					stats = model.generateStats();
+				}
+				
+				if(moral.equals("")) {
+					moral = model.generateMoral();
+				}
+				
+				if(worth.equals("")) {
+					worth = model.getWorth();
+				}
+				
+				if(trait.equals("")) {
+					trait = model.getTrait();
+				}
+				
+				if(ideal.equals("")) {
+					ideal = model.getIdeal();
+				}
+				
+				if(skill.equals("")) {
+					skill = model.getSkill();
+				}
+				
+				if(trade.equals("")) {
+					trade = model.getTrade();
+				}
+				
+				NPC npc = model.generateNPC(header, name, race, age, gender, sexuality, emotion, stats, moral, 
+						worth, trait, ideal, skill, trade);
 				//then pop them over into list_savedForSession - making sure to format them all good n' shit
 				if(textPane_savedForSession.getText().equals("")) {
 					textPane_savedForSession.setText(npc.toString());
@@ -361,7 +568,7 @@ public class NPCScreen extends JFrame {
 				}
 			}
 		});
-		btn_generate.setToolTipText("Click this to generate an NPC from the information above. If a field is left blank, the corresponding value for the NPC will be blank.");
+		btn_generate.setToolTipText("Click this to generate an NPC from the information above. If a field is left blank, the corresponding value for the NPC will be randomly generated.");
 		btn_generate.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_generate.setBounds(478, 470, 104, 23);
 		contentPane.add(btn_generate);
@@ -395,14 +602,21 @@ public class NPCScreen extends JFrame {
 					return;
 				}
 				
-				//save the NPC to the file
+				//add this npc to the list of savedNPCs
+				model.savedNPCs.add(model.getNPC(sn));
+				
+				//then, save the NPC to the file
 				if(model.saveNPC(sn)) {
 					//if that happened successfully, add this to the savedNPCs pane (as it is now a saved NPC).
-					textPane_savedToFile.setText(textPane_savedToFile.getText() + "\n-----------------------\n" + model.getNPC(sn).toString());
+					if(textPane_savedToFile.getText().equals("")) {
+						textPane_savedToFile.setText(model.getNPC(sn).toString());
+					}else {
+						textPane_savedToFile.setText(textPane_savedToFile.getText() + "\n-----------------------\n" + model.getNPC(sn).toString());
+					}
 				}				
 			}
 		});
-		btn_saveToFile.setToolTipText("Click this to save some generated NPC to file - and also move them to the pane on the left.");
+		btn_saveToFile.setToolTipText("Click this to save some generated NPC to file - and also to add them to the pane on the left.");
 		btn_saveToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_saveToFile.setBounds(478, 504, 104, 23);
 		contentPane.add(btn_saveToFile);

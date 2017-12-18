@@ -40,7 +40,32 @@ public class NPC {
 				+ "\n  Worth: " + worth;
 				
 	}
+	
+	public NPC(String header, int serialNumber, String name, String race, String age, String gender, String sexuality, 
+			String emotion, String stats, String moral, String worth, String trait, String ideal, String skill, 
+			String trade) {
+		this.serialNumber = serialNumber;
 		
+		this.header = header;
+		
+		this.name = name;
+		this.race = race;
+		this.age = age;
+		
+		this.gender = gender;
+		this.sexuality = sexuality;
+		this.emotion = emotion;
+		
+		this.stats = stats;
+		
+		this.moral = moral;
+		this.worth = worth;
+		this.trait = trait;
+		this.ideal = ideal;
+		this.skill = skill;
+		this.trade = trade;
+	}
+	
 	public NPC(String header, String name, String race, String age, String gender, String sexuality, 
 			String emotion, String stats, String moral, String worth, String trait, String ideal, String skill, 
 			String trade) {

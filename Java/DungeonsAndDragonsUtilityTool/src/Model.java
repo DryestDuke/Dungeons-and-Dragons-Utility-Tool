@@ -17,6 +17,7 @@ public class Model {
 	
 	ArrayList<Creature> creatures;
 	ArrayList<NPC> npcs;
+	ArrayList<NPC> savedNPCs;
 	ArrayList<String> races;
 	ArrayList<ArrayList<String>> names;
 	ArrayList<String> emotions;
@@ -30,7 +31,8 @@ public class Model {
 	
 	public Model() {
 		creatures = loadCreatures();
-		npcs = loadNPCs();
+		savedNPCs = loadNPCs();
+		npcs = new ArrayList<NPC>(savedNPCs);
 		races = loadFile("files\\Races\\Races_List - Weighted.txt");
 		names = loadNames();
 		emotions = loadFile("files\\Emotions.txt");
@@ -141,10 +143,94 @@ public class Model {
 	 * @return all saved NPCs.
 	 */
 	public ArrayList<NPC> loadNPCs(){
-		//make sure to also add all serial numbers to serialNumbers (which is used during creation of NPCs)
-		return new ArrayList<NPC>();
+		//going through the file, isolate each NPC block and then call parseNPC on it, adding the result of that to NPCs
+		ArrayList<NPC> npcs = new ArrayList<NPC>();
+		
+		ArrayList<String> lines = loadFile("files\\npcs.npc");
+		
+		ArrayList<String> npc = new ArrayList<String>();
+		
+		boolean parsingNPC = false;
+		for(String line : lines) {
+			if(line.equals("<NPC>")) {
+				parsingNPC = true;
+				continue;
+			}else if(line.equals("</NPC>")){
+				parsingNPC = false;
+				npcs.add(Model.parseNPC(npc));
+				npc.clear();
+			}
+			
+			if(parsingNPC) {
+				npc.add(line);
+			}
+		}
+		
+		return npcs;
 	}
 	
+	/**
+	 * This is a helper method that parses the ArrayList<String> (where every entry is a line between <NPC> and </NPC> in "npcs.npc"), used by model.loadNPCs().
+	 * @param npc This is an ArrayList<String>, wherein each String correlates to a line from NPC.generateNPC().toString()
+	 * @return an NPC object with the values as in npc.
+	 */
+	private static NPC parseNPC(ArrayList<String> npc) {
+		String header = "";
+		int serialNumber = -1;
+		String name = "";
+		String race = "";
+		String age = "";
+		String gender = "";
+		String sexuality = "";
+		String emotion = "";
+		String stats = "";
+		String moral = "";
+		String worth = "";
+		String trait = "";
+		String ideal = "";
+		String skill = "";
+		String trade = "";
+		
+		for(String line : npc) {
+			if(line.contains("Header:")) {
+				header = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("SN:")) {
+				serialNumber = Integer.parseInt(line.substring(line.indexOf(":")+2, line.length()));
+			}else if(line.contains("Name:")) {
+				name = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Race:")) {
+				race = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Age:")) {
+				age = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Gender:")) {
+				gender = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Sexuality:")) {
+				sexuality = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Stats:")) {
+				stats = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Moral:")) {
+				moral = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Ideal:")) {
+				ideal = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Trait:")) {
+				trait = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Emotion:")) {
+				emotion = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Trade:")) {
+				trade = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Skill:")) {
+				skill = line.substring(line.indexOf(":")+2, line.length());
+			}else if(line.contains("Worth:")) {
+				worth = line.substring(line.indexOf(":")+2, line.length());
+			}
+		}
+		
+		return new NPC(header, serialNumber, name, race, age, gender, sexuality, 
+				emotion, stats, moral, worth, trait, ideal, skill, 
+				trade);
+	}
+	
+
 	/**
 	 * This method makes a roll, returning the result of the number of dice + the number of sides.
 	 * @param numberDice
@@ -752,15 +838,31 @@ public class Model {
 	/**
 	 * For some race given, it searches through the race lists looking for one that signifies it is of the same race.
 	 * If it is, it randomly returns a name from that list. If no appropriate list is found, it just returns a name 
-	 * from the list of names that works for any race (i.e.; the generic list)!
+	 * from the list of names that works for any race (i.e.; the generic list)! Also, it randomly chooses between giving
+	 * 3 names to giving 1 (the difference between an NPC named "Drax" and an NPC named "Jefferson Beauregard Sessions III".
 	 * @param race_ The race to check against.
-	 * @return
+	 * @return the name as a String.
 	 */
 	public String getName(String race_) {
+		int[] numberNames = new int[] {1, 1, 2, 2, 2, 2, 3};
+		
+		int max = numberNames.length-1;
+		int min = 0;
+		int chosenNumber = numberNames[random.nextInt((max - min) + 1) + min];
+
+		String name = "";
+		
 		ArrayList<String> generic = null;
 		for(ArrayList<String> namesList : names) {
 			if(race_.contains(namesList.get(0)) || namesList.get(0).contains(race_)) {
-				return getRandomElement(namesList, 1);
+				for(int c=0;c<chosenNumber;c++) {
+					if(name.equals("")) {
+						name = getRandomElement(namesList, 1);
+					}else {
+						name += " " + getRandomElement(namesList, 1);
+					}
+				}
+				return name;
 			}
 			if(namesList.get(0).contains("Generic")) {
 				generic = namesList;
@@ -769,7 +871,14 @@ public class Model {
 		if(generic == null) {
 			generic = loadFile("\\files\\Names\\Names_List - Generic.txt");
 		}
-		return getRandomElement(generic, 1);
+		for(int c=0;c<chosenNumber;c++) {
+			if(name.equals("")) {
+				name = getRandomElement(generic, 1);
+			}else {
+				name += " " + getRandomElement(generic, 1);
+			}
+		}
+		return name;
 	}
 	
 	/**
@@ -817,7 +926,7 @@ public class Model {
 	 * @return returns the String correlating to the good/bad stats, ordered in the classic order.
 	 */
 	public String generateStats() {
-		Integer[] weightedOptions = new Integer[] {0, 0, 1, 1, 1, 2};
+		Integer[] weightedOptions = new Integer[] {0, 0, 0, 0, 1, 1, 1, 2};
 		
 		int numberBadAt = weightedOptions[random.nextInt(weightedOptions.length)];
 		int numberGoodAt = weightedOptions[random.nextInt(weightedOptions.length)];
@@ -1027,14 +1136,13 @@ public class Model {
 	 * @param sn This is the serial number of the NPC in npcs to be written to the file (npcs.npc).
 	 * @return True on a successful addition of that NPC to the file.
 	 */
-
 	public boolean saveNPC(int sn) {
 		boolean output = true;
 		try {
 			FileWriter fw = new FileWriter(new File("files\\npcs.npc"), true);
 			
 			NPC npc = null;
-			for(NPC npc_ : npcs) {
+			for(NPC npc_ : savedNPCs) {
 				if(npc_.serialNumber == sn) {
 					npc = npc_;
 				}
@@ -1043,7 +1151,7 @@ public class Model {
 			if(npc == null) {
 				fw.close();
 				output = false;
-				throw new Exception("NPC with SN=" + sn + " was not found in this.npcs ==> \n" + npcs.toString());
+				throw new Exception("NPC with SN=" + sn + " was not found in this.savedNPCs ==> \n" + savedNPCs.toString());
 			}
 			
 			fw.write("\n<NPC>\n" + npc.toString() + "\n</NPC>\n");
@@ -1056,6 +1164,23 @@ public class Model {
 		return output;
 	}
 
+	/**
+	 * This method overwrites the save file completely, replacing all of its contents with the NPCs that are currently in this.npcs.
+	 */
+	public void saveNPCs() {
+		try {
+			FileWriter fw = new FileWriter(new File("files\\npcs.npc"), false);
+			
+			for(NPC npc : savedNPCs) {
+				fw.write("\n<NPC>\n" + npc.toString() + "\n</NPC>\n");
+			}
+			
+			fw.close();
+		} catch (Exception e) {
+			System.err.println("Failed to overwrite the file with all current NPCs.");
+		}
+	}
+	
 	/**
 	 * For some NPC with some serial number (sn), return a reference to them.
 	 * @param sn The serial number of the NPC for which we are searching.
