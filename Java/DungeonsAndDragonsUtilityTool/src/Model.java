@@ -1,13 +1,16 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 public class Model {
-	
-	ArrayList<Integer> serialNumbers;
 	
 	ArrayList<Creature> creatures;
 	ArrayList<NPC> npcs;
@@ -23,7 +26,6 @@ public class Model {
 	static Random random = new Random();
 	
 	public Model() {
-		serialNumbers = new ArrayList<Integer>();
 		creatures = loadCreatures();
 		npcs = loadNPCs();
 		races = loadFile("files\\Races\\Races_List - Weighted.txt");
@@ -946,4 +948,83 @@ public class Model {
 	public String getTrade() {
 		return getRandomElement(trades);
 	}	
+	
+	/**
+	 * This method creates an NPC, using the NPC constructor. It then adds the NPC to ArrayList<NPC> npcs, and returns a reference to the NPC.
+	 * @return a reference to the NPC object created.
+	 */
+	public NPC generateNPC(String header, String name, String race, String age, String gender, String sexuality, 
+			String emotion, String stats, String moral, String worth, String trait, String ideal, String skill, 
+			String trade) {
+		NPC npc = new NPC(header, name, race, age, gender, sexuality, emotion, stats, moral, worth, trait, ideal, skill, trade);
+		npcs.add(npc);
+		return npc;
+	}
+
+	/**
+	 * This method opens up the serial number file, and finds the last serial number put into it.
+	 * It then returns the next serial number in the order, scribing it into the file.
+	 * Keep in mind that calling this changes the file it reads in to know the serial number, so try not to call it too much.
+	 * @return a unique serial number.
+	 */
+	public int generateSerialNumber() {
+		int lastSN = -1;
+		
+		for(String sn : loadFile("\\files\\Serial Numbers.txt")) {
+			lastSN = Integer.parseInt(sn);
+		}
+		
+		//appending the new SN onto the file
+		File file = new File("\\files\\Serial Numbers.txt");
+		try {
+			PrintWriter pw = new PrintWriter(file);
+			
+			pw.write(lastSN+1 + "\n");
+			
+			pw.close();
+		} catch (FileNotFoundException e) {
+			System.err.println("Serial Numbers.txt was not found in the files folder in the workspace. Uh-oh!");
+		}
+		
+		return lastSN+1;
+	}
+	
+	/**
+	 * For some JList, it replaces all elements in it to the elements in items.
+	 * @param items
+	 * @param list
+	 */
+	public static void setListCreature(ArrayList<Creature> items, JList<String> list) {
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		
+		for(Creature c : items) {
+			listModel.addElement(c.toString());
+		}
+		
+		list.setModel(listModel);
+	}
+	
+	/**
+	 * For some JList, it replaces all elements in it to the elements in items.
+	 * @param items
+	 * @param list
+	 */
+	public static void setListString(ArrayList<String> items, JList<String> list) {
+		DefaultListModel<String> listModel = new DefaultListModel<String>();
+		
+		for(String s : items) {
+			listModel.addElement(s);
+		}
+		
+		list.setModel(listModel);
+	}
+	
+	/**
+	 * For some JList, it adds a single element to it as specified by String string.
+	 * @param string
+	 * @param list
+	 */
+	public static void addToListString(String string, JList<String> list) {
+		((DefaultListModel<String>)list.getModel()).addElement(string);
+	}
 }

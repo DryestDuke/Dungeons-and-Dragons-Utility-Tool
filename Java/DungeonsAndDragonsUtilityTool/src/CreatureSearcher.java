@@ -1,23 +1,21 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
 
 public class CreatureSearcher extends JFrame {
 
@@ -174,13 +172,7 @@ public class CreatureSearcher extends JFrame {
 				
 				ArrayList<Creature> results = model.searchCreatures(attributes, sortBy);
 				
-				DefaultListModel<String> listModel = new DefaultListModel<String>();
-				
-				for(Creature c : results) {
-					listModel.addElement(c.toString());
-				}
-				
-				list.setModel(listModel);
+				Model.setListCreature(results, list);
 			}
 		});
 		btn_searchForCreatures.setFont(new Font("Courier New", Font.PLAIN, 14));

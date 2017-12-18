@@ -1,9 +1,6 @@
-import java.util.Random;
-
 public class NPC {
 	
 	private static Model model = new Model();
-	
 	private int serialNumber;
 	
 	public String header;
@@ -44,22 +41,31 @@ public class NPC {
 				
 	}
 	
-	public NPC(int serialNumber, String header, String name, String race, String age, String gender, String sexuality, 
+	public String toStringHTML() {
+		return "<HMTL>Header: " + header
+				+ "<BR>SN: " + serialNumber
+				+ "<BR>Name: " + name
+				+ "<BR> Race: " + race
+				+ "<BR> Age: " + age
+				+ "<BR> Gender: " + gender
+				+ "<BR> Sexuality: " + sexuality
+				+ "<BR>   Stats: " + stats
+				+ "<BR>   Moral: " + moral
+				+ "<BR>   Ideal: " + ideal
+				+ "<BR>   Trait: " + trait
+				+ "<BR> Emotion: " + emotion
+				+ "<BR> Trade: " + trade
+				+ "<BR> Skill: " + skill
+				+ "<BR> Worth: </HTML>" + worth;
+				
+	}
+		
+	public NPC(String header, String name, String race, String age, String gender, String sexuality, 
 			String emotion, String stats, String moral, String worth, String trait, String ideal, String skill, 
 			String trade) {
-		if(model.serialNumbers.contains(serialNumber)) {
-			Random rand = new Random();
-			int sn = rand.nextInt(Integer.MAX_VALUE);
-			while(model.serialNumbers.contains(sn)) {
-				sn = rand.nextInt(Integer.MAX_VALUE);
-			}
-			model.serialNumbers.add(sn);
-		}else {
-			model.serialNumbers.add(serialNumber);
-		}
+		this.serialNumber = model.generateSerialNumber();
 		
 		this.header = header;
-		this.serialNumber = serialNumber;
 		
 		this.name = name;
 		this.race = race;
@@ -80,7 +86,6 @@ public class NPC {
 	}
 	
 	public static NPC generateNPC() {
-		int serialNumber_ = new Random().nextInt(Integer.MAX_VALUE);
 		String header_ = "";
 		
 		String race_ = model.getRace();
@@ -101,7 +106,7 @@ public class NPC {
 		String skill_ = model.getSkill();
 		String trade_ = model.getTrade();
 		
-		return new NPC(serialNumber_, header_, name_, race_, age_, gender_, sexuality_, 
+		return new NPC(header_, name_, race_, age_, gender_, sexuality_, 
 				 emotion_, stats_, moral_, worth_, trait_, ideal_, skill_, 
 				 trade_);
 	}

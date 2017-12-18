@@ -1,23 +1,27 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
-import javax.swing.JTextField;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class NPCScreen extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
-	private Model model;
 	private JTextField textField_header;
 	private JTextField textField_name;
 	private JTextField textField_race;
@@ -29,7 +33,7 @@ public class NPCScreen extends JFrame {
 	private JTextField textField_ideal;
 	private JTextField textField_trait;
 	private JTextField textField_emotion;
-	private JTextField textField_tradea;
+	private JTextField textField_trade;
 	private JTextField textField_skill;
 	private JTextField textField_worth;
 
@@ -53,8 +57,6 @@ public class NPCScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public NPCScreen(Model model) {
-		this.model = model;
-		
 		setResizable(false);
 		setTitle("NPCs");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/com/jtattoo/plaf/icons/empty_8x8.png")));
@@ -81,7 +83,7 @@ public class NPCScreen extends JFrame {
 		scrollPane_savedToFile.setBounds(12, 31, 273, 496);
 		contentPane.add(scrollPane_savedToFile);
 		
-		JList list_savedToFile = new JList();
+		JList<String> list_savedToFile = new JList<String>();
 		list_savedToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
 		scrollPane_savedToFile.setViewportView(list_savedToFile);
 		
@@ -170,6 +172,7 @@ public class NPCScreen extends JFrame {
 		contentPane.add(lblWorth);
 		
 		textField_header = new JTextField();
+		textField_header.setText(" ");
 		textField_header.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_header.setToolTipText("This is custom information for the NPC.");
 		textField_header.setFont(new Font("Courier New", Font.PLAIN, 14));
@@ -247,12 +250,12 @@ public class NPCScreen extends JFrame {
 		textField_emotion.setBounds(370, 318, 212, 22);
 		contentPane.add(textField_emotion);
 		
-		textField_tradea = new JTextField();
-		textField_tradea.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_tradea.setFont(new Font("Courier New", Font.PLAIN, 14));
-		textField_tradea.setColumns(10);
-		textField_tradea.setBounds(370, 347, 212, 22);
-		contentPane.add(textField_tradea);
+		textField_trade = new JTextField();
+		textField_trade.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_trade.setFont(new Font("Courier New", Font.PLAIN, 14));
+		textField_trade.setColumns(10);
+		textField_trade.setBounds(370, 347, 212, 22);
+		contentPane.add(textField_trade);
 		
 		textField_skill = new JTextField();
 		textField_skill.setHorizontalAlignment(SwingConstants.CENTER);
@@ -269,6 +272,23 @@ public class NPCScreen extends JFrame {
 		contentPane.add(textField_worth);
 		
 		JButton btn_randomizeAll = new JButton("Randomize All");
+		btn_randomizeAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textField_race.setText(model.getRace());
+				textField_name.setText(model.getName(textField_race.getText()));
+				textField_age.setText(model.generateAge());
+				textField_gender.setText(model.generateGender());
+				textField_sexuality.setText(model.generateSexuality());
+				textField_stats.setText(model.generateStats());
+				textField_moral.setText(model.generateMoral());
+				textField_ideal.setText(model.getIdeal());
+				textField_trait.setText(model.getTrait());
+				textField_emotion.setText(model.getEmotion());
+				textField_trade.setText(model.getTrade());
+				textField_skill.setText(model.getSkill());
+				textField_worth.setText(model.getWorth());
+			}
+		});
 		btn_randomizeAll.setToolTipText("Click this to randomize all fields above.");
 		btn_randomizeAll.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_randomizeAll.setBounds(470, 436, 112, 23);
@@ -290,7 +310,7 @@ public class NPCScreen extends JFrame {
 		scrollPane_1.setBounds(596, 31, 273, 496);
 		contentPane.add(scrollPane_1);
 		
-		JList list_savedForSession = new JList();
+		JList<String> list_savedForSession = new JList<String>();
 		list_savedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
 		scrollPane_1.setViewportView(list_savedForSession);
 		
@@ -307,6 +327,15 @@ public class NPCScreen extends JFrame {
 		contentPane.add(btn_editSaved);
 		
 		JButton btn_generate = new JButton("Generate NPC");
+		btn_generate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//for all of the values in the textFields, create an NPC with those values.
+					//if some value is empty, don't fret. it's the user's fault :-)
+				NPC npc = model.generateNPC(textField_header.getText(), textField_name.getText(), textField_race.getText(), textField_age.getText(), textField_gender.getText(), textField_sexuality.getText(), textField_emotion.getText(), textField_stats.getText(), textField_moral.getText(), textField_worth.getText(), textField_trait.getText(), textField_ideal.getText(), textField_skill.getText(), textField_trade.getText());
+				//then pop them over into list_savedForSession - making sure to format them all good n' shit
+				Model.addToListString(npc.toStringHTML(), list_savedForSession);
+			}
+		});
 		btn_generate.setToolTipText("Generates an NPC from the information above. For all fields left blank, it automatically fills them with a random element.");
 		btn_generate.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_generate.setBounds(478, 470, 104, 23);
