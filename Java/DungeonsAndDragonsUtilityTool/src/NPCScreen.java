@@ -3,6 +3,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -14,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextPane;
 
 public class NPCScreen extends JFrame {
 
@@ -37,6 +40,7 @@ public class NPCScreen extends JFrame {
 	private JTextField textField_trade;
 	private JTextField textField_skill;
 	private JTextField textField_worth;
+	private JTextField textField_sn;
 
 	/**
 	 * Launch the application.
@@ -84,9 +88,20 @@ public class NPCScreen extends JFrame {
 		scrollPane_savedToFile.setBounds(12, 31, 273, 496);
 		contentPane.add(scrollPane_savedToFile);
 		
-		JList<String> list_savedToFile = new JList<String>();
-		list_savedToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
-		scrollPane_savedToFile.setViewportView(list_savedToFile);
+		JTextPane textPane_savedToFile = new JTextPane();
+		textPane_savedToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
+		
+		String temp = "";
+		for(NPC npc : model.npcs) {
+			if(temp.equals("")) {
+				temp += npc.toString();
+			}else {
+				temp += "\n-----------------------\n" + npc.toString();
+			}
+		}
+		textPane_savedToFile.setText(temp);
+		
+		scrollPane_savedToFile.setViewportView(textPane_savedToFile);
 		
 		JLabel lblNewLabel_2 = new JLabel("Header:");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -295,12 +310,6 @@ public class NPCScreen extends JFrame {
 		btn_randomizeAll.setBounds(470, 436, 112, 23);
 		contentPane.add(btn_randomizeAll);
 		
-		JButton btn_saveToFile = new JButton("Save to File");
-		btn_saveToFile.setToolTipText("Select an NPC on the right and click this to save them across sessions.");
-		btn_saveToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btn_saveToFile.setBounds(478, 504, 104, 23);
-		contentPane.add(btn_saveToFile);
-		
 		JLabel lblSavedForSession = new JLabel("Generated NPCs");
 		lblSavedForSession.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSavedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
@@ -311,19 +320,28 @@ public class NPCScreen extends JFrame {
 		scrollPane_1.setBounds(596, 31, 273, 496);
 		contentPane.add(scrollPane_1);
 		
-		JList<String> list_savedForSession = new JList<String>();
-		DefaultListModel<String> list_savedForSession_dlm = new DefaultListModel<String>();
-		list_savedForSession.setModel(list_savedForSession_dlm);
-		list_savedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
-		scrollPane_1.setViewportView(list_savedForSession);
+		JTextPane textPane_savedForSession = new JTextPane();
+		scrollPane_1.setViewportView(textPane_savedForSession);
 		
 		JButton btn_deleteSaved = new JButton("Delete Saved NPC");
-		btn_deleteSaved.setToolTipText("Delete some saved NPC that you've selected on the left.");
+		btn_deleteSaved.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//delete them from the file
+				//remove them from textPane_savedToFile (which will take some work).
+			}
+		});
+		btn_deleteSaved.setToolTipText("Click this to delete some NPC from the file (not from the pane on the left).");
 		btn_deleteSaved.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_deleteSaved.setBounds(296, 504, 136, 23);
 		contentPane.add(btn_deleteSaved);
 		
 		JButton btn_editSaved = new JButton("Edit Saved NPC");
+		btn_editSaved.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//use the dropdowns/text boxes where you fill in information to generate an NPC as the information that will be overwriting
+				//the values for the NPC you are editing. this should also update the entry on the left hand side.
+			}
+		});
 		btn_editSaved.setToolTipText("Click this to edit the values of some saved NPC.");
 		btn_editSaved.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_editSaved.setBounds(296, 470, 120, 23);
@@ -336,12 +354,57 @@ public class NPCScreen extends JFrame {
 					//if some value is empty, don't fret. it's the user's fault :-)
 				NPC npc = model.generateNPC(textField_header.getText(), textField_name.getText(), textField_race.getText(), textField_age.getText(), textField_gender.getText(), textField_sexuality.getText(), textField_emotion.getText(), textField_stats.getText(), textField_moral.getText(), textField_worth.getText(), textField_trait.getText(), textField_ideal.getText(), textField_skill.getText(), textField_trade.getText());
 				//then pop them over into list_savedForSession - making sure to format them all good n' shit
-				list_savedForSession_dlm.addElement(npc.toString());
+				if(textPane_savedForSession.getText().equals("")) {
+					textPane_savedForSession.setText(npc.toString());
+				}else {
+					textPane_savedForSession.setText(textPane_savedForSession.getText() + "\n-----------------------\n" + npc.toString());
+				}
 			}
 		});
-		btn_generate.setToolTipText("Generates an NPC from the information above. For all fields left blank, it automatically fills them with a random element.");
+		btn_generate.setToolTipText("Click this to generate an NPC from the information above. If a field is left blank, the corresponding value for the NPC will be blank.");
 		btn_generate.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_generate.setBounds(478, 470, 104, 23);
 		contentPane.add(btn_generate);
+		
+		JLabel lblSerialNumber = new JLabel("SN:");
+		lblSerialNumber.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSerialNumber.setFont(new Font("Courier New", Font.PLAIN, 14));
+		lblSerialNumber.setBounds(303, 439, 24, 17);
+		contentPane.add(lblSerialNumber);
+		
+		textField_sn = new JTextField();
+		textField_sn.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_sn.setToolTipText("Here you type in the Serial Number (or \"SN\") of the NPC with which you are attempting to interact.");
+		textField_sn.setFont(new Font("Courier New", Font.PLAIN, 14));
+		textField_sn.setBounds(332, 435, 89, 22);
+		contentPane.add(textField_sn);
+		textField_sn.setColumns(10);
+		
+		JButton btn_saveToFile = new JButton("Save to File");
+		btn_saveToFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int sn = 0;
+				try {
+					sn = Integer.parseInt(textField_sn.getText());
+				}catch(Exception e) {
+					new JErrorPane("Fill in the SN appropriately for the NPC with which you are attempting to interact.");
+					return;
+				}
+				if(textField_sn.getText().equals("")) {
+					new JErrorPane("Fill in the SN of the NPC with which you are attempting to interact.");
+					return;
+				}
+				
+				//save the NPC to the file
+				if(model.saveNPC(sn)) {
+					//if that happened successfully, add this to the savedNPCs pane (as it is now a saved NPC).
+					textPane_savedToFile.setText(textPane_savedToFile.getText() + "\n-----------------------\n" + model.getNPC(sn).toString());
+				}				
+			}
+		});
+		btn_saveToFile.setToolTipText("Click this to save some generated NPC to file - and also move them to the pane on the left.");
+		btn_saveToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_saveToFile.setBounds(478, 504, 104, 23);
+		contentPane.add(btn_saveToFile);
 	}
 }

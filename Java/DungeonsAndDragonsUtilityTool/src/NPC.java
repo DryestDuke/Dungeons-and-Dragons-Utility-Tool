@@ -1,7 +1,7 @@
 public class NPC {
 	
 	private static Model model = new Model();
-	private int serialNumber;
+	public int serialNumber;
 	
 	public String header;
 	
@@ -26,37 +26,18 @@ public class NPC {
 		return "Header: " + header
 				+ "\nSN: " + serialNumber
 				+ "\nName: " + name
-				+ "\n Race: " + race
-				+ "\n Age: " + age
-				+ "\n Gender: " + gender
-				+ "\n Sexuality: " + sexuality
-				+ "\n   Stats: " + stats
-				+ "\n   Moral: " + moral
-				+ "\n   Ideal: " + ideal
-				+ "\n   Trait: " + trait
-				+ "\n Emotion: " + emotion
-				+ "\n Trade: " + trade
-				+ "\n Skill: " + skill
-				+ "\n Worth: " + worth;
-				
-	}
-	
-	public String toStringHTML() {
-		return "<HMTL>Header: " + header
-				+ "<BR>SN: " + serialNumber
-				+ "<BR>Name: " + name
-				+ "<BR> Race: " + race
-				+ "<BR> Age: " + age
-				+ "<BR> Gender: " + gender
-				+ "<BR> Sexuality: " + sexuality
-				+ "<BR>   Stats: " + stats
-				+ "<BR>   Moral: " + moral
-				+ "<BR>   Ideal: " + ideal
-				+ "<BR>   Trait: " + trait
-				+ "<BR> Emotion: " + emotion
-				+ "<BR> Trade: " + trade
-				+ "<BR> Skill: " + skill
-				+ "<BR> Worth: " + worth + "</HTML>";
+				+ "\n  Race: " + race
+				+ "\n  Age: " + age
+				+ "\n  Gender: " + gender
+				+ "\n  Sexuality: " + sexuality
+				+ "\n     Stats: " + stats
+				+ "\n     Moral: " + moral
+				+ "\n     Ideal: " + ideal
+				+ "\n     Trait: " + trait
+				+ "\n  Emotion: " + emotion
+				+ "\n  Trade: " + trade
+				+ "\n  Skill: " + skill
+				+ "\n  Worth: " + worth;
 				
 	}
 		

@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -1018,6 +1020,55 @@ public class Model {
 		}
 		
 		list.setModel(listModel);
+	}
+	
+	/**
+	 * For some serial number of some NPC in npcs, save that npc.toString() to the file "files\\npcs.npc".
+	 * @param sn This is the serial number of the NPC in npcs to be written to the file (npcs.npc).
+	 * @return True on a successful addition of that NPC to the file.
+	 */
+
+	public boolean saveNPC(int sn) {
+		boolean output = true;
+		try {
+			FileWriter fw = new FileWriter(new File("files\\npcs.npc"), true);
+			
+			NPC npc = null;
+			for(NPC npc_ : npcs) {
+				if(npc_.serialNumber == sn) {
+					npc = npc_;
+				}
+			}
+			
+			if(npc == null) {
+				fw.close();
+				output = false;
+				throw new Exception("NPC with SN=" + sn + " was not found in this.npcs ==> \n" + npcs.toString());
+			}
+			
+			fw.write("\n<NPC>\n" + npc.toString() + "\n</NPC>\n");
+			
+			fw.close();
+		} catch (Exception e) {
+			System.err.println("Failed to write the NPC with SN=" + sn + " to the save file.");
+			output = false;
+		}
+		return output;
+	}
+
+	/**
+	 * For some NPC with some serial number (sn), return a reference to them.
+	 * @param sn The serial number of the NPC for which we are searching.
+	 * @return a reference to the NPC. Returns null if no npc in npcs has that serial number.
+	 */
+	public NPC getNPC(int sn) {
+		NPC npc = null;
+		for(NPC npc_ : npcs) {
+			if(npc_.serialNumber == sn) {
+				npc = npc_;
+			}
+		}
+		return npc;
 	}
 	
 }
