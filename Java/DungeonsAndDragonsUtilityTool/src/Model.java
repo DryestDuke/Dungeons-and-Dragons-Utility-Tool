@@ -114,13 +114,13 @@ public class Model {
 				String book = "";
 				int pageNumber = -1;
 				if(splitLine[3].contains("mm")) {
-					book = "Monster Manual";
+					book = "MM";
 					pageNumber = Integer.parseInt(splitLine[3].substring(3, splitLine[3].length()));
 				}else if(splitLine[3].contains("VGtM")) {
-					book = "Volo's Guide to Monsters";
+					book = "VGtM";
 					pageNumber = Integer.parseInt(splitLine[3].substring(splitLine[3].indexOf('-')+1, splitLine[3].length()));
 				}else if(splitLine[3].contains("ToB")) {
-					book = "Tome of Beasts";
+					book = "ToB";
 					pageNumber = Integer.parseInt(splitLine[3].substring(splitLine[3].indexOf('-')+1, splitLine[3].length()));
 				}
 				
@@ -635,23 +635,22 @@ public class Model {
 	/**
 	 * For all creatures in this.creatures, it chooses a number of them based off of the xpBudget given.
 	 * It tries to find a number of bosses (xp > 50% * xpBudget) = numberBosses, and a number of minions
-	 * (xp < 50% * xpBudget) = numberMinions. Please have numberBosses + numberMinions equal numberCreatures.
+	 * (xp < 50% * xpBudget) = numberMinions.
 	 * If the value of creatures != null, then the list of creatures used will be the list provided.
 	 * Otherwise it uses the list of creatures present in Model.
-	 * @param numberCreatures The number of creatures to be in the mob.
 	 * @param numberBosses The number of bosses (a boss is a creature whose XP value > 50% * xpBudget).
 	 * @param numberMinions The number of minions (a minion is a creature whose XP value < 50% * xpBudget).
 	 * @param xpBudget The xpBudget to which the mob adheres.
 	 * @param creatures The list of creatures from which this method generates an encounter. This == null if you wish to use the list already in model.
 	 * @return the list of all creatures in the encounter (not including the PCs, obviously).
 	 */
-	public ArrayList<Creature> generateEncounter(int numberCreatures, int numberBosses, int numberMinions, int xpBudget, ArrayList<Creature> creatures) {
+	public ArrayList<Creature> generateEncounter(int numberBosses, int numberMinions, int xpBudget, ArrayList<Creature> creatures) {
 		ArrayList<Creature> chosenCreatures = creatures;
 		if(creatures == null) {
 			chosenCreatures = this.creatures;
 		}
 		
-		ArrayList<Creature> encounter = new ArrayList<Creature>(numberCreatures);
+		ArrayList<Creature> encounter = new ArrayList<Creature>(numberBosses + numberMinions);
 		
 		int actualNumberBosses = 0;
 		int actualNumberMinions = 0;
@@ -697,7 +696,18 @@ public class Model {
 			}
 			
 			if(numberBosses <= actualNumberBosses && numberMinions <= actualNumberMinions) {
-				System.out.println("all out of bosses & minions");
+				//we got our bosses, we got our minions... but it messed up. somehow we still need to burn through more XP
+				Creature bestCreature = null;
+				for(Creature c : chosenCreatures) {
+					if(bestCreature == null) {
+						bestCreature = c;
+					}
+					if(Math.abs(bestCreature.xp - xpBudget) > Math.abs(c.xp - xpBudget)) {
+						bestCreature = c;
+					}
+				}
+				encounter.add(bestCreature);
+				xpBudget -= bestCreature.xp;
 			}
 			
 		}

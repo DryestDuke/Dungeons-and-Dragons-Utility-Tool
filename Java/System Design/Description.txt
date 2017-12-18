@@ -8,6 +8,7 @@ Dashboard:
 	> Save To File (w/ header) in NPCs.txt
 	> Save For Session (w/ header)
 	> Edit Saved NPCs (via SN)
+	> Delte Saved NPCs (via SN)
 *Encounter XP Calculator.
 *Encounter Generator.
 *Monster Searcher.

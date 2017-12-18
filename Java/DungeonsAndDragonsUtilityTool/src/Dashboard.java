@@ -215,12 +215,22 @@ public class Dashboard extends JFrame {
 		contentPane.add(btn_generateEncounter);
 		
 		JButton btn_searchCreatures = new JButton("Search Creatures");
+		btn_searchCreatures.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreatureSearcher.main(model);
+			}
+		});
 		btn_searchCreatures.setToolTipText("Click to search through the list of all creatures.");
 		btn_searchCreatures.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_searchCreatures.setBounds(12, 136, 169, 24);
 		contentPane.add(btn_searchCreatures);
 		
 		JButton btn_openNpcScreen = new JButton("Open NPC Screen");
+		btn_openNpcScreen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NPCScreen.main(model);
+			}
+		});
 		btn_openNpcScreen.setToolTipText("Open the NPC screen tonight.");
 		btn_openNpcScreen.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_openNpcScreen.setBounds(12, 187, 169, 24);
