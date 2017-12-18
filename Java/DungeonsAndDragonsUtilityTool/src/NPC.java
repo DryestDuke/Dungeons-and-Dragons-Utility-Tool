@@ -56,7 +56,7 @@ public class NPC {
 				+ "<BR> Emotion: " + emotion
 				+ "<BR> Trade: " + trade
 				+ "<BR> Skill: " + skill
-				+ "<BR> Worth: </HTML>" + worth;
+				+ "<BR> Worth: " + worth + "</HTML>";
 				
 	}
 		

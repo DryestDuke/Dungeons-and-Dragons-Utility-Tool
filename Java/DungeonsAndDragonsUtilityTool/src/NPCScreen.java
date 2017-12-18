@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -275,7 +276,7 @@ public class NPCScreen extends JFrame {
 		btn_randomizeAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				textField_race.setText(model.getRace());
-				textField_name.setText(model.getName(textField_race.getText()));
+				textField_name.setText(model.getName(textField_race.getText()) + " " + model.getName(textField_race.getText()));
 				textField_age.setText(model.generateAge());
 				textField_gender.setText(model.generateGender());
 				textField_sexuality.setText(model.generateSexuality());
@@ -311,6 +312,8 @@ public class NPCScreen extends JFrame {
 		contentPane.add(scrollPane_1);
 		
 		JList<String> list_savedForSession = new JList<String>();
+		DefaultListModel<String> list_savedForSession_dlm = new DefaultListModel<String>();
+		list_savedForSession.setModel(list_savedForSession_dlm);
 		list_savedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
 		scrollPane_1.setViewportView(list_savedForSession);
 		
@@ -333,7 +336,7 @@ public class NPCScreen extends JFrame {
 					//if some value is empty, don't fret. it's the user's fault :-)
 				NPC npc = model.generateNPC(textField_header.getText(), textField_name.getText(), textField_race.getText(), textField_age.getText(), textField_gender.getText(), textField_sexuality.getText(), textField_emotion.getText(), textField_stats.getText(), textField_moral.getText(), textField_worth.getText(), textField_trait.getText(), textField_ideal.getText(), textField_skill.getText(), textField_trade.getText());
 				//then pop them over into list_savedForSession - making sure to format them all good n' shit
-				Model.addToListString(npc.toStringHTML(), list_savedForSession);
+				list_savedForSession_dlm.addElement(npc.toString());
 			}
 		});
 		btn_generate.setToolTipText("Generates an NPC from the information above. For all fields left blank, it automatically fills them with a random element.");

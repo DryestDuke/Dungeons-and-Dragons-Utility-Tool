@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.ListModel;
 
 public class Model {
 	
@@ -138,8 +139,8 @@ public class Model {
 	 * @return all saved NPCs.
 	 */
 	public ArrayList<NPC> loadNPCs(){
-		//make sure to also add all serial numbers to serialNumbers (which is used during creation of NPCs). SNs are needed for editing NPCs.
-		return null;
+		//make sure to also add all serial numbers to serialNumbers (which is used during creation of NPCs)
+		return new ArrayList<NPC>();
 	}
 	
 	/**
@@ -1019,12 +1020,4 @@ public class Model {
 		list.setModel(listModel);
 	}
 	
-	/**
-	 * For some JList, it adds a single element to it as specified by String string.
-	 * @param string
-	 * @param list
-	 */
-	public static void addToListString(String string, JList<String> list) {
-		((DefaultListModel<String>)list.getModel()).addElement(string);
-	}
 }
