@@ -1068,37 +1068,33 @@ public class Model {
 	public NPC generateNPC(String header, String name, String race, String age, String gender, String sexuality, 
 			String emotion, String stats, String moral, String worth, String trait, String ideal, String skill, 
 			String trade) {
-		NPC npc = new NPC(header, name, race, age, gender, sexuality, emotion, stats, moral, worth, trait, ideal, skill, trade);
+		NPC npc = new NPC(this, header, name, race, age, gender, sexuality, emotion, stats, moral, worth, trait, ideal, skill, trade);
 		npcs.add(npc);
 		return npc;
 	}
 
 	/**
-	 * This method opens up the serial number file, and finds the last serial number put into it.
-	 * It then returns the next serial number in the order (= last SN + 1), making sure to scribe it into the file beforehand.
-	 * Keep in mind that calling this changes the file it reads in to know the serial number, so *do not call this directly**.
-	 * @return a unique serial number, generated in sequence based off of the last known serial number.
+	 * Generates a unique serial number based off of all of the NPCs in npcs (so all generated NPCs in this session as well as all savedNPCs loaded in).
+	 * @return the serial number.
 	 */
 	public int generateSerialNumber() {
-		int lastSN = -1;
-		
-		for(String sn : loadFile("files\\Serial Numbers.txt")) {
-			lastSN = Integer.parseInt(sn);
+		if(npcs.size() == 0) {
+			return 0;
 		}
 		
-		//appending the new SN onto the file
-		File file = new File("files\\Serial Numbers.txt");
-		try {
-			PrintWriter pw = new PrintWriter(file);
-			
-			pw.write(lastSN+1 + "\n");
-			
-			pw.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("Serial Numbers.txt was not found in the files folder in the workspace. Uh-oh!");
+		int sn = 0;
+		
+		ArrayList<Integer> allSerialNumbers = new ArrayList<Integer>(npcs.size());
+		
+		for(NPC npc : npcs) {
+			allSerialNumbers.add(npc.serialNumber);
 		}
 		
-		return lastSN+1;
+		while(allSerialNumbers.contains(sn)) {
+			sn++;
+		}
+		
+		return sn;
 	}
 	
 	/**
