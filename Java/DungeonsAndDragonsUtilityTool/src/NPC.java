@@ -110,8 +110,4 @@ public class NPC {
 				 emotion_, stats_, moral_, worth_, trait_, ideal_, skill_, 
 				 trade_);
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(NPC.generateNPC().toString());
-	}
 }

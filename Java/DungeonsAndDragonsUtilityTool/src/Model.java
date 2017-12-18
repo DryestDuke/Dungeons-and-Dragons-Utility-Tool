@@ -963,19 +963,19 @@ public class Model {
 
 	/**
 	 * This method opens up the serial number file, and finds the last serial number put into it.
-	 * It then returns the next serial number in the order, scribing it into the file.
-	 * Keep in mind that calling this changes the file it reads in to know the serial number, so try not to call it too much.
-	 * @return a unique serial number.
+	 * It then returns the next serial number in the order (= last SN + 1), making sure to scribe it into the file beforehand.
+	 * Keep in mind that calling this changes the file it reads in to know the serial number, so *do not call this directly**.
+	 * @return a unique serial number, generated in sequence based off of the last known serial number.
 	 */
 	public int generateSerialNumber() {
 		int lastSN = -1;
 		
-		for(String sn : loadFile("\\files\\Serial Numbers.txt")) {
+		for(String sn : loadFile("files\\Serial Numbers.txt")) {
 			lastSN = Integer.parseInt(sn);
 		}
 		
 		//appending the new SN onto the file
-		File file = new File("\\files\\Serial Numbers.txt");
+		File file = new File("files\\Serial Numbers.txt");
 		try {
 			PrintWriter pw = new PrintWriter(file);
 			
