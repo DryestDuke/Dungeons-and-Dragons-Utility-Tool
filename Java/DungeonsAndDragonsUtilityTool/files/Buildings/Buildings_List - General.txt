@@ -1,0 +1,138 @@
+An abandoned squat.
+A lived-in squat.
+A lower-class home.
+A middle-class home.
+An upper-middle-class home.
+An upper-class home.
+A crowded tenement.
+A bustling apartment building.
+A rather quiet apartment building.
+A small apartment building, no more than 2 floors.
+An busy and raucous orphanage.
+A simple, small, and nice looking orphanage.
+A dirty orphanage, full of dirty and downtrodden looking orphans.
+A lavish, guarded mansion.
+An old mansion, guarded by fierce looking solders.
+A dirty mansion, fenced off but dilapidated.
+A temple to a Good Deity.
+A temple to a Neutral Deity.
+A Home of Ascetics.
+A monkish temple.
+A temple dedicated to an ancient order.
+A temple dedicated to a new order.
+An Abandoned Shrine.
+A functioning shrine to a God.
+A functioning shrine to an ideal.
+A functioning shrine to an ancient figure.
+A recently renovated shrine, dedicated to a god/ideal/ancient figure.
+An area under construction.
+A library dedicated to a study of religion.
+A library dedicated to a study of history.
+A library dedicated to a study of the sciences.
+An athletics house.
+A sports arena.
+A gym.
+An empty or abandoned warehouse.
+A heavily guarded warehouse, filled with expensive goods.
+A warehouse filled with cheap goods.
+A warehouse filled with bulk goods.
+A warehouse filled with live animals.
+A warehouse filled with weapons and armor.
+A warehouse filled with goods from a distant land.
+A warehouse that is actually a secret Smuggler's Den.
+An undertaker.
+A moneylender.
+A chandler.
+A smithy.
+A carpenter-shop.
+A weaver.
+A shoemaker.
+A furrier.
+A maidservant's quarters.
+A tailor.
+A barber.
+A jeweler.
+An old-clothes shop.
+A pastry shop.
+A wine-seller.
+A beer-seller.
+A pursemaker.
+A wood-seller.
+A book-binder.
+A butcher.
+A fishmonger.
+A painter.
+A roofer.
+A sculptor.
+A glovemaker.
+A woodcarver.
+A bookseller.
+A peasant house.
+A commoner house.
+A merchant house.
+A bereaucrat house.
+A political house.
+A noble house.
+A military house (barracks).
+A blacksmith.
+A carpenter.
+A glassblower.
+A tailor.
+A leatherwork.
+An armorsmith.
+A weaponsmith.
+An alchemist.
+A mageware-shop.
+A stable.
+A spice shop.
+A cloth shop.
+A rare/exotic materials shop.
+A brothel.
+An inn.
+A temple.
+A shrine.
+A church.
+A sanctuary.
+A spice market.
+A cloth market.
+A food market.
+An iron market.
+A granary.
+A quarry.
+A mine.
+A smelting furnace.
+A tavern.
+An inn.
+A pub.
+Some gladiator/fighter pits.
+A fighter school.
+A mage school.
+A library.
+A street/chimney sweep "shop".
+A town hall.
+A well.
+An aqueduct.
+A water source.
+An armory.
+An alchemy lab.
+A textile mill.
+A lumber mill.
+A library.
+A house.
+A grainery.
+A cistern.
+A cemetery.
+A bath house.
+A fountain.
+An administrative building.
+A fountain.
+A garden.
+A hospital.
+An office.
+A plaza.
+A restaurant.
+A stable.
+A shop.
+A tavern.
+A warehouse.
+An aslyum.
