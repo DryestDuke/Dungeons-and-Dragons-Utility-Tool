@@ -55,3 +55,48 @@ Kraken Priest, Humanoid, 1800, VGtM-215
 Morkoth, Aberration, 7200, VGtM-178
 Archdruid, Humanoid, 8400, VGtM-210
 Storm Giant (Quintessent), Giant, 15000, VGtM-151
+Frog, Beast, 0, mm322
+Sea Horse, Beast, 0, mm337
+Cat, Beast, 10, mm320
+Crab, Beast, 10, mm320
+Homunculus, Construct, 10, mm188
+Octopus, Beast, 10, mm333
+Quipper, Beast, 10, mm335
+Flumph, Aberration, 25, mm135
+Giant Crab, Beast, 25, mm324
+Merfolk, Humanoid, 25, mm218
+Monodrone, Construct, 25, mm224
+Poisonous Snake, Beast, 25, mm334
+Slaad Tadpole, Aberration, 25, mm276
+Flying Sword, Construct, 50, mm20
+Giant Frog, Beast, 50, mm325
+Goblin, Humanoid, 50, mm166
+Mud Mephit, Elemental, 50, mm216
+Skeleton, Undead, 50, mm272
+Crocodile, Beast, 100, mm320
+Giant Sea Horse, Beast, 100, mm328
+Reef Shark, Beast, 100, mm336
+Sahuagin, Humanoid, 100, mm263
+Animated Armor, Construct, 200, mm19
+Giant Octopus, Beast, 200, mm326
+Giant Toad, Beast, 200, mm329
+Swarm of Quippers, Beast, 200, mm338
+Thri-kreen, Humanoid, 200, mm288
+Giant Constrictor Snake, Beast, 450, mm324
+Hunter Shark, Beast, 450, mm330
+Merrow, Monstrosity, 450, mm219
+Sahuagin Priestess, Humanoid, 450, mm264
+Sea Hag, Fey, 450, mm179
+Killer Whale, Beast, 700, mm331
+Water Weird, Elemental, 700, mm299
+Giant Crocodile, Beast, 1800, mm324
+Giant Shark, Beast, 1800, mm328
+Sahuagin Baron, Humanoid, 1800, mm264
+Salamander, Elemental, 1800, mm266
+Water Elemental, Elemental, 1800, mm125
+Xorn, Elemental, 1800, mm304
+Hydra, Monstrosity, 3900, mm190
+Aboleth, Aberration, 5900, mm13
+Dragon Turtle, Dragon, 18000, mm119
+Kraken, Monstrosity, 50000, mm197
+Tarrasque, Monstrosity, 155000, mm286

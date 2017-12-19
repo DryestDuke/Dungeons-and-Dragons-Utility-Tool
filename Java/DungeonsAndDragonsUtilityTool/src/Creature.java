@@ -22,7 +22,7 @@ public class Creature {
 	
 	/**
 	 * Tests if one creature equals another. Checks all values except environment.
-	 * Also, for name, it checks that other.name.contains(this.name).
+	 * @return True if this == other.
 	 */
 	public boolean equals(Creature other) {
 		return (this.name.equals(other.name) && this.type.equals(other.type) && this.xp == (other.xp) 

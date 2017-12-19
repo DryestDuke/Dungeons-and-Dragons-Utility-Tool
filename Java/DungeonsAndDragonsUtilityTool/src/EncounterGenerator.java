@@ -17,8 +17,11 @@ import javax.swing.border.EmptyBorder;
 
 public class EncounterGenerator extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Model model;
 	private JTextField textField_xpBudget;
 	private JLabel lblAnd;
 	private JTextField textField_numBosses;
@@ -31,11 +34,11 @@ public class EncounterGenerator extends JFrame {
 	private JLabel lblType;
 	private JLabel lblBook;
 	private JLabel lblXp;
-	private JComboBox comboBox_environment;
+	private JComboBox<String> comboBox_environment;
 	private JTextField textField_name;
 	private JTextField textField_type;
 	private JTextField textField_xpIndividual;
-	private JComboBox comboBox_book;
+	private JComboBox<String> comboBox_book;
 	private JLabel lblBossesAnd;
 	
 	/**
@@ -58,8 +61,6 @@ public class EncounterGenerator extends JFrame {
 	 * Create the frame.
 	 */
 	public EncounterGenerator(Model model, int initialXPBudget) {
-		this.model = model;
-		
 		setResizable(false);
 		setTitle("Encounter Generator");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/com/jtattoo/plaf/icons/empty_8x8.png")));
@@ -139,9 +140,9 @@ public class EncounterGenerator extends JFrame {
 		lblXp.setBounds(12, 241, 24, 17);
 		contentPane.add(lblXp);
 		
-		comboBox_environment = new JComboBox();
+		comboBox_environment = new JComboBox<String>();
 		comboBox_environment.setToolTipText("Select one.");
-		comboBox_environment.setModel(new DefaultComboBoxModel(new String[] {"Any", "Arctic", "Coastal", "Desert", "Forest", "Grassland", "Hill", "Mountain", "Swamp", "Underdark", "Underwater", "Urban"}));
+		comboBox_environment.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "Arctic", "Coastal", "Desert", "Forest", "Grassland", "Hill", "Mountain", "Swamp", "Underdark", "Underwater", "Urban"}));
 		comboBox_environment.setFont(new Font("Courier New", Font.PLAIN, 14));
 		comboBox_environment.setBounds(114, 150, 106, 22);
 		contentPane.add(comboBox_environment);
@@ -173,8 +174,8 @@ public class EncounterGenerator extends JFrame {
 		contentPane.add(textField_xpIndividual);
 		textField_xpIndividual.setColumns(10);
 		
-		comboBox_book = new JComboBox();
-		comboBox_book.setModel(new DefaultComboBoxModel(new String[] {"Any", "MM", "VGtM", "ToB"}));
+		comboBox_book = new JComboBox<String>();
+		comboBox_book.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "MM", "VGtM", "ToB"}));
 		comboBox_book.setToolTipText("Select one.");
 		comboBox_book.setFont(new Font("Courier New", Font.PLAIN, 14));
 		comboBox_book.setBounds(275, 150, 106, 22);
@@ -196,31 +197,35 @@ public class EncounterGenerator extends JFrame {
 						return;
 					}
 				}
-				
+				int numberBosses = 0;
+				int numberMinions = 0;
 				try {
-					int numberBosses = Integer.parseInt(textField_numBosses.getText());
-					int numberMinions = Integer.parseInt(textField_numMinions.getText());
-					
-					ArrayList<String> attributes = new ArrayList<String>();
-					attributes.add((String) comboBox_environment.getSelectedItem());
-					attributes.add(textField_name.getText());
-					attributes.add(textField_type.getText());
-					attributes.add(textField_xpIndividual.getText());
-					attributes.add((String) comboBox_book.getSelectedItem());
-					
-					//generate the encounter
-					ArrayList<Creature> encounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, 
-							model.searchCreatures(attributes, null));
-					
-					for(Creature c : encounter) {
-						System.out.println(c);
-					}
-					//run it
-					Encounter.main(encounter, xpBudget);
-				}catch(Exception e1) {
-					new JErrorPane("Invalid value in one of the fields. Please fix.");
-					return;
+					numberBosses = Integer.parseInt(textField_numBosses.getText());
+					numberMinions = Integer.parseInt(textField_numMinions.getText());
+				}catch (Exception e2) {
+					System.err.println("You failed to input correct numbers to the bosses/minions fields.");
 				}
+				if(numberBosses <= 0 && numberMinions <= 0) {
+					numberBosses = Integer.MAX_VALUE;
+					numberMinions = Integer.MAX_VALUE;
+				}
+				
+				ArrayList<String> attributes = new ArrayList<String>();
+				attributes.add((String) comboBox_environment.getSelectedItem());
+				attributes.add(textField_name.getText());
+				attributes.add(textField_type.getText());
+				attributes.add(textField_xpIndividual.getText());
+				attributes.add((String) comboBox_book.getSelectedItem());
+
+				//generate the encounter
+				ArrayList<Creature> encounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, 
+						model.searchCreatures(attributes, null));
+
+				for(Creature c : encounter) {
+					System.out.println(c);
+				}
+				//run it
+				Encounter.main(encounter, xpBudget);
 			}
 		});
 		btn_generateEncounter.setToolTipText("Click this to generate the encounter based off of the fields you've provided.");

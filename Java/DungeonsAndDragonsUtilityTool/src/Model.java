@@ -1,8 +1,5 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,7 +8,6 @@ import java.util.Scanner;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import javax.swing.ListModel;
 
 public class Model {
 	
@@ -741,7 +737,7 @@ public class Model {
 			chosenCreatures = this.creatures;
 		}
 		
-		ArrayList<Creature> encounter = new ArrayList<Creature>(numberBosses + numberMinions);
+		ArrayList<Creature> encounter = new ArrayList<Creature>();
 		
 		int actualNumberBosses = 0;
 		int actualNumberMinions = 0;

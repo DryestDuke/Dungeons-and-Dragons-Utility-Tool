@@ -446,3 +446,156 @@ Evoker, Humanoid, 5000, VGtM-214
 Necromancer, Humanoid, 5000, VGtM-217
 War Priest, Humanoid, 5000, VGtM-218
 Warlord, Humanoid, 8400, VGtM-220
+Frog, Beast, 0, mm322
+Awakened Shrub, Plant, 10, mm317
+Bat, Beast, 10, mm318
+Cat, Beast, 10, mm320
+Crawling Claw, Undead, 10, mm44
+Eagle, Beast, 10, mm322
+Giant Fire Beetle, Beast, 10, mm325
+Hawk, Beast, 10, mm330
+Homunculus, Construct, 10, mm188
+Lizard, Beast, 10, mm332
+Owl, Beast, 10, mm333
+Rat, Beast, 10, mm335
+Raven, Beast, 10, mm335
+Spider, Beast, 10, mm337
+Vulture, Beast, 10, mm339
+Blood Hawk, Beast, 25, mm319
+Flumph, Aberration, 25, mm135
+Flying Snake, Beast, 25, mm322
+Giant Rat, Beast, 25, mm327
+Giant Weasel, Beast, 25, mm329
+Kobold, Humanoid, 25, mm195
+Manes, Fiend, 25, mm60
+Mastiff, Beast, 25, mm332
+Monodrone, Construct, 25, mm224
+Poisonous Snake, Beast, 25, mm334
+Stirge, Beast, 25, mm284
+Aarakocra, Humanoid, 50, mm12
+Blink Dog, Fey, 50, mm318
+Bullywug, Humanoid, 50, mm35
+Dretch, Fiend, 50, mm57
+Drow, Humanoid, 50, mm128
+Duodrone, Construct, 50, mm225
+Flying Sword, Construct, 50, mm20
+Giant Bat, Beast, 50, mm323
+Giant Centipede, Beast, 50, mm323
+Giant Owl, Beast, 50, mm327
+Giant Poisonous Snake, Beast, 50, mm327
+Giant Wolf Spider, Beast, 50, mm330
+Goblin, Humanoid, 50, mm166
+Grimlock, Humanoid, 50, mm175
+Kenku, Humanoid, 50, mm194
+Kuo-toa, Humanoid, 50, mm199
+Mud Mephit, Elemental, 50, mm216
+Panther, Beast, 50, mm333
+Pixie, Fey, 50, mm253
+Pseudodragon, Dragon, 50, mm254
+Pteranodon, Beast, 50, mm80
+Skeleton, Undead, 50, mm272
+Smoke Mephit, Elemental, 50, mm217
+Sprite, Fey, 50, mm283
+Steam Mephit, Elemental, 50, mm217
+Swarm of Bats, Beast, 50, mm337
+Swarm of Rats, Beast, 50, mm339
+Swarm of Ravens, Beast, 50, mm339
+Troglodyte, Humanoid, 50, mm290
+Winged Kobold, Humanoid, 50, mm195
+Zombie, Undead, 50, mm316
+Ape, Beast, 100, mm317
+Cockatrice, Monstrosity, 100, mm42
+Darkmantle, Monstrosity, 100, mm46
+Dust Mephit, Elemental, 100, mm215
+Gnoll, Humanoid, 100, mm163
+Hobgoblin, Humanoid, 100, mm186
+Ice Mephit, Elemental, 100, mm215
+Jackalwere, Humanoid, 100, mm193
+Lizardfolk, Humanoid, 100, mm204
+Magma Mephit, Elemental, 100, mm216
+Magmin, Elemental, 100, mm212
+Orc, Humanoid, 100, mm246
+Svirfneblin, Humanoid, 100, mm164
+Swarm of Insects, Beast, 100, mm338
+Tridrone, Construct, 100, mm225
+Warhorse Skeleton, Undead, 100, mm273
+Animated Armor, Construct, 200, mm19
+Bugbear, Humanoid, 200, mm33
+Duergar, Humanoid, 200, mm122
+Ghoul, Undead, 200, mm148
+Giant Eagle, Beast, 200, mm324
+Giant Spider, Beast, 200, mm328
+Goblin Boss, Humanoid, 200, mm166
+Half-ogre, Giant, 200, mm238
+Harpy, Monstrosity, 200, mm181
+Imp, Fiend, 200, mm76
+Kuo-toa Whip, Humanoid, 200, mm200
+Quadrone, Construct, 200, mm226
+Quasit, Fiend, 200, mm63
+Scarecrow, Construct, 200, mm268
+Specter, Undead, 200, mm279
+Thri-kreen, Humanoid, 200, mm288
+Young Faerie Dragon, Dragon, 200, mm133
+Yuan-ti Pureblood, Humanoid, 200, mm310
+Adult Faerie Dragon, Dragon, 450, mm133
+Azer, Elemental, 450, mm22
+Centaur, Monstrosity, 450, mm38
+Ettercap, Monstrosity, 450, mm131
+Gargoyle, Elemental, 450, mm140
+Gelatinous Cube, Ooze, 450, mm242
+Ghast, Undead, 450, mm148
+Gibbering Mouther, Aberration, 450, mm157
+Githzerai Monk, Humanoid, 450, mm161
+Gnoll Pack Lord, Humanoid, 450, mm163
+Lizardfolk Shaman, Humanoid, 450, mm205
+Mimic, Monstrosity, 450, mm220
+Minotaur Skeleton, Undead, 450, mm273
+Ogre, Giant, 450, mm237
+Ogre Zombie, Undead, 450, mm316
+Orc Eye of Gruumsh, Humanoid, 450, mm247
+Orog, Humanoid, 450, mm247
+Pentadrone, Construct, 450, mm226
+Rug of Smothering, Construct, 450, mm20
+Specter (poltergeist), Undead, 450, mm279
+Spined Devil, Fiend, 450, mm78
+Wererat, Humanoid, 450, mm209
+Bearded Devil, Fiend, 700, mm70
+Blue Dragon Wyrmling, Dragon, 700, mm91
+Bugbear Chief, Humanoid, 700, mm33
+Doppelganger, Monstrosity, 700, mm82
+Githyanki Warrior, Humanoid, 700, mm160
+Hobgoblin Captain, Humanoid, 700, mm186
+Werewolf, Humanoid, 700, mm211
+Couatl, Celestial, 1100, mm43
+Ettin, Giant, 1100, mm132
+Lizard King/Queen, Humanoid, 1100, mm205
+Orc War Chief, Humanoid, 1100, mm246
+Wereboar, Humanoid, 1100, mm209
+Weretiger, Humanoid, 1100, mm210
+Half-Red Dragon Veteran, Humanoid, 1800, mm180
+Unicorn, Celestial, 1800, mm294
+Vampire Spawn, Undead, 1800, mm298
+Werebear, Humanoid, 1800, mm208
+Githzerai Zerth, Humanoid, 2300, mm161
+Hobgoblin Warlord, Humanoid, 2300, mm187
+Invisible Stalker, Elemental, 2300, mm192
+Kuo-toa Archpriest, Humanoid, 2300, mm200
+Blue Slaad, Aberration, 2900, mm276
+Drow Mage, Humanoid, 2900, mm129
+Oni, Giant, 2900, mm239
+Shield Guardian, Construct, 2900, mm271
+Githyanki Knight, Humanoid, 3900, mm160
+Green Slaad, Aberration, 3900, mm277
+Mind Flayer Arcanist, Aberration, 3900, mm222
+Deva, Celestial, 5900, mm16
+Stone Golem, Construct, 5900, mm170
+Ultroloth, Fiend, 10000, mm314
+Vampire, Undead, 10000, mm297
+Vampire (spellcaster), Undead, 13000, mm297
+Vampire (warrior), Undead, 13000, mm297
+Planetar, Celestial, 15000, mm17
+Death Knight, Undead, 18000, mm47
+Solar, Celestial, 33000, mm18
+Lich (in lair), Undead, 41000, mm202
+Empyrean, Celestial, 50000, mm130
+Tarrasque, Monstrosity, 155000, mm286
