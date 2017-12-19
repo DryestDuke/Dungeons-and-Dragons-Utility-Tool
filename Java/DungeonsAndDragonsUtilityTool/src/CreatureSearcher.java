@@ -19,23 +19,26 @@ import javax.swing.border.EmptyBorder;
 
 public class CreatureSearcher extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private Model model;
 	private JLabel lblEnvironment;
 	private JLabel lblName;
 	private JLabel lblType;
 	private JLabel lblBook;
 	private JLabel lblXp;
-	private JComboBox comboBox_environment;
+	private JComboBox<String> comboBox_environment;
 	private JTextField textField_name;
 	private JTextField textField_type;
 	private JTextField textField_xp;
-	private JComboBox comboBox_book;
+	private JComboBox<String> comboBox_book;
 	private JButton btn_searchForCreatures;
 	private JLabel lblSortTheResults;
-	private JComboBox comboBox_sort;
+	private JComboBox<String> comboBox_sort;
 	private JScrollPane scrollPane;
-	private JList list;
+	private JList<String> list;
 
 	/**
 	 * Launch the application.
@@ -59,7 +62,6 @@ public class CreatureSearcher extends JFrame {
 	public CreatureSearcher(Model model) {
 		setTitle("Creature Searcher");
 		setResizable(false);
-		this.model = model;
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/com/jtattoo/plaf/icons/empty_8x8.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -94,9 +96,9 @@ public class CreatureSearcher extends JFrame {
 		lblXp.setBounds(68, 164, 24, 17);
 		contentPane.add(lblXp);
 		
-		comboBox_environment = new JComboBox();
+		comboBox_environment = new JComboBox<String>();
 		comboBox_environment.setToolTipText("Select one.");
-		comboBox_environment.setModel(new DefaultComboBoxModel(new String[] {"Any", "Arctic", "Coastal", "Desert", "Forest", "Grassland", "Hill", "Mountain", "Swamp", "Underdark", "Underwater", "Urban"}));
+		comboBox_environment.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "Arctic", "Coastal", "Desert", "Forest", "Grassland", "Hill", "Mountain", "Swamp", "Underdark", "Underwater", "Urban"}));
 		comboBox_environment.setFont(new Font("Courier New", Font.PLAIN, 14));
 		comboBox_environment.setBounds(114, 74, 106, 22);
 		contentPane.add(comboBox_environment);
@@ -128,8 +130,8 @@ public class CreatureSearcher extends JFrame {
 		textField_xp.setBounds(106, 162, 114, 22);
 		contentPane.add(textField_xp);
 		
-		comboBox_book = new JComboBox();
-		comboBox_book.setModel(new DefaultComboBoxModel(new String[] {"Any", "MM", "VGtM", "ToB"}));
+		comboBox_book = new JComboBox<String>();
+		comboBox_book.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "MM", "VGtM", "ToB"}));
 		comboBox_book.setToolTipText("Select one.");
 		comboBox_book.setFont(new Font("Courier New", Font.PLAIN, 14));
 		comboBox_book.setBounds(106, 190, 114, 22);
@@ -140,8 +142,8 @@ public class CreatureSearcher extends JFrame {
 		lblSortTheResults.setBounds(28, 222, 64, 17);
 		contentPane.add(lblSortTheResults);
 		
-		comboBox_sort = new JComboBox();
-		comboBox_sort.setModel(new DefaultComboBoxModel(new String[] {"Environment", "Name", "Type", "XP", "Book", "Book + PageNumber", "Don't Bother"}));
+		comboBox_sort = new JComboBox<String>();
+		comboBox_sort.setModel(new DefaultComboBoxModel<String>(new String[] {"Name", "Type", "XP", "Book", "Book + PageNumber", "Don't Bother"}));
 		comboBox_sort.setToolTipText("Select one.");
 		comboBox_sort.setFont(new Font("Courier New", Font.PLAIN, 14));
 		comboBox_sort.setBounds(106, 219, 114, 22);
@@ -151,7 +153,7 @@ public class CreatureSearcher extends JFrame {
 		scrollPane.setBounds(229, 12, 296, 246);
 		contentPane.add(scrollPane);
 		
-		list = new JList();
+		list = new JList<String>();
 		scrollPane.setViewportView(list);
 		
 		btn_searchForCreatures = new JButton("Search for Creatures");

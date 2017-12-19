@@ -416,3 +416,261 @@ Archdruid, Humanoid, 8400, VGtM-210
 Ki-Rin, Celestial, 8400, VGtM-163
 Fire Giant (Dreadnought), Giant, 11500, VGtM-147
 Storm Giant (Quintessent), Giant, 15000, VGtM-151
+Awakened Shrub, Plant, 10, mm317
+Baboon, Beast, 10, mm318
+Badger, Beast, 10, mm318
+Bat, Beast, 10, mm318
+Cat, Beast, 10, mm320
+Deer, Beast, 10, mm321
+Eagle, Beast, 10, mm322
+Giant Fire Beetle, Beast, 10, mm325
+Goat, Beast, 10, mm330
+Hawk, Beast, 10, mm330
+Homunculus, Construct, 10, mm188
+Myconid Sprout, Plant, 10, mm230
+Owl, Beast, 10, mm333
+Rat, Beast, 10, mm335
+Raven, Beast, 10, mm335
+Shrieker, Plant, 10, mm138
+Spider, Beast, 10, mm337
+Vulture, Beast, 10, mm339
+Weasel, Beast, 10, mm340
+Blood Hawk, Beast, 25, mm319
+Flumph, Aberration, 25, mm135
+Giant Rat, Beast, 25, mm327
+Giant Weasel, Beast, 25, mm329
+Kobold, Humanoid, 25, mm195
+Manes, Fiend, 25, mm60
+Mastiff, Beast, 25, mm332
+Monodrone, Construct, 25, mm224
+Mule, Beast, 25, mm333
+Pony, Beast, 25, mm335
+Stirge, Beast, 25, mm284
+Aarakocra, Humanoid, 50, mm12
+Axe Beak, Beast, 50, mm317
+Blink Dog, Fey, 50, mm318
+Boar, Beast, 50, mm319
+Constrictor Snake, Beast, 50, mm320
+Draft Horse, Beast, 50, mm321
+Dretch, Fiend, 50, mm57
+Drow, Humanoid, 50, mm128
+Duodrone, Construct, 50, mm225
+Elk, Beast, 50, mm322
+Flying Sword, Construct, 50, mm20
+Giant Badger, Beast, 50, mm323
+Giant Bat, Beast, 50, mm323
+Giant Centipede, Beast, 50, mm323
+Giant Owl, Beast, 50, mm327
+Giant Wolf Spider, Beast, 50, mm330
+Goblin, Humanoid, 50, mm166
+Grimlock, Humanoid, 50, mm175
+Kenku, Humanoid, 50, mm194
+Kuo-toa, Humanoid, 50, mm199
+Mud Mephit, Elemental, 50, mm216
+Needle Blight, Plant, 50, mm32
+Panther, Beast, 50, mm333
+Pixie, Fey, 50, mm253
+Pseudodragon, Dragon, 50, mm254
+Pteranodon, Beast, 50, mm80
+Riding Horse, Beast, 50, mm336
+Skeleton, Undead, 50, mm272
+Smoke Mephit, Elemental, 50, mm217
+Sprite, Fey, 50, mm283
+Steam Mephit, Elemental, 50, mm217
+Swarm of Bats, Beast, 50, mm337
+Swarm of Rats, Beast, 50, mm339
+Swarm of Ravens, Beast, 50, mm339
+Troglodyte, Humanoid, 50, mm290
+Violet Fungus, Plant, 50, mm138
+Winged Kobold, Humanoid, 50, mm195
+Wolf, Beast, 50, mm341
+Zombie, Undead, 50, mm316
+Ape, Beast, 100, mm317
+Black Bear, Beast, 100, mm318
+Cockatrice, Monstrosity, 100, mm42
+Dust Mephit, Elemental, 100, mm215
+Gas Spore, Plant, 100, mm138
+Giant Goat, Beast, 100, mm326
+Giant Wasp, Beast, 100, mm329
+Gnoll, Humanoid, 100, mm163
+Hobgoblin, Humanoid, 100, mm186
+Ice Mephit, Elemental, 100, mm215
+Jackalwere, Humanoid, 100, mm193
+Lizardfolk, Humanoid, 100, mm204
+Magma Mephit, Elemental, 100, mm216
+Magmin, Elemental, 100, mm212
+Myconid Adult, Plant, 100, mm232
+Orc, Humanoid, 100, mm246
+Piercer, Monstrosity, 100, mm252
+Rust Monster, Monstrosity, 100, mm262
+Svirfneblin, Humanoid, 100, mm164
+Swarm of Insects, Beast, 100, mm338
+Tridrone, Construct, 100, mm225
+Warhorse, Beast, 100, mm340
+Warhorse Skeleton, Undead, 100, mm273
+Worg, Monstrosity, 100, mm341
+Animated Armor, Construct, 200, mm19
+Brass Dragon Wyrmling, Dragon, 200, mm106
+Brown Bear, Beast, 200, mm319
+Bugbear, Humanoid, 200, mm33
+Copper Dragon Wyrmling, Dragon, 200, mm112
+Dire Wolf, Beast, 200, mm321
+Duergar, Humanoid, 200, mm122
+Fire Snake, Elemental, 200, mm265
+Ghoul, Undead, 200, mm148
+Giant Eagle, Beast, 200, mm324
+Giant Hyena, Beast, 200, mm326
+Giant Spider, Beast, 200, mm328
+Giant Vulture, Beast, 200, mm329
+Goblin Boss, Humanoid, 200, mm166
+Half-ogre, Giant, 200, mm238
+Harpy, Monstrosity, 200, mm181
+Hippogriff, Monstrosity, 200, mm184
+Imp, Fiend, 200, mm76
+Kuo-toa Whip, Humanoid, 200, mm200
+Quadrone, Construct, 200, mm226
+Quaggoth Spore Servant, Plant, 200, mm230
+Quasit, Fiend, 200, mm63
+Scarecrow, Construct, 200, mm268
+Specter, Undead, 200, mm279
+Thri-kreen, Humanoid, 200, mm288
+Tiger, Beast, 200, mm339
+Young Faerie Dragon, Dragon, 200, mm133
+Yuan-ti Pureblood, Humanoid, 200, mm310
+Adult Faerie Dragon, Dragon, 450, mm133
+Ankheg, Monstrosity, 450, mm21
+Awakened Tree, Plant, 450, mm317
+Azer, Elemental, 450, mm22
+Black Dragon Wyrmling, Dragon, 450, mm88
+Bronze Dragon Wyrmling, Dragon, 450, mm109
+Carrion Crawler, Monstrosity, 450, mm37
+Cave Bear, Beast, 450, mm334
+Centaur, Monstrosity, 450, mm38
+Ettercap, Monstrosity, 450, mm131
+Gargoyle, Elemental, 450, mm140
+Gelatinous Cube, Ooze, 450, mm242
+Ghast, Undead, 450, mm148
+Giant Boar, Beast, 450, mm323
+Giant Constrictor Snake, Beast, 450, mm324
+Giant Elk, Beast, 450, mm325
+Gibbering Mouther, Aberration, 450, mm157
+Githzerai Monk, Humanoid, 450, mm161
+Gnoll Pack Lord, Humanoid, 450, mm163
+Green Dragon Wyrmling, Dragon, 450, mm95
+Griffon, Monstrosity, 450, mm174
+Lizardfolk Shaman, Humanoid, 450, mm205
+Mimic, Monstrosity, 450, mm220
+Minotaur Skeleton, Undead, 450, mm273
+Myconid Sovereign, Plant, 450, mm232
+Ogre, Giant, 450, mm237
+Ogre Zombie, Undead, 450, mm316
+Orc Eye of Gruumsh, Humanoid, 450, mm247
+Orog, Humanoid, 450, mm247
+Pegasus, Celestial, 450, mm250
+Pentadrone, Construct, 450, mm226
+Peryton, Monstrosity, 450, mm251
+Plesiosaurus, Beast, 450, mm80
+Rhinoceros, Beast, 450, mm336
+Rug of Smothering, Construct, 450, mm20
+Saber-toothed Tiger, Beast, 450, mm336
+Silver Dragon Wyrmling, Dragon, 450, mm118
+Specter (poltergeist), Undead, 450, mm279
+Spined Devil, Fiend, 450, mm78
+Swarm of Poisonous Snakes, Beast, 450, mm338
+Wererat, Humanoid, 450, mm209
+White Dragon Wyrmling, Dragon, 450, mm102
+Will-o-wisp, Undead, 450, mm301
+Ankylosaurus, Beast, 700, mm79
+Basilisk, Monstrosity, 700, mm24
+Bearded Devil, Fiend, 700, mm70
+Blue Dragon Wyrmling, Dragon, 700, mm91
+Bugbear Chief, Humanoid, 700, mm33
+Displacer Beast, Monstrosity, 700, mm81
+Doppelganger, Monstrosity, 700, mm82
+Giant Scorpion, Beast, 700, mm327
+Githyanki Warrior, Humanoid, 700, mm160
+Gold Dragon Wyrmling, Dragon, 700, mm115
+Green Hag, Fey, 700, mm177
+Owlbear, Monstrosity, 700, mm249
+Couatl, Celestial, 1100, mm43
+Elephant, Beast, 1100, mm322
+Ettin, Giant, 1100, mm132
+Lizard King/Queen, Humanoid, 1100, mm205
+Orc War Chief, Humanoid, 1100, mm246
+Red Dragon Wyrmling, Dragon, 1100, mm98
+Shadow Demon, Fiend, 1100, mm64
+Succubus, Fiend, 1100, mm285
+Wereboar, Humanoid, 1100, mm209
+Bulette, Monstrosity, 1800, mm34
+Earth Elemental, Elemental, 1800, mm124
+Fire Elemental, Elemental, 1800, mm125
+Flesh Golem, Construct, 1800, mm169
+Gorgon, Monstrosity, 1800, mm171
+Half-Red Dragon Veteran, Humanoid, 1800, mm180
+Shambling Mound, Plant, 1800, mm270
+Triceratops, Beast, 1800, mm80
+Troll, Giant, 1800, mm291
+Unicorn, Celestial, 1800, mm294
+Vampire Spawn, Undead, 1800, mm298
+Xorn, Elemental, 1800, mm304
+Young Remorhaz, Monstrosity, 1800, mm258
+Galeb Duhr, Elemental, 2300, mm139
+Wyvern, Dragon, 2300, mm303
+Young Brass Dragon, Dragon, 2300, mm105
+Young White Dragon, Dragon, 2300, mm101
+Blue Slaad, Aberration, 2900, mm276
+Drow Mage, Humanoid, 2900, mm129
+Giant Ape, Beast, 2900, mm323
+Stone Giant, Giant, 2900, mm156
+Young Black Dragon, Dragon, 2900, mm88
+Young Copper Dragon, Dragon, 2900, mm111
+Githyanki Knight, Humanoid, 3900, mm160
+Green Slaad, Aberration, 3900, mm277
+Young Bronze Dragon, Dragon, 3900, mm108
+Young Green Dragon, Dragon, 3900, mm94
+Cloud Giant, Giant, 5000, mm154
+Young Blue Dragon, Dragon, 5000, mm91
+Young Silver Dragon, Dragon, 5000, mm118
+Deva, Celestial, 5900, mm16
+Stone Golem, Construct, 5900, mm170
+Young Gold Dragon, Dragon, 5900, mm115
+Young Red Dragon, Dragon, 5900, mm98
+Dao, Elemental, 7200, mm143
+Djinni, Elemental, 7200, mm144
+Efreeti, Elemental, 7200, mm145
+Gynosphinx, Monstrosity, 7200, mm282
+Adult Brass Dragon, Dragon, 10000, mm105
+Adult White Dragon, Dragon, 10000, mm101
+Storm Giant, Giant, 10000, mm156
+Ultroloth, Fiend, 10000, mm314
+Vampire, Undead, 10000, mm297
+Young Red Shadow Dragon, Dragon, 10000, mm85
+Adult Black Dragon, Dragon, 11500, mm88
+Adult Copper Dragon, Dragon, 11500, mm111
+Adult Bronze Dragon, Dragon, 13000, mm108
+Adult Green Dragon, Dragon, 13000, mm94
+Vampire (spellcaster), Undead, 13000, mm297
+Vampire (warrior), Undead, 13000, mm297
+Adult Blue Dragon, Dragon, 15000, mm91
+Adult Silver Dragon, Dragon, 15000, mm117
+Iron Golem, Construct, 15000, mm170
+Planetar, Celestial, 15000, mm17
+Adult Blue Dracolich, Undead, 18000, mm84
+Adult Gold Dragon, Dragon, 18000, mm114
+Adult Red Dragon, Dragon, 18000, mm98
+Androsphinx, Monstrosity, 18000, mm281
+Death Knight, Undead, 18000, mm47
+Ancient Brass Dragon, Dragon, 25000, mm104
+Ancient White Dragon, Dragon, 25000, mm100
+Ancient Copper Dragon, Dragon, 33000, mm110
+Lich, Undead, 33000, mm202
+Solar, Celestial, 33000, mm18
+Ancient Bronze Dragon, Dragon, 41000, mm107
+Ancient Green Dragon, Dragon, 41000, mm93
+Lich (in lair), Undead, 41000, mm202
+Ancient Blue Dragon, Dragon, 50000, mm90
+Ancient Silver Dragon, Dragon, 50000, mm116
+Empyrean, Celestial, 50000, mm130
+Ancient Gold Dragon, Dragon, 62000, mm113
+Ancient Red Dragon, Dragon, 62000, mm97
+Tarrasque, Monstrosity, 155000, mm286

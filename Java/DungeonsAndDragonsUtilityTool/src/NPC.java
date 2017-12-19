@@ -1,6 +1,5 @@
 public class NPC {
 	
-	private static Model model = new Model();
 	public int serialNumber;
 	
 	public String header;
@@ -66,7 +65,7 @@ public class NPC {
 		this.trade = trade;
 	}
 	
-	public NPC(String header, String name, String race, String age, String gender, String sexuality, 
+	public NPC(Model model, String header, String name, String race, String age, String gender, String sexuality, 
 			String emotion, String stats, String moral, String worth, String trait, String ideal, String skill, 
 			String trade) {
 		this.serialNumber = model.generateSerialNumber();
@@ -91,7 +90,7 @@ public class NPC {
 		this.trade = trade;
 	}
 	
-	public static NPC generateNPC() {
+	public static NPC generateNPC(Model model) {
 		String header_ = "";
 		
 		String race_ = model.getRace();
@@ -112,7 +111,7 @@ public class NPC {
 		String skill_ = model.getSkill();
 		String trade_ = model.getTrade();
 		
-		return new NPC(header_, name_, race_, age_, gender_, sexuality_, 
+		return new NPC(model, header_, name_, race_, age_, gender_, sexuality_, 
 				 emotion_, stats_, moral_, worth_, trait_, ideal_, skill_, 
 				 trade_);
 	}

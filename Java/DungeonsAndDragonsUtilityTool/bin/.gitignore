@@ -1,3 +1,8 @@
+/Controller.class
+/Creature.class
+/CreatureSearcher$1.class
+/CreatureSearcher$2.class
+/CreatureSearcher.class
 /Dashboard$1.class
 /Dashboard$2.class
 /Dashboard$3.class
@@ -23,10 +28,6 @@
 /Model.class
 /NPC.class
 /NPCScreen$1.class
-/NPCScreen.class
-/Roll.class
 /NPCScreen$2.class
 /NPCScreen$3.class
 /NPCScreen$4.class
-/NPCScreen$5.class
-/NPCScreen$6.class

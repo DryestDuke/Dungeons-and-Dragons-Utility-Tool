@@ -18,6 +18,10 @@ import javax.swing.border.EmptyBorder;
 
 public class Dashboard extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Model model = new Model();
 	private Roll lastRoll = null;
 	
@@ -152,8 +156,8 @@ public class Dashboard extends JFrame {
 		lblDifficulty.setBounds(171, 42, 96, 18);
 		contentPane.add(lblDifficulty);
 		
-		JComboBox comboBox_difficulty = new JComboBox();
-		comboBox_difficulty.setModel(new DefaultComboBoxModel(new String[] {"Easy", "Medium", "Hard", "Deadly"}));
+		JComboBox<String> comboBox_difficulty = new JComboBox<String>();
+		comboBox_difficulty.setModel(new DefaultComboBoxModel<String>(new String[] {"Easy", "Medium", "Hard", "Deadly"}));
 		comboBox_difficulty.setSelectedIndex(1);
 		comboBox_difficulty.setToolTipText("Choose a difficulty. Medium is automatically selected.");
 		comboBox_difficulty.setFont(new Font("Courier New", Font.PLAIN, 14));
