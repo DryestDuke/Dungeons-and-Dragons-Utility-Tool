@@ -225,15 +225,19 @@ public class Model {
 				emotion, stats, moral, worth, trait, ideal, skill, 
 				trade);
 	}
-	
 
 	/**
 	 * This method makes a roll, returning the result of the number of dice + the number of sides.
 	 * @param numberDice
 	 * @param numberSides
+	 * @param disadvantage 
+	 * @param advantage 
+	 * @param dropLower 
+	 * @param dropUpper 
+	 * @param modifier 
 	 * @return a Roll.
 	 */
-	public Roll makeRoll(int numberDice, int numberSides) {
+	public Roll makeRoll(int numberDice, int numberSides, int modifier, int dropUpper, int dropLower, int advantage, int disadvantage) {
 		int max = numberSides;
 		int min = 1;
 		
@@ -242,12 +246,40 @@ public class Model {
 		
 		while(numberDice != 0) {
 			int roll = random.nextInt(max - min + 1) + min;
+			
+			for(int c=0;c<advantage;c++) {
+				int otherRoll = random.nextInt(max - min + 1) + min;
+				if(otherRoll > roll) {
+					roll = otherRoll;
+				}
+			}
+			
+			for(int c=0;c<disadvantage;c++) {
+				int otherRoll = random.nextInt(max - min + 1) + min;
+				if(otherRoll < roll) {
+					roll = otherRoll;
+				}
+			}
+			
+			roll += modifier;
+			
 			rolls.add(roll);
-			total += roll;
 			numberDice--;
 		}
 		
 		Collections.sort(rolls);
+		
+		//now that the rolls are sorted from lowest to highest, remove the first dropLower # of rolls and the last dropUpper # of rolls.
+		for(int c=0;c<dropLower;c++) {
+			rolls.remove(0);
+		}
+		for(int c=0;c<dropUpper;c++) {
+			rolls.remove(rolls.size()-1);
+		}
+		
+		for(int roll : rolls) {
+			total += roll;
+		}
 		
 		return new Roll(rolls, total);
 	}
@@ -256,21 +288,79 @@ public class Model {
 	 * This method makes a roll, returning the result within the result set given by the roll.
 	 * @param some roll - two numbers split by the character 'd'. 
 	 * The first number is the number of die & the second number is the number of sides on all of the die.
+	 * You can also add other fields to the roll - for example, you can add a modifier, specify that the lowest or highest rolls should be dropped, 
+	 * or apply as much advantage or disadvantage as you'd like. It uses a regular expression to validate String roll, so you can check
+	 * the regex if you want to know exactly what is allowed and what is not.
 	 * @return a Roll, or null if the roll expression was not correct.
 	 */
 	public Roll roll(String roll) {
 		//format of roll is some amount of digits, followed by some amount of non-digits, followed by some amount of digits.
-		String regex = "([0-9]+)(d)([0-9]+)";
+		String regex = "([0-9]+)(d)([0-9]+)(((\\+)([0-9]+))*)(((DU)([0-9]+))*)(((DL)([0-9]+))*)(((adv)([0-9]+))*)(((dis)([0-9]+))*)";
 		if(!roll.matches(regex)) {
+			System.err.println("\"" + roll + "\" does not match the regex.");
 			return null;
 		}
 		else {
+			boolean withModifier = roll.contains("+");
+			boolean withDropUpper = roll.contains("DU");
+			boolean withDropLower = roll.contains("DL");
+			boolean withAdvantage = roll.contains("adv");
+			boolean withDisadvantage = roll.contains("dis");
+				
+			int modifier = 0;
+			int dropUpper = 0;
+			int dropLower = 0;
+			int advantage = 0;
+			int disadvantage = 0;
+			
+			if(withModifier) {
+				modifier = Integer.parseInt(roll.substring(roll.indexOf("+")+1, firstIndexOfNonDigit(roll, roll.indexOf("+")+1)));
+			}
+			
+			if(withDropUpper) {
+				dropUpper = Integer.parseInt(roll.substring(roll.indexOf("DU")+2, firstIndexOfNonDigit(roll, roll.indexOf("DU")+2)));
+			}
+			
+			if(withDropLower) {
+				dropLower = Integer.parseInt(roll.substring(roll.indexOf("DL")+2, firstIndexOfNonDigit(roll, roll.indexOf("DL")+2)));
+			}
+			
+			if(withAdvantage) {
+				advantage = Integer.parseInt(roll.substring(roll.indexOf("adv")+3, firstIndexOfNonDigit(roll, roll.indexOf("adv")+3)));
+			}
+			
+			if(withDisadvantage) {
+				disadvantage = Integer.parseInt(roll.substring(roll.indexOf("dis")+3, firstIndexOfNonDigit(roll, roll.indexOf("dis")+3)));
+			}
+			
 			int numberDice = Integer.parseInt(roll.substring(0, roll.indexOf("d")));
-			int numberSides = Integer.parseInt(roll.substring(roll.indexOf("d")+1, roll.length()));
-			return makeRoll(numberDice, numberSides);
+			int numberSides = Integer.parseInt(roll.substring(roll.indexOf("d")+1, firstIndexOfNonDigit(roll, roll.indexOf("d")+1)));
+			
+			return makeRoll(numberDice, numberSides, modifier, dropUpper, dropLower, advantage, disadvantage);
 		}
 	}
 	
+	/**
+	 * For some string, beginning at beginningIndex, it returns the index of the first non-digit character.
+	 * @param string The string to be evaluated.
+	 * @param beginningIndex The index to begin searching at. It searches to the "right" (in increasing order).
+	 * @return the index of the first non-digit character in the given string starting at the beginningIndex.
+	 */
+	private int firstIndexOfNonDigit(String string, int beginningIndex) {
+		string = string.substring(beginningIndex, string.length());
+		
+		int output = 0;
+
+		for(char c : string.toCharArray()) {
+			if(!Character.isDigit(c)) {
+				break;
+			}
+			output++;
+		}
+		
+		return output+beginningIndex;
+	}
+
 	/**
 	 * Calculates & returns the XP budget for some number of characters with some average level.
 	 * @param numberPlayers the number of the players.
@@ -1187,5 +1277,5 @@ public class Model {
 		}
 		return npc;
 	}
-	
+
 }
