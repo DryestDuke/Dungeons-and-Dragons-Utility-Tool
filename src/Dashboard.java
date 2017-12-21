@@ -91,6 +91,7 @@ public class Dashboard extends JFrame {
 					textField_rollResult.setText(lastRoll.total + "");
 				}catch (Exception e) {
 					new JErrorPane("Invalid roll: " + textField_roll.getText() + ". Please fix. Please.");
+					System.err.println(e.toString());
 				}
 			}
 		});

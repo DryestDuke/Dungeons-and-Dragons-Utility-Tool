@@ -1,0 +1,23 @@
+In this release of the Dungeons & Dragons Utility Tool, all essential and core features for your aspiring Dungeon Master have been fully implemented.
+
+To run the application, double click on run.bat. A console will pop-up and begin launching the program and then immediately exit - try not to worry to much about that. This program has been tested on Windows 10, so no guarantees about any other OS.
+
+**So what can you do in this application?**
+
+You can calculate the XP budget for some number of characters, some average level of those characters, and some given difficulty.
+
+You can generate an encounter - a screen will pop-up when you press "Generate Encounter". In it, you specify an XP budget, some number of bosses & some number of minions<sup>1, 2</sup>. Then you can specify some attributes of the creatures, in order to customize the encounter even further. Once you've finished, hit "Generate Encounter" and a screen with the encounter will pop-up.
+
+You can search for creatures - a screen will pop-up asking you too specify certain attributes (if you so desire) that will allow you to receive all creatures in the Monster Manual, Volo's Guide to Monsters, and Tome of Beasts that fit those criteria. And naturally you can also specify from which book you'd like your creatures.
+
+You can also utilize an NPC screen to generate, save, & edit NPCs. On the NPC screen, you'll see two panels (above which are the headers "Saved to File" & "Generated NPCs"), between which is a series of text fields with labels to the left of them. Each of these text fields represents an attribute of some given NPC. You can fill them in as you like and create a custom NPC - once you've done so, click Generate NPC. You can also click "Randomize All" to randomize the values in all the fields. However, if you click Generate NPC with all fields blank an NPC with random attributes will be generated for you.
+
+So, what does a "Generated NPC" mean? It means an NPC that is currently saved in the system, but will be lost when the system exits - in essence, it means "Saved for Session" as opposed to "Saved to File". If you wish to permanently save an NPC, type their SN (serial number) into the field marked "SN" and then click "Save to File". You should see the NPC appear on the left hand side. From there, you can edit<sup>3</sup> or delete saved NPCs (making sure to have entered the correct SN for the NPC with which you are attempting to interact). These NPCs are persistent across sessions, and can be found in files/npcs.npc if you want to look over the save file itself. 
+
+You can also roll dice - but wait, there's more! You can also add a modifier, specify some number of the highest and/or lowest die rolls to drop, and/or add as many advantages or disadvantages as you desire. The format begins with "XdY", in the classic die-rolling format. Then you can add "+X", then "-X", then "DUX", where the DU stands for Drop Upper and the X is just some number, then "DLX" where the DL stands for Drop Lower and the X stands for some number, then you can do "advX" and then "disX", which stand for advantage and disadvantage respectively. Once you've designed your roll as you desire, click roll. The total value for the roll will appear on the right hand side, but if you want to see the rolls themselves (sorted in order from lowest to highest), click See All Rolls.
+
+*Also, practically every button (and many text fields) have alt-texts that will appear when you hover your cursor over them.*
+----------------------------------------------------------------------------------------------------------------------------
+1: A boss is a creature whose XP >= (50% * xpBudget), and a minion is the opposite. 
+2: The encounter-designing (& monster-choosing) algorithm uses the number of bosses and number of minions specified to try and build the encounter. However, the numbers are not in any sense a rule for the algorithm to follow - for example, you could specify 5 bosses and 5 minions and receive 2 bosses in exchange. However, if you specify 0 bosses and 5 minions, you will definitely receive at least two creatures who would categorize as minions. Use these fields as a way of customizing your encounter - or just leave them blank, that's fine too.
+3: When you click Edit Saved NPC, it will change all fields in the NPC to the values currently in the NPC attribute fields in the middle of the screen. Leaving a field blank means that the corresponding value in the NPC will not be changed.
