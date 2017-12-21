@@ -297,7 +297,7 @@ public class Model {
 	 */
 	public Roll roll(String roll) {
 		//format of roll is some amount of digits, followed by some amount of non-digits, followed by some amount of digits.
-		String regex = "([0-9]+)(d)([0-9]+)(((\\+)([0-9]+))*)((\\-)([0-9]+))*)(((DU)([0-9]+))*)(((DL)([0-9]+))*)(((adv)([0-9]+))*)(((dis)([0-9]+))*)";
+		String regex = "([0-9]+)(d)([0-9]+)(((\\+)([0-9]+))*)(((-)([0-9]+))*)(((DU)([0-9]+))*)(((DL)([0-9]+))*)(((adv)([0-9]+))*)(((dis)([0-9]+))*)";
 		if(!roll.matches(regex)) {
 			System.err.println("\"" + roll + "\" does not match the regex.");
 			return null;
