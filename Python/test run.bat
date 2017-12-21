@@ -1,1 +1,0 @@
-c:\Users\nicho\AppData\Local\Programs\Python\Python36-32\python gui.py
