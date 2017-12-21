@@ -237,7 +237,7 @@ public class Model {
 	 * @param modifier 
 	 * @return a Roll.
 	 */
-	public Roll makeRoll(int numberDice, int numberSides, int modifier, int dropUpper, int dropLower, int advantage, int disadvantage) {
+	public Roll makeRoll(int numberDice, int numberSides, int addition, int subtraction, int dropUpper, int dropLower, int advantage, int disadvantage) {
 		int max = numberSides;
 		int min = 1;
 		
@@ -261,7 +261,9 @@ public class Model {
 				}
 			}
 			
-			roll += modifier;
+			roll += addition;
+			
+			roll -= subtraction;
 			
 			rolls.add(roll);
 			numberDice--;
@@ -295,26 +297,32 @@ public class Model {
 	 */
 	public Roll roll(String roll) {
 		//format of roll is some amount of digits, followed by some amount of non-digits, followed by some amount of digits.
-		String regex = "([0-9]+)(d)([0-9]+)(((\\+)([0-9]+))*)(((DU)([0-9]+))*)(((DL)([0-9]+))*)(((adv)([0-9]+))*)(((dis)([0-9]+))*)";
+		String regex = "([0-9]+)(d)([0-9]+)(((\\+)([0-9]+))*)((\\-)([0-9]+))*)(((DU)([0-9]+))*)(((DL)([0-9]+))*)(((adv)([0-9]+))*)(((dis)([0-9]+))*)";
 		if(!roll.matches(regex)) {
 			System.err.println("\"" + roll + "\" does not match the regex.");
 			return null;
 		}
 		else {
-			boolean withModifier = roll.contains("+");
+			boolean withAddition = roll.contains("+");
+			boolean withSubtraction = roll.contains("-");
 			boolean withDropUpper = roll.contains("DU");
 			boolean withDropLower = roll.contains("DL");
 			boolean withAdvantage = roll.contains("adv");
 			boolean withDisadvantage = roll.contains("dis");
 				
-			int modifier = 0;
+			int addition = 0;
+			int subtraction = 0;
 			int dropUpper = 0;
 			int dropLower = 0;
 			int advantage = 0;
 			int disadvantage = 0;
 			
-			if(withModifier) {
-				modifier = Integer.parseInt(roll.substring(roll.indexOf("+")+1, firstIndexOfNonDigit(roll, roll.indexOf("+")+1)));
+			if(withAddition) {
+				addition = Integer.parseInt(roll.substring(roll.indexOf("+")+1, firstIndexOfNonDigit(roll, roll.indexOf("+")+1)));
+			}
+			
+			if(withSubtraction) {
+				subtraction = Integer.parseInt(roll.substring(roll.indexOf("-")+1, firstIndexOfNonDigit(roll, roll.indexOf("-")+1)));
 			}
 			
 			if(withDropUpper) {
@@ -336,7 +344,7 @@ public class Model {
 			int numberDice = Integer.parseInt(roll.substring(0, roll.indexOf("d")));
 			int numberSides = Integer.parseInt(roll.substring(roll.indexOf("d")+1, firstIndexOfNonDigit(roll, roll.indexOf("d")+1)));
 			
-			return makeRoll(numberDice, numberSides, modifier, dropUpper, dropLower, advantage, disadvantage);
+			return makeRoll(numberDice, numberSides, addition, subtraction, dropUpper, dropLower, advantage, disadvantage);
 		}
 	}
 	
