@@ -1,7 +1,0 @@
-Balance
-Catch
-Climb
-Intimidation (STR)
-Jump
-Swim
-Tumble
