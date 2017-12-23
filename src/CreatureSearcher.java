@@ -117,13 +117,20 @@ public class CreatureSearcher extends JFrame {
 		textField_name.setColumns(10);
 		
 		textField_xp = new JTextField();
-		textField_xp.setToolTipText("Select the type of the creatures.");
+		textField_xp.setToolTipText("Specify some XP value. Set to \"Any\" if you don't wish to specify the XP value.");
 		textField_xp.setText("Any");
 		textField_xp.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_xp.setFont(new Font("Courier New", Font.PLAIN, 14));
 		textField_xp.setColumns(10);
-		textField_xp.setBounds(106, 162, 114, 22);
+		textField_xp.setBounds(162, 161, 58, 22);
 		contentPane.add(textField_xp);
+		
+		JComboBox comboBox_xp = new JComboBox();
+		comboBox_xp.setFont(new Font("Courier New", Font.PLAIN, 14));
+		comboBox_xp.setModel(new DefaultComboBoxModel(new String[] {"<", "<=", "==", "!=", ">=", ">"}));
+		comboBox_xp.setSelectedIndex(2);
+		comboBox_xp.setBounds(106, 162, 46, 20);
+		contentPane.add(comboBox_xp);
 		
 		comboBox_book = new JComboBox<String>();
 		comboBox_book.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "MM", "VGtM", "ToB"}));
@@ -158,7 +165,15 @@ public class CreatureSearcher extends JFrame {
 				ArrayList<String> attributes = new ArrayList<String>();
 				attributes.add((String) comboBox_environment.getSelectedItem());
 				attributes.add(textField_name.getText());
-				attributes.add(textField_xp.getText());
+				
+				String xp = (String) comboBox_xp.getSelectedItem();
+				xp += "," + textField_xp.getText();
+				
+				if(textField_xp.getText().equals("Any")) {
+					xp = "Any";
+				}
+				
+				attributes.add(xp);
 				attributes.add((String) comboBox_book.getSelectedItem());
 				
 				String sortBy = (String) comboBox_sort.getSelectedItem();

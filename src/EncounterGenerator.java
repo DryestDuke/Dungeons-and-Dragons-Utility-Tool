@@ -41,6 +41,7 @@ public class EncounterGenerator extends JFrame {
 	private JLabel lblBossesAnd;
 	private JButton btn_types;
 	private ArrayList<String> types;
+	private JComboBox comboBox_xp;
 	
 	/**
 	 * Launch the application.
@@ -159,12 +160,19 @@ public class EncounterGenerator extends JFrame {
 		contentPane.add(textField_name);
 		textField_name.setColumns(10);
 		
+		comboBox_xp = new JComboBox();
+		comboBox_xp.setFont(new Font("Courier New", Font.PLAIN, 14));
+		comboBox_xp.setModel(new DefaultComboBoxModel(new String[] {"<", "<=", "==", "!=", ">=", ">"}));
+		comboBox_xp.setSelectedIndex(2);
+		comboBox_xp.setBounds(70, 239, 45, 20);
+		contentPane.add(comboBox_xp);
+		
 		textField_xpIndividual = new JTextField();
 		textField_xpIndividual.setToolTipText("Select the XP of the creatures.");
 		textField_xpIndividual.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_xpIndividual.setFont(new Font("Courier New", Font.PLAIN, 14));
 		textField_xpIndividual.setText("Any");
-		textField_xpIndividual.setBounds(70, 237, 114, 22);
+		textField_xpIndividual.setBounds(125, 237, 59, 22);
 		contentPane.add(textField_xpIndividual);
 		textField_xpIndividual.setColumns(10);
 		
@@ -214,7 +222,16 @@ public class EncounterGenerator extends JFrame {
 				ArrayList<String> attributes = new ArrayList<String>();
 				attributes.add((String) comboBox_environment.getSelectedItem());
 				attributes.add(textField_name.getText());
-				attributes.add(textField_xpIndividual.getText());
+
+				String xp = (String) comboBox_xp.getSelectedItem();
+				xp += "," + textField_xpIndividual.getText();
+				
+				if(textField_xpIndividual.getText().equals("Any")) {
+					xp = "Any";
+				}
+				
+				attributes.add(xp);
+				
 				attributes.add((String) comboBox_book.getSelectedItem());
 
 				//generate the encounter

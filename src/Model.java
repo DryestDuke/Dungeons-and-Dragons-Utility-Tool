@@ -706,7 +706,8 @@ public class Model {
 	/**
 	 * Passes through the creatures object in this object, and compiles a list of all creatures whose attributes match those given in attributes.
 	 * @param attributes - the values must be in order of the criteria given for creatures. The order is Environment, Name, XP, Book, Page Number.
-	 * However, you cannot use page number to select/sort creatures.
+	 * XP must be in the format of (< || > || <= || >= || == || !=) && (some XP value).
+	 * Also, you cannot use page number to select/sort creatures.
 	 * @param types This is an ArrayList<String> of all the types of creatures you wish to discover (i.e.; the list of all possible values for the attribute
 	 * Creature.type).
 	 * For the names, it checks the name being searched for (from attributes) is contained by the name of any creature we look at.
@@ -717,9 +718,9 @@ public class Model {
 		String chosenEnvironment = attributes.get(0);
 		String chosenName = attributes.get(1);
 		
-		int chosenXP = -1;
+		int xpValue = -1;
 		if(!attributes.get(2).equals("Any")) {
-			chosenXP = Integer.parseInt(attributes.get(2));
+			xpValue = Integer.parseInt(attributes.get(2).split(",")[1]);
 		} 
 		
 		String chosenBook = attributes.get(3);
@@ -730,9 +731,15 @@ public class Model {
 			if((creature.environment.equals(chosenEnvironment) || chosenEnvironment.equals("Any")) && 
 					(creature.name.contains(chosenName) || chosenName.equals("Any")) &&
 					(types.contains(creature.type)) &&
-					(creature.xp == chosenXP || chosenXP == -1) &&
 					(creature.book.equals(chosenBook) || chosenBook.equals("Any"))) {
-				output.add(creature);
+				
+				if(!attributes.get(2).equals("Any")) {
+					if(withinXPBounds(creature, xpValue, attributes.get(2).split(",")[0])) {
+						output.add(creature);
+					}
+				}else {
+					output.add(creature);
+				}
 			}
 		}
 		
@@ -819,6 +826,32 @@ public class Model {
 	}
 	
 	/**
+	 * For some creature, it checks that their XP has the correct relationship to the xpValue given, utilizing the bound given by bound.
+	 * @param creature This is some creature.
+	 * @param xpValue This is some xpValue.
+	 * @param bound This is a string with the value of ">", ">=", "==", "!=", "<=", or "<".
+	 * @return Whether or not ('creature.xp' 'bound' 'xpValue') == true.
+	 */
+	private boolean withinXPBounds(Creature creature, int xpValue, String bound) {
+		if(bound.equals(">")) {
+			return creature.xp > xpValue;
+		}else if(bound.equals(">=")) {
+			return creature.xp >= xpValue;
+		}else if(bound.equals("==")) {
+			return creature.xp == xpValue;
+		}else if(bound.equals("!=")) {
+			return creature.xp != xpValue;
+		}else if(bound.equals("<=")) {
+			return creature.xp <= xpValue;
+		}else if(bound.equals("<")) {
+			return creature.xp < xpValue;
+		}else {
+			return false;
+		}
+	}
+	
+
+	/**
 	 * For all creatures in this.creatures, it chooses a number of them based off of the xpBudget given.
 	 * It tries to find a number of bosses (xp > 50% * xpBudget) = numberBosses, and a number of minions
 	 * (xp < 50% * xpBudget) = numberMinions.
@@ -857,10 +890,9 @@ public class Model {
 			}
 		}
 		
-		while(xpBudget > 0) {
-			//we need more creatures
+		while(xpBudget > 0) {			
 			if(random.nextBoolean()) {
-				if(numberBosses > actualNumberBosses) {
+				if(numberBosses > actualNumberBosses && bosses.size() > 0) {
 					//we need more bosses
 					int max = bosses.size()-1;
 					int min = 0;
@@ -870,7 +902,7 @@ public class Model {
 					actualNumberBosses++;
 				}
 			}else {
-				if(numberMinions > actualNumberMinions) {
+				if(numberMinions > actualNumberMinions && minions.size() > 0) {
 					//we need more minions
 					int max = minions.size()-1;
 					int min = 0;
