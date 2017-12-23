@@ -13,6 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class NPCScreen extends JFrame {
 
@@ -617,8 +620,18 @@ public class NPCScreen extends JFrame {
 		btn_saveToFile.setBounds(478, 504, 104, 23);
 		contentPane.add(btn_saveToFile);
 		
-		JButton btn_load = new JButton("Load NPC");
-		btn_load.addActionListener(new ActionListener() {
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("Courier New", Font.PLAIN, 14));
+		menuBar.setBounds(0, 0, 41, 21);
+		contentPane.add(menuBar);
+		
+		JMenu menu_edit = new JMenu("Edit");
+		menu_edit.setFont(new Font("Courier New", Font.PLAIN, 14));
+		menu_edit.setHorizontalAlignment(SwingConstants.CENTER);
+		menuBar.add(menu_edit);
+		
+		JMenuItem item_load = new JMenuItem("Load an NPC");
+		item_load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				NPC npc = model.getNPC(Integer.parseInt(textField_sn.getText()));
 				textField_header.setText(npc.header);
@@ -637,9 +650,31 @@ public class NPCScreen extends JFrame {
 				textField_worth.setText(npc.worth);
 			}
 		});
-		btn_load.setToolTipText("Click this to load into attributes the values from some NPC (given by their SN).");
-		btn_load.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btn_load.setBounds(275, 4, 97, 25);
-		contentPane.add(btn_load);
+		item_load.setHorizontalAlignment(SwingConstants.CENTER);
+		item_load.setFont(new Font("Courier New", Font.PLAIN, 14));
+		menu_edit.add(item_load);
+		
+		JMenuItem item_clear = new JMenuItem("Clear Fields");
+		item_clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_header.setText("");
+				textField_name.setText("");
+				textField_race.setText("");
+				textField_age.setText("");
+				textField_gender.setText("");
+				textField_sexuality.setText("");
+				textField_stats.setText("");
+				textField_moral.setText("");
+				textField_ideal.setText("");
+				textField_trait.setText("");
+				textField_emotion.setText("");
+				textField_trade.setText("");
+				textField_skill.setText("");
+				textField_worth.setText("");
+			}
+		});
+		item_clear.setHorizontalAlignment(SwingConstants.CENTER);
+		item_clear.setFont(new Font("Courier New", Font.PLAIN, 14));
+		menu_edit.add(item_clear);
 	}
 }
