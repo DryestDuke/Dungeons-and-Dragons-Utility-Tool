@@ -616,5 +616,30 @@ public class NPCScreen extends JFrame {
 		btn_saveToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_saveToFile.setBounds(478, 504, 104, 23);
 		contentPane.add(btn_saveToFile);
+		
+		JButton btn_load = new JButton("Load NPC");
+		btn_load.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NPC npc = model.getNPC(Integer.parseInt(textField_sn.getText()));
+				textField_header.setText(npc.header);
+				textField_name.setText(npc.name);
+				textField_race.setText(npc.race);
+				textField_age.setText(npc.age);
+				textField_gender.setText(npc.gender);
+				textField_sexuality.setText(npc.sexuality);
+				textField_stats.setText(npc.stats);
+				textField_moral.setText(npc.moral);
+				textField_ideal.setText(npc.ideal);
+				textField_trait.setText(npc.trait);
+				textField_emotion.setText(npc.emotion);
+				textField_trade.setText(npc.trade);
+				textField_skill.setText(npc.skill);
+				textField_worth.setText(npc.worth);
+			}
+		});
+		btn_load.setToolTipText("Click this to load into attributes the values from some NPC (given by their SN).");
+		btn_load.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_load.setBounds(275, 4, 97, 25);
+		contentPane.add(btn_load);
 	}
 }
