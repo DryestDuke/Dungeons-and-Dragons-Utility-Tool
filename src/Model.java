@@ -705,30 +705,31 @@ public class Model {
 	
 	/**
 	 * Passes through the creatures object in this object, and compiles a list of all creatures whose attributes match those given in attributes.
-	 * @param attributes - the values must be in order of the criteria given for creatures. The order is Environment, Name, Type, XP, Book, Page Number.
+	 * @param attributes - the values must be in order of the criteria given for creatures. The order is Environment, Name, XP, Book, Page Number.
 	 * However, you cannot use page number to select/sort creatures.
+	 * @param types This is an ArrayList<String> of all the types of creatures you wish to discover (i.e.; the list of all possible values for the attribute
+	 * Creature.type).
 	 * For the names, it checks the name being searched for (from attributes) is contained by the name of any creature we look at.
 	 * @param sortBy - this is the attribute by which the creatures will be sorted. The values are any of the attributes, including "Book + PageNumber". If it set as null, we do not sort.
 	 * @return a list of all creatures whose attributes fit the values given in attributes.
 	 */
-	public ArrayList<Creature> searchCreatures(ArrayList<String> attributes, String sortBy) {
+	public ArrayList<Creature> searchCreatures(ArrayList<String> attributes, ArrayList<String> types, String sortBy) {
 		String chosenEnvironment = attributes.get(0);
 		String chosenName = attributes.get(1);
-		String chosenType = attributes.get(2);
 		
 		int chosenXP = -1;
-		if(!attributes.get(3).equals("Any")) {
-			chosenXP = Integer.parseInt(attributes.get(3));
+		if(!attributes.get(2).equals("Any")) {
+			chosenXP = Integer.parseInt(attributes.get(2));
 		} 
 		
-		String chosenBook = attributes.get(4);
+		String chosenBook = attributes.get(3);
 		
 		ArrayList<Creature> output = new ArrayList<Creature>(creatures.size()/2);
 		
 		for(Creature creature : creatures) {
 			if((creature.environment.equals(chosenEnvironment) || chosenEnvironment.equals("Any")) && 
 					(creature.name.contains(chosenName) || chosenName.equals("Any")) &&
-					(creature.type.equals(chosenType) || chosenType.equals("Any")) &&
+					(types.contains(creature.type)) &&
 					(creature.xp == chosenXP || chosenXP == -1) &&
 					(creature.book.equals(chosenBook) || chosenBook.equals("Any"))) {
 				output.add(creature);
@@ -1284,6 +1285,21 @@ public class Model {
 			}
 		}
 		return npc;
+	}
+	
+	/**
+	 * This method, given some list of creatures, returns every single unique type of creature in that list.
+	 * @param creatures an ArrayList<Creature> consisting of all creatures. Only creatures with unique types *have* to be in this list.
+	 * @return all of the unique types (Creature.type) of all creatures in creatures.
+	 */
+	public ArrayList<String> getTypes(ArrayList<Creature> creatures){
+		ArrayList<String> output = new ArrayList<String>();
+		for(Creature creature : creatures) {
+			if(!output.contains(creature.type)) {
+				output.add(creature.type);
+			}
+		}
+		return output;
 	}
 
 }

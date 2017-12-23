@@ -31,7 +31,6 @@ public class CreatureSearcher extends JFrame {
 	private JLabel lblXp;
 	private JComboBox<String> comboBox_environment;
 	private JTextField textField_name;
-	private JTextField textField_type;
 	private JTextField textField_xp;
 	private JComboBox<String> comboBox_book;
 	private JButton btn_searchForCreatures;
@@ -39,7 +38,10 @@ public class CreatureSearcher extends JFrame {
 	private JComboBox<String> comboBox_sort;
 	private JScrollPane scrollPane;
 	private JList<String> list;
-
+	
+	private JButton btn_types;
+	private ArrayList<String> types;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +61,9 @@ public class CreatureSearcher extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreatureSearcher(Model model) {
+	public CreatureSearcher(Model model) {		
+		types = model.getTypes(model.creatures);
+		
 		setTitle("Creature Searcher");
 		setResizable(false);
 
@@ -112,15 +116,6 @@ public class CreatureSearcher extends JFrame {
 		contentPane.add(textField_name);
 		textField_name.setColumns(10);
 		
-		textField_type = new JTextField();
-		textField_type.setToolTipText("Select the type of the creatures.");
-		textField_type.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_type.setFont(new Font("Courier New", Font.PLAIN, 14));
-		textField_type.setText("Any");
-		textField_type.setBounds(106, 133, 114, 22);
-		contentPane.add(textField_type);
-		textField_type.setColumns(10);
-		
 		textField_xp = new JTextField();
 		textField_xp.setToolTipText("Select the type of the creatures.");
 		textField_xp.setText("Any");
@@ -157,12 +152,12 @@ public class CreatureSearcher extends JFrame {
 		scrollPane.setViewportView(list);
 		
 		btn_searchForCreatures = new JButton("Search for Creatures");
+		btn_searchForCreatures.setToolTipText("Click to search for all creatures with the given attributes.");
 		btn_searchForCreatures.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> attributes = new ArrayList<String>();
 				attributes.add((String) comboBox_environment.getSelectedItem());
 				attributes.add(textField_name.getText());
-				attributes.add(textField_type.getText());
 				attributes.add(textField_xp.getText());
 				attributes.add((String) comboBox_book.getSelectedItem());
 				
@@ -172,7 +167,7 @@ public class CreatureSearcher extends JFrame {
 					sortBy = null;
 				}
 				
-				ArrayList<Creature> results = model.searchCreatures(attributes, sortBy);
+				ArrayList<Creature> results = model.searchCreatures(attributes, types, sortBy);
 				
 				Model.setListCreature(results, list);
 			}
@@ -180,6 +175,20 @@ public class CreatureSearcher extends JFrame {
 		btn_searchForCreatures.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_searchForCreatures.setBounds(26, 28, 168, 23);
 		contentPane.add(btn_searchForCreatures);
+		
+		btn_types = new JButton("Types");
+		btn_types.setToolTipText("Click this to select the types of the creatures for which you wish to search. Click this and immediately exit to reset the list of chosen types back to default (all types).");
+		btn_types.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				types = model.getTypes(model.creatures);
+				
+				//calling this constructor opens types up to changing
+				TypesSelector ts = new TypesSelector(model, types);
+				ts.setVisible(true);
+			}
+		});
+		btn_types.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_types.setBounds(106, 131, 114, 25);
+		contentPane.add(btn_types);
 	}
-
 }

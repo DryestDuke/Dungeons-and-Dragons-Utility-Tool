@@ -36,10 +36,11 @@ public class EncounterGenerator extends JFrame {
 	private JLabel lblXp;
 	private JComboBox<String> comboBox_environment;
 	private JTextField textField_name;
-	private JTextField textField_type;
 	private JTextField textField_xpIndividual;
 	private JComboBox<String> comboBox_book;
 	private JLabel lblBossesAnd;
+	private JButton btn_types;
+	private ArrayList<String> types;
 	
 	/**
 	 * Launch the application.
@@ -61,6 +62,8 @@ public class EncounterGenerator extends JFrame {
 	 * Create the frame.
 	 */
 	public EncounterGenerator(Model model, int initialXPBudget) {
+		types = model.getTypes(model.creatures);
+		
 		setResizable(false);
 		setTitle("Encounter Generator");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/com/jtattoo/plaf/icons/empty_8x8.png")));
@@ -156,15 +159,6 @@ public class EncounterGenerator extends JFrame {
 		contentPane.add(textField_name);
 		textField_name.setColumns(10);
 		
-		textField_type = new JTextField();
-		textField_type.setToolTipText("Select the type of the creatures.");
-		textField_type.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_type.setFont(new Font("Courier New", Font.PLAIN, 14));
-		textField_type.setText("Any");
-		textField_type.setBounds(70, 208, 114, 22);
-		contentPane.add(textField_type);
-		textField_type.setColumns(10);
-		
 		textField_xpIndividual = new JTextField();
 		textField_xpIndividual.setToolTipText("Select the XP of the creatures.");
 		textField_xpIndividual.setHorizontalAlignment(SwingConstants.CENTER);
@@ -203,8 +197,15 @@ public class EncounterGenerator extends JFrame {
 					numberBosses = Integer.parseInt(textField_numBosses.getText());
 					numberMinions = Integer.parseInt(textField_numMinions.getText());
 				}catch (Exception e2) {
-					System.err.println("You failed to input correct numbers to the bosses/minions fields.");
+					if(textField_numBosses.getText().equals("") && textField_numMinions.getText().equals("")) {
+						System.err.println("No values entered for minions/bosses, defaulting to Integer.MAX_VALUE.");
+						numberBosses = Integer.MAX_VALUE;
+						numberMinions = Integer.MAX_VALUE;
+					}else {
+						System.err.println("You failed to input correct numbers to the bosses/minions fields.");
+					}
 				}
+				
 				if(numberBosses <= 0 && numberMinions <= 0) {
 					numberBosses = Integer.MAX_VALUE;
 					numberMinions = Integer.MAX_VALUE;
@@ -213,13 +214,12 @@ public class EncounterGenerator extends JFrame {
 				ArrayList<String> attributes = new ArrayList<String>();
 				attributes.add((String) comboBox_environment.getSelectedItem());
 				attributes.add(textField_name.getText());
-				attributes.add(textField_type.getText());
 				attributes.add(textField_xpIndividual.getText());
 				attributes.add((String) comboBox_book.getSelectedItem());
 
 				//generate the encounter
 				ArrayList<Creature> encounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, 
-						model.searchCreatures(attributes, null));
+						model.searchCreatures(attributes, types, null));
 
 				for(Creature c : encounter) {
 					System.out.println(c);
@@ -237,6 +237,21 @@ public class EncounterGenerator extends JFrame {
 		lblBossesAnd.setFont(new Font("Courier New", Font.PLAIN, 14));
 		lblBossesAnd.setBounds(320, 40, 112, 17);
 		contentPane.add(lblBossesAnd);
+		
+		btn_types = new JButton("Types");
+		btn_types.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				types = model.getTypes(model.creatures);
+				
+				//calling this constructor opens types up to changing
+				TypesSelector ts = new TypesSelector(model, types);
+				ts.setVisible(true);
+			}
+		});
+		btn_types.setToolTipText("Click this to select the types of the creatures you want for your encounter. Click this and immediately exit to reset the list of chosen types back to default (all types).");
+		btn_types.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_types.setBounds(80, 209, 89, 23);
+		contentPane.add(btn_types);
 		
 	}
 
