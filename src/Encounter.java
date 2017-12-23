@@ -12,6 +12,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Encounter extends JFrame {
 
@@ -24,7 +27,7 @@ public class Encounter extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(ArrayList<Creature> encounter, int xpBudget) {
+	public static void main(Model model, ArrayList<Creature> encounter, int numberBosses, int numberMinions, ArrayList<String> attributes, ArrayList<String> types, int xpBudget) {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
 		} catch (Throwable e) {
@@ -33,7 +36,7 @@ public class Encounter extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Encounter frame = new Encounter(encounter, xpBudget);
+					Encounter frame = new Encounter(model, encounter, numberBosses, numberMinions, attributes, types, xpBudget);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,23 +47,22 @@ public class Encounter extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param encounter 
 	 */
-	public Encounter(ArrayList<Creature> encounter, int xpBudget) {
+	public Encounter(Model model, ArrayList<Creature> encounter, int numberBosses, int numberMinions, ArrayList<String> attributes, ArrayList<String> types, int xpBudget) {
 		setResizable(false);
 		setTitle("An Encounter");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/com/jtattoo/plaf/icons/empty_8x8.png")));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 600, 300);
+		setBounds(100, 100, 600, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		DefaultListModel<String> model = new DefaultListModel<>();
+		DefaultListModel<String> dmodel = new DefaultListModel<>();
 		int totalXP = 0;
 		for (Creature c : encounter){
-			  model.addElement(c.toString());
+			  dmodel.addElement(c.toString());
 			  totalXP += c.xp;
 		}
 		
@@ -75,10 +77,41 @@ public class Encounter extends JFrame {
 		
 		contentPane.add(scrollPane);
 		
-		JList<String> list = new JList<String>(model);
+		JList<String> list = new JList<String>(dmodel);
 		scrollPane.setViewportView(list);
 		list.setValueIsAdjusting(true);
 		list.setFont(new Font("Courier New", Font.PLAIN, 14));
+		
+		JButton btnNewButton = new JButton("Regenerate");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList<Creature> enc = null;
+				
+				int totalXP = 0;
+
+				for (Creature c : encounter){
+					totalXP += c.xp;
+				}
+				
+				while(enc == null) {
+					for(int c=0;c<10;c++) {
+						ArrayList<Creature> newEncounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, model.searchCreatures(attributes, types, null));
+						int newTotalXP = model.getTotalXP(newEncounter);
+						if(Math.abs(newTotalXP-xpBudget) < Math.abs(totalXP-xpBudget)) {
+							totalXP = newTotalXP;
+							enc = newEncounter;
+						}
+					}
+				}
+				
+				Model.setListCreature(enc, list);
+				lblNewLabel.setText("XP Budget: " + xpBudget + " | Actual XP Total: " + totalXP);
+			}
+		});
+		btnNewButton.setToolTipText("Click this to regenerate the encounter in order to bring the Actual XP total more in line with the given xp budget.");
+		btnNewButton.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btnNewButton.setBounds(240, 266, 121, 25);
+		contentPane.add(btnNewButton);
 
 	}
 }

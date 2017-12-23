@@ -220,12 +220,9 @@ public class EncounterGenerator extends JFrame {
 				//generate the encounter
 				ArrayList<Creature> encounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, 
 						model.searchCreatures(attributes, types, null));
-
-				for(Creature c : encounter) {
-					System.out.println(c);
-				}
+				
 				//run it
-				Encounter.main(encounter, xpBudget);
+				Encounter.main(model, encounter, numberBosses, numberMinions, attributes, types, xpBudget);
 			}
 		});
 		btn_generateEncounter.setToolTipText("Click this to generate the encounter based off of the fields you've provided.");

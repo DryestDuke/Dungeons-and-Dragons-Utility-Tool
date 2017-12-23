@@ -1302,4 +1302,19 @@ public class Model {
 		return output;
 	}
 
+	/**
+	 * This method returns the total xp (sum of all XPs) of all creature in creatures.
+	 * @param creatures The list of all creatures for which you want the XP total summed.
+	 * @return The sum of all XPs of all creatures. Defaults to zero.
+	 */
+	public int getTotalXP(ArrayList<Creature> creatures) {
+		int output = 0;
+		
+		for(Creature creature : creatures) {
+			output += creature.xp;
+		}
+		
+		return output;
+	}
+
 }
