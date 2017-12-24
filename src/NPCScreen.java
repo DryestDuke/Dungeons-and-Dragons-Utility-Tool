@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -74,7 +75,7 @@ public class NPCScreen extends JFrame {
 		JLabel lblNewLabel = new JLabel("Saved to File");
 		lblNewLabel.setFont(new Font("Courier New", Font.PLAIN, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(93, 12, 104, 17);
+		lblNewLabel.setBounds(51, 12, 104, 17);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Generate an NPC");
@@ -312,7 +313,7 @@ public class NPCScreen extends JFrame {
 		JLabel lblSavedForSession = new JLabel("Generated NPCs");
 		lblSavedForSession.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSavedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblSavedForSession.setBounds(665, 12, 136, 17);
+		lblSavedForSession.setBounds(733, 12, 136, 17);
 		contentPane.add(lblSavedForSession);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -320,6 +321,7 @@ public class NPCScreen extends JFrame {
 		contentPane.add(scrollPane_1);
 		
 		JTextPane textPane_savedForSession = new JTextPane();
+		textPane_savedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
 		scrollPane_1.setViewportView(textPane_savedForSession);
 		
 		JButton btn_deleteSaved = new JButton("Delete Saved NPC");
@@ -676,5 +678,27 @@ public class NPCScreen extends JFrame {
 		item_clear.setHorizontalAlignment(SwingConstants.CENTER);
 		item_clear.setFont(new Font("Courier New", Font.PLAIN, 14));
 		menu_edit.add(item_clear);
+		
+		JButton btn_removeSavedToFile = new JButton("Remove");
+		btn_removeSavedToFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.removeFromTextField(textPane_savedToFile, Integer.parseInt(textField_sn.getText()));	
+			}
+		});
+		btn_removeSavedToFile.setToolTipText("Click this to remove some NPC given by some SN from this pane (but not to delete them from the system or the file).");
+		btn_removeSavedToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_removeSavedToFile.setBounds(176, 9, 81, 22);
+		contentPane.add(btn_removeSavedToFile);
+		
+		JButton btn_removeGeneratedNPCs = new JButton("Remove");
+		btn_removeGeneratedNPCs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.removeFromTextField(textPane_savedForSession, Integer.parseInt(textField_sn.getText()));	
+			}
+		});
+		btn_removeGeneratedNPCs.setToolTipText("Click this to remove some NPC given by some SN from this pane (but not to delete them from the system or the file).");
+		btn_removeGeneratedNPCs.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_removeGeneratedNPCs.setBounds(628, 9, 81, 22);
+		contentPane.add(btn_removeGeneratedNPCs);
 	}
 }

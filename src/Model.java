@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JTextPane;
 
 public class Model {
 	
@@ -1347,6 +1348,27 @@ public class Model {
 		}
 		
 		return output;
+	}
+
+	
+	/**
+	 * This method takes some text pane, and removes some NPC from it given by some serial number.
+	 * @param textPane The text pane from which the NPC will be removed.
+	 * @param sn The serial number of the NPC, as given by the system (and by generateNPC(...)).
+	 */
+	public void removeFromTextField(JTextPane textPane, int sn) {
+		String text = textPane.getText();
+		String npcToString = "";
+		for(NPC npc : npcs) {
+			if(npc.serialNumber == sn) {
+				npcToString = npc.toString();
+			}
+		}
+		textPane.setText(text.replace(npcToString, ""));
+		//also replace all double line breaks
+		text = textPane.getText();
+		textPane.setText(text.replace("\n-----------------------\n\n-----------------------\n", "\n-----------------------\n"));
+		
 	}
 
 }
