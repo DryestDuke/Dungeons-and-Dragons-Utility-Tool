@@ -1394,4 +1394,146 @@ public class Model {
 		return getRandomElement(rpEncounters);
 	}
 
+	/**
+	 * This method takes in some list of creatures, and some encounter, and it will try to find either one creature to split into two or two creatures
+	 * to combine into one.
+	 * @param allCreatures The list of all creatures for the encounter. If this is set as null, this.creatures will be used instead.
+	 * @param encounter The given encounter. This will not be changed in this method.
+	 * @param split If this is set as true, two creatures in allCreatures will be chosen whose combined XP values is the closest to some given
+	 * creature in encounter. If it is set as false, one creature in allCreatures will be chosen whose XP value is closest to the combined
+	 * XP values of some two creatures in encounter.
+	 * @return The new encounter!
+	 */
+	public ArrayList<Creature> changeEncounter(ArrayList<Creature> allCreatures, ArrayList<Creature> encounter, boolean split) {
+		if(allCreatures == null) {
+			allCreatures = creatures;
+		}
+		
+		ArrayList<Creature> newEncounter = new ArrayList<Creature>(encounter);
+		
+		if(split) {
+			Creature bestCreatureToSplit = null;
+			Creature bestFirstCR = null;
+			Creature bestSecondCR = null;
+			for(Creature creature : encounter) {
+				//look for two creatures in allCreatures whose combined XP is closest to that of creature's
+				int bestCombinedXP = 0;
+
+				Creature firstCR = null;
+				Creature secondCR = null;
+
+				for(Creature creature_one : allCreatures) {
+					for(Creature creature_two : allCreatures) {
+						if((Math.abs(creature_one.xp + creature_two.xp - creature.xp)) < (Math.abs(bestCombinedXP - creature.xp))) {
+							//we've found a better combination - update the values appropriately
+							firstCR = creature_one;
+							secondCR = creature_two;
+							bestCombinedXP = firstCR.xp + secondCR.xp;
+						}
+						
+						if(firstCR == null) {
+							firstCR = creature_one;
+						}
+						
+						if(secondCR == null) {
+							secondCR = creature_two;
+						}
+					}
+				}
+				
+				if(bestCreatureToSplit == null) {
+					bestCreatureToSplit = creature;
+					bestFirstCR = firstCR;
+					bestSecondCR = secondCR;
+				}else {
+					if((Math.abs(creature.xp - (firstCR.xp + secondCR.xp))) < (Math.abs(bestCreatureToSplit.xp - (bestFirstCR.xp + bestSecondCR.xp)))) {
+						bestCreatureToSplit = creature;
+						bestFirstCR = firstCR;
+						bestSecondCR = secondCR;
+					}
+				}
+			}
+			
+			newEncounter.remove(bestCreatureToSplit);
+			newEncounter.add(bestFirstCR);
+			newEncounter.add(bestSecondCR);
+		}else {
+			
+			Creature bestFirstCreature = null;
+			Creature bestSecondCreature = null;
+			Creature bestCreatureToAdd = null;
+			
+			//for each creature in allCreatures
+			for(Creature cr : allCreatures) {
+				//for each creature in encounter
+				for(Creature crOne : encounter) {
+					//look for some other creature in encounter whose combined XP is the closest to that creature
+					for(Creature crTwo : encounter) {
+						if(bestCreatureToAdd == null) {
+							bestFirstCreature = crOne;
+							bestSecondCreature = crTwo;
+							bestCreatureToAdd = cr;
+						}else {
+							if((Math.abs(cr.xp - (crOne.xp + crTwo.xp))) < (Math.abs(bestCreatureToAdd.xp - (bestFirstCreature.xp + bestSecondCreature.xp)))) {
+								bestFirstCreature = crOne;
+								bestSecondCreature = crTwo;
+								bestCreatureToAdd = cr;
+							}
+						}
+					}
+				}
+			
+			}
+			
+			newEncounter.remove(bestFirstCreature);
+			newEncounter.remove(bestSecondCreature);
+			newEncounter.add(bestCreatureToAdd);
+		}
+		return newEncounter;
+	}
+
+	/**
+	 * For some encounter, it creates a list of all creatures whose XP value matches the XP value of some creature in encounter, and it randomly
+	 * replaces that creature with some creature in that list.
+	 * @param allCreatures The list of all creatures for this encounter. If allCreatures == null, this.creatures is used instead.
+	 * @param encounter The encounter to be changed - this ArrayList will not be modified, I promise.
+	 * @return The new encounter.
+	 */
+	public ArrayList<Creature> randomizeEncounter(ArrayList<Creature> allCreatures, ArrayList<Creature> encounter) {
+		ArrayList<Creature> newEncounter = new ArrayList<Creature>();
+		
+		//this is an ArrayList of ArrayLists of creatures, and in each ArrayList<Creature> all creatures have the same XP value
+		ArrayList<ArrayList<Creature>> xpLists = new ArrayList<ArrayList<Creature>>();
+		
+		for(Creature cr :  allCreatures) {
+			boolean added = false;
+			//go through all lists looking for the appropriate one, then add the creature to it
+			for(ArrayList<Creature> list : xpLists) {
+				if(list.get(0).xp == cr.xp) {
+					list.add(cr);
+					added = true;
+				}
+			}
+			//no proper ArrayList existed, so create one
+			if(!added) {
+				ArrayList<Creature> list = new ArrayList<Creature>();
+				list.add(cr);
+				xpLists.add(list);
+			}
+		}
+		
+		//for each creature in encounter, find the appropriate list in xpLists and replace that creature with a randomly selected creature from that list
+		for(Creature cr : encounter) {
+			for(ArrayList<Creature> list : xpLists) {
+				if(list.get(0).xp == cr.xp) {
+					int max = list.size()-1;
+					int min = 0;
+					newEncounter.add(list.get(random.nextInt((max - min) + 1) + min));
+				}
+			}
+		}
+		
+		return newEncounter;
+	}
+
 }

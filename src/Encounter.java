@@ -111,10 +111,52 @@ public class Encounter extends JFrame {
 				lblNewLabel.setText("XP Budget: " + xpBudget + " | Actual XP Total: " + totalXP);
 			}
 		});
-		btnNewButton.setToolTipText("Click this to bring the Actual XP total more in line with the given xp budget - but be warned, this is done by changing the monsters.");
+		btnNewButton.setToolTipText("Click this to bring the Actual XP total more in line with the given xp budget (by changing the creatures).");
 		btnNewButton.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btnNewButton.setBounds(240, 266, 121, 25);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_2 = new JButton("More Creatures");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				encounter = model.changeEncounter(model.searchCreatures(attributes, types, null), encounter, true);
+				encounter = model.randomizeEncounter(model.searchCreatures(attributes, types, null), encounter);
+				
+				int totalXP = 0;
+
+				for (Creature c : encounter){
+					totalXP += c.xp;
+				}
+				
+				Model.setListCreature(encounter, list);
+				lblNewLabel.setText("XP Budget: " + xpBudget + " | Actual XP Total: " + totalXP);
+			}
+		});
+		btnNewButton_2.setToolTipText("This button takes some creature from the encounter and tries to find two other creatures that can provide the same amount of XP (thereby taking one creature & \"splitting\" it into 2).");
+		btnNewButton_2.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btnNewButton_2.setBounds(371, 266, 145, 25);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnLessCreatures = new JButton("Less Creatures");
+		btnLessCreatures.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				encounter = model.changeEncounter(model.searchCreatures(attributes, types, null), encounter, false);
+				encounter = model.randomizeEncounter(model.searchCreatures(attributes, types, null), encounter);
+				
+				int totalXP = 0;
+
+				for (Creature c : encounter){
+					totalXP += c.xp;
+				}
+				
+				Model.setListCreature(encounter, list);
+				lblNewLabel.setText("XP Budget: " + xpBudget + " | Actual XP Total: " + totalXP);
+			}
+		});
+		btnLessCreatures.setToolTipText("This button takes some pair of creatures from the encounter and tries to find another creature that can provide the same amount of XP (thereby taking two creatures & \"combining\" them into 1).");
+		btnLessCreatures.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btnLessCreatures.setBounds(85, 266, 145, 25);
+		contentPane.add(btnLessCreatures);
 
 	}
 }
