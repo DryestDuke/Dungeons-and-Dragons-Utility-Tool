@@ -23,6 +23,7 @@ public class Encounter extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private ArrayList<Creature> encounter;
 
 	/**
 	 * Launch the application.
@@ -48,7 +49,9 @@ public class Encounter extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Encounter(Model model, ArrayList<Creature> encounter, int numberBosses, int numberMinions, ArrayList<String> attributes, ArrayList<String> types, int xpBudget) {
+	public Encounter(Model model, ArrayList<Creature> encounter_, int numberBosses, int numberMinions, ArrayList<String> attributes, ArrayList<String> types, int xpBudget) {
+		encounter = encounter_;
+		
 		setResizable(false);
 		setTitle("An Encounter");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/com/jtattoo/plaf/icons/empty_8x8.png")));
@@ -82,7 +85,7 @@ public class Encounter extends JFrame {
 		list.setValueIsAdjusting(true);
 		list.setFont(new Font("Courier New", Font.PLAIN, 14));
 		
-		JButton btnNewButton = new JButton("Regenerate");
+		JButton btnNewButton = new JButton("Improve");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList<Creature> enc = null;
@@ -94,21 +97,21 @@ public class Encounter extends JFrame {
 				}
 				
 				while(enc == null) {
-					for(int c=0;c<10;c++) {
-						ArrayList<Creature> newEncounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, model.searchCreatures(attributes, types, null));
-						int newTotalXP = model.getTotalXP(newEncounter);
-						if(Math.abs(newTotalXP-xpBudget) < Math.abs(totalXP-xpBudget)) {
-							totalXP = newTotalXP;
-							enc = newEncounter;
-						}
+					ArrayList<Creature> newEncounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, model.searchCreatures(attributes, types, null));
+					int newTotalXP = model.getTotalXP(newEncounter);
+					if(Math.abs(newTotalXP-xpBudget) < Math.abs(totalXP-xpBudget) || newTotalXP == xpBudget) {
+						totalXP = newTotalXP;
+						enc = newEncounter;
 					}
 				}
+
+				encounter = enc;
 				
 				Model.setListCreature(enc, list);
 				lblNewLabel.setText("XP Budget: " + xpBudget + " | Actual XP Total: " + totalXP);
 			}
 		});
-		btnNewButton.setToolTipText("Click this to regenerate the encounter in order to bring the Actual XP total more in line with the given xp budget.");
+		btnNewButton.setToolTipText("Click this to bring the Actual XP total more in line with the given xp budget - but be warned, this is done by changing the monsters.");
 		btnNewButton.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btnNewButton.setBounds(240, 266, 121, 25);
 		contentPane.add(btnNewButton);

@@ -749,9 +749,11 @@ public class Model {
 			}
 		}
 		
-		
-		boolean ascending = sortBy.split(",")[1].equals("Ascending");
-		sortBy = sortBy.split(",")[0];
+		boolean ascending = true;
+		if(sortBy != null) {
+			ascending = sortBy.split(",")[1].equals("Ascending");
+			sortBy = sortBy.split(",")[0];
+		}
 		
 		if(sortBy == null) {
 			//do nothing
@@ -834,7 +836,7 @@ public class Model {
 		output = temp;
 		
 		//the sort defaults to ascending
-		if(!ascending) {
+		if(!ascending && sortBy !=  null) {
 			Collections.reverse(output);
 		}
 		
