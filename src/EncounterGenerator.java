@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JList;
+import javax.swing.JTextPane;
 
 public class EncounterGenerator extends JFrame {
 
@@ -42,6 +45,7 @@ public class EncounterGenerator extends JFrame {
 	private JButton btn_types;
 	private ArrayList<String> types;
 	private JComboBox comboBox_xp;
+	private JTextPane textPane_rp;
 	
 	/**
 	 * Launch the application.
@@ -114,9 +118,9 @@ public class EncounterGenerator extends JFrame {
 		textField_numMinions.setBounds(12, 74, 53, 22);
 		contentPane.add(textField_numMinions);
 		
-		lblAlsoTheCreatures = new JLabel("Also, the creatures must fit these criteria:");
+		lblAlsoTheCreatures = new JLabel("Specify Constraints:");
 		lblAlsoTheCreatures.setFont(new Font("Courier New", Font.BOLD, 14));
-		lblAlsoTheCreatures.setBounds(12, 131, 352, 17);
+		lblAlsoTheCreatures.setBounds(12, 131, 160, 17);
 		contentPane.add(lblAlsoTheCreatures);
 		
 		lblEnvironment = new JLabel("Environment:");
@@ -136,7 +140,7 @@ public class EncounterGenerator extends JFrame {
 		
 		lblBook = new JLabel("Book:");
 		lblBook.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblBook.setBounds(227, 154, 40, 17);
+		lblBook.setBounds(174, 183, 40, 17);
 		contentPane.add(lblBook);
 		
 		lblXp = new JLabel("XP:");
@@ -156,7 +160,7 @@ public class EncounterGenerator extends JFrame {
 		textField_name.setText("Any");
 		textField_name.setToolTipText("Type in the name you're looking for.");
 		textField_name.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_name.setBounds(70, 179, 114, 22);
+		textField_name.setBounds(68, 180, 96, 22);
 		contentPane.add(textField_name);
 		textField_name.setColumns(10);
 		
@@ -164,7 +168,7 @@ public class EncounterGenerator extends JFrame {
 		comboBox_xp.setFont(new Font("Courier New", Font.PLAIN, 14));
 		comboBox_xp.setModel(new DefaultComboBoxModel(new String[] {"<", "<=", "==", "!=", ">=", ">"}));
 		comboBox_xp.setSelectedIndex(2);
-		comboBox_xp.setBounds(70, 239, 45, 20);
+		comboBox_xp.setBounds(53, 239, 45, 20);
 		contentPane.add(comboBox_xp);
 		
 		textField_xpIndividual = new JTextField();
@@ -172,7 +176,7 @@ public class EncounterGenerator extends JFrame {
 		textField_xpIndividual.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_xpIndividual.setFont(new Font("Courier New", Font.PLAIN, 14));
 		textField_xpIndividual.setText("Any");
-		textField_xpIndividual.setBounds(125, 237, 59, 22);
+		textField_xpIndividual.setBounds(114, 238, 74, 22);
 		contentPane.add(textField_xpIndividual);
 		textField_xpIndividual.setColumns(10);
 		
@@ -180,7 +184,7 @@ public class EncounterGenerator extends JFrame {
 		comboBox_book.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "MM", "VGtM", "ToB"}));
 		comboBox_book.setToolTipText("Select one.");
 		comboBox_book.setFont(new Font("Courier New", Font.PLAIN, 14));
-		comboBox_book.setBounds(275, 150, 106, 22);
+		comboBox_book.setBounds(167, 209, 53, 22);
 		contentPane.add(comboBox_book);
 		
 		if(initialXPBudget > -1) {
@@ -264,9 +268,30 @@ public class EncounterGenerator extends JFrame {
 		});
 		btn_types.setToolTipText("Click this to select the types of the creatures you want for your encounter. Click this and immediately exit to reset the list of chosen types back to default (all types).");
 		btn_types.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btn_types.setBounds(80, 209, 89, 23);
+		btn_types.setBounds(68, 209, 96, 23);
 		contentPane.add(btn_types);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(231, 131, 213, 140);
+		contentPane.add(scrollPane);
+		
+		textPane_rp = new JTextPane();
+		scrollPane.setViewportView(textPane_rp);
+		
+		JButton btnGenerateRpEncounter = new JButton("Generate RP Encounter");
+		btnGenerateRpEncounter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(textPane_rp.getText().equals("")) {
+					textPane_rp.setText(model.getRPEncounter());
+				}else {
+					textPane_rp.setText(textPane_rp.getText() + "\n-----------------\n" + model.getRPEncounter());
+				}
+			}
+		});
+		btnGenerateRpEncounter.setToolTipText("Click this to randomly select a role-playing encounter (or the seed for some role-playing encounter) from the lists of encounters b& rumors.");
+		btnGenerateRpEncounter.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btnGenerateRpEncounter.setBounds(255, 103, 177, 25);
+		contentPane.add(btnGenerateRpEncounter);
+		
 	}
-
 }

@@ -24,6 +24,8 @@ public class Model {
 	ArrayList<String> skills;
 	ArrayList<String> trades;
 	
+	ArrayList<String> rpEncounters;
+	
 	static Random random = new Random();
 	
 	public Model() {
@@ -38,6 +40,8 @@ public class Model {
 		ideals = loadFile("files\\Ideals_List.txt");
 		skills = loadFiles(new String[] {"files\\Skills\\Skills_List - BEA.txt", "files\\Skills\\Skills_List - CHA.txt", "files\\Skills\\Skills_List - CON.txt", "files\\Skills\\Skills_List - DEX.txt", "files\\Skills\\Skills_List - INT.txt", "files\\Skills\\Skills_List - STR.txt", "files\\Skills\\Skills_List - WIS.txt"});
 		trades = loadFile("files\\Jobs_List.txt");
+		
+		rpEncounters = loadFiles(new String[] {"files\\Encounters\\Encounters_List - On the Road.txt", "files\\Encounters\\Encounters_List - Through the City.txt", "files\\Encounters\\Encounters_List - By the Sea.txt", "files\\Encounters\\Encounters_List - In the Mountains.txt", "files\\Rumor_List.txt"});
 	}
 
 	/**
@@ -1361,7 +1365,6 @@ public class Model {
 		return output;
 	}
 
-	
 	/**
 	 * This method takes some text pane, and removes some NPC from it given by some serial number.
 	 * @param textPane The text pane from which the NPC will be removed.
@@ -1380,6 +1383,13 @@ public class Model {
 		text = textPane.getText();
 		textPane.setText(text.replace("\n-----------------------\n\n-----------------------\n", "\n-----------------------\n"));
 		
+	}
+
+	/**
+	 * This method returns a random element from rpEncounters.
+	 */
+	public String getRPEncounter() {
+		return getRandomElement(rpEncounters);
 	}
 
 }
