@@ -713,6 +713,7 @@ public class Model {
 	 * Creature.type).
 	 * For the names, it checks the name being searched for (from attributes) is contained by the name of any creature we look at.
 	 * @param sortBy - this is the attribute by which the creatures will be sorted. The values are any of the attributes, including "Book + PageNumber". If it set as null, we do not sort.
+	 * Appended to the end of this (split by a comma) is Ascending or Descending - in the form of "Attribute,Ascending/Descending".
 	 * @return a list of all creatures whose attributes fit the values given in attributes.
 	 */
 	public ArrayList<Creature> searchCreatures(ArrayList<String> attributes, ArrayList<String> types, String sortBy) {
@@ -743,6 +744,10 @@ public class Model {
 				}
 			}
 		}
+		
+		
+		boolean ascending = sortBy.split(",")[1].equals("Ascending");
+		sortBy = sortBy.split(",")[0];
 		
 		if(sortBy == null) {
 			//do nothing
@@ -823,6 +828,12 @@ public class Model {
 		}
 		
 		output = temp;
+		
+		//the sort defaults to ascending
+		if(!ascending) {
+			Collections.reverse(output);
+		}
+		
 		return output;
 	}
 	

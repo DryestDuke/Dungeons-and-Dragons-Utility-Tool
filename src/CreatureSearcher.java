@@ -158,6 +158,13 @@ public class CreatureSearcher extends JFrame {
 		list = new JList<String>();
 		scrollPane.setViewportView(list);
 		
+		JComboBox<String> comboBox_order = new JComboBox<String>();
+		comboBox_order.setModel(new DefaultComboBoxModel(new String[] {"Ascending", "Descending"}));
+		comboBox_order.setToolTipText("Select one.");
+		comboBox_order.setFont(new Font("Courier New", Font.PLAIN, 14));
+		comboBox_order.setBounds(106, 249, 114, 22);
+		contentPane.add(comboBox_order);
+		
 		btn_searchForCreatures = new JButton("Search for Creatures");
 		btn_searchForCreatures.setToolTipText("Click to search for all creatures with the given attributes.");
 		btn_searchForCreatures.addActionListener(new ActionListener() {
@@ -182,6 +189,8 @@ public class CreatureSearcher extends JFrame {
 					sortBy = null;
 				}
 				
+				sortBy += "," + (String) comboBox_order.getSelectedItem();
+								
 				ArrayList<Creature> results = model.searchCreatures(attributes, types, sortBy);
 				
 				Model.setListCreature(results, list);
