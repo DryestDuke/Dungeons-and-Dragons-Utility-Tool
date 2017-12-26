@@ -313,7 +313,7 @@ public class NPCScreen extends JFrame {
 		JLabel lblSavedForSession = new JLabel("Generated NPCs");
 		lblSavedForSession.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSavedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblSavedForSession.setBounds(733, 12, 136, 17);
+		lblSavedForSession.setBounds(733, 12, 136, 17);		
 		contentPane.add(lblSavedForSession);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -322,6 +322,21 @@ public class NPCScreen extends JFrame {
 		
 		JTextPane textPane_savedForSession = new JTextPane();
 		textPane_savedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
+		
+		temp = "";
+		for(NPC npc : model.npcs) {
+			if(model.savedNPCs.contains(npc)) {
+				continue;
+			}
+			
+			if(temp.equals("")) {
+				temp += npc.toString();
+			}else {
+				temp += "\n-----------------------\n" + npc.toString();
+			}
+		}
+		textPane_savedForSession.setText(temp);
+		
 		scrollPane_1.setViewportView(textPane_savedForSession);
 		
 		JButton btn_deleteSaved = new JButton("Delete Saved NPC");

@@ -882,7 +882,7 @@ public class Model {
 	 */
 	public ArrayList<Creature> generateEncounter(int numberBosses, int numberMinions, int xpBudget, ArrayList<Creature> creatures) {
 		ArrayList<Creature> chosenCreatures = creatures;
-		if(creatures == null) {
+		if(creatures.size() == 0 || creatures == null) {
 			chosenCreatures = this.creatures;
 		}
 		

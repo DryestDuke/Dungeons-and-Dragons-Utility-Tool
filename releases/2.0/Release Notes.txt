@@ -1,0 +1,25 @@
+In this release of the Dungeons & Dragons Utility Tool, some serious QoL improvements have been made, as well as a brand new (and very exciting) feature - a word generator seeded by some language of your choice!
+
+First things first, the Word Generator. Basically it uses a simplified Markov Chain, with some source files full example words of some given languages, to generate new words that sound like other words in that language. You can add your own Language files into files\Languages (look at the other files to see the structure of your custom file). The default language (and the reason it takes a few seconds to load) is a master list of ~400,000 english words. This is the "Fantasy.txt" list in the repository - and don't be misled, I did <i>not</i> compile this list. The more words you put in these files, the better the generated words will be.
+
+Click on "Word Generator" to bring up the Word Generator (crazy, I know). Select a language, choose your number of words (per line) and the length of those words (a value of 0 or 1 has the system choose a length), and then choose to have your words capitalized or not. Then click "Generate Words"! Also, fun fact, the names of NPCs are now generated using this same method.
+
+So, for the QoL changes:
+
+Firstly, when generating an encounter, you can now specify a number of types of creatures (from a dynamically populated list). Click on the "Types" button, ctrl+click all the types you want, and then press "Set Types".
+
+You can also be more particular about the XP values of the creatures - meaning that you can say "all creatures in this encounter must have an XP equal to or greater than 1100 xp" and other similar things. Select the comparison operator and XP value that you want.
+
+You can also generate RP encounters (from files\Encounters & Rumors_List.txt). These can provide a fun encounter of their own (but you'll still have to put your own work in), or a great first idea for your encounter! I recommend generating RP encounters until you get something that seems interesting to you and then generating a combat encounter that fits that (for example, if you were to get the RP encounter of "Few scattered and broken arrows or bolts", you could generate an encounter with all creatures in all environments/etc but specify that they must all have "Archer" in their name.
+
+Now, once you've generated an encounter, you have three new buttons at the bottom. "Less Creatures" takes one creature in your encounter and splits them into two different creatures whose composite XP value is roughly equal to that one creatures XP value.
+
+"More Creatures" does the opposite.
+
+"Improve" generates a new encounter whose XP total is more in line with the actual XP budget. It is important to remember that the worse the encounter is (in terms of how much over the xp budget it is), the easier it is to improve it. The opposite also holds true.
+
+In the Creature Searcher you'll find similar improvements to those in the Encounter Generator. However you'll also see that now you can specify if you want your sort in Ascending or Descending order.
+
+On the NPC screen I've implemented a few things. The first are two remove buttons; enter the SN of some NPC that is in the text pane below the Remove button and click Remove to remove them from the pane - keep in mind that this is not the same as deleting (they still exist in the system or in file).
+
+You'll also see that under Edit you can "Load an NPC" or "Clear Fields". Enter the SN of some NPC, and then click "Load an NPC" to have their attributes automatically fill the fields in the middle of the screen. Click "Clear Fields" to clear out all fields.

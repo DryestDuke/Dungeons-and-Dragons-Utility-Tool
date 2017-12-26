@@ -24,6 +24,7 @@ public class WordGenerator extends JFrame {
 
 	private JPanel contentPane;
 	private JSpinner spinner_numberWords;
+	private MarkovChain mcFantasy;
 
 	/**
 	 * Launch the application.
@@ -45,11 +46,16 @@ public class WordGenerator extends JFrame {
 	 * Create the frame.
 	 */
 	public WordGenerator(Model model) {
+		try {
+			mcFantasy = MarkovChain.create(("files\\Languages\\Fantasy.txt"));
+		}catch (Exception e) {
+			mcFantasy = null;
+		}
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Word Generator");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Dashboard.class.getResource("/com/jtattoo/plaf/icons/empty_8x8.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -111,7 +117,13 @@ public class WordGenerator extends JFrame {
 								
 				int numberWords = (Integer) spinner_numberWords.getValue();
 				
-				MarkovChain mc = MarkovChain.create(("files\\Languages\\" + (String) comboBox_language.getSelectedItem() + ".txt"));
+				MarkovChain mc;
+				
+				if(mcFantasy != null && ((String) comboBox_language.getSelectedItem()).equals("Fantasy")) {
+					mc = mcFantasy;
+				}else {
+					mc = MarkovChain.create(("files\\Languages\\" + (String) comboBox_language.getSelectedItem() + ".txt"));
+				}
 				
 				String words = "";
 				
