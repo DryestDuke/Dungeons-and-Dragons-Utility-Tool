@@ -107,7 +107,7 @@ public class WordGenerator extends JFrame {
 								
 				int numberWords = (Integer) spinner_numberWords.getValue();
 				
-				MarkovChain mc = new MarkovChain("files\\Languages\\" + (String) comboBox_language.getSelectedItem() + ".txt");
+				MarkovChain mc = MarkovChain.create(("files\\Languages\\" + (String) comboBox_language.getSelectedItem() + ".txt"));
 				
 				String words = "";
 				

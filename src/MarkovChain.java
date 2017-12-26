@@ -81,14 +81,7 @@ public class MarkovChain {
 	private ArrayList<ProbabilityPairing> pairings;
 	private ArrayList<TotalOccurrences> occurrences;
 	
-	/**
-	 * Constructor - creates the probability table.
-	 * @param filename The filename of the file with all example words.
-	 */
-	public MarkovChain(String filename) {
-		//parse file and record all words (one/line)
-		ArrayList<String> words = Model.loadFile(filename);
-		
+	public MarkovChain(ArrayList<String> words) {		
 		char[] letters = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 		
 		pairings = new ArrayList<ProbabilityPairing>();
@@ -127,6 +120,10 @@ public class MarkovChain {
 				}
 			}
 		}
+	}
+	
+	public static MarkovChain create(String filename) {
+		return new MarkovChain(Model.loadFile(filename));
 	}
 	
 	/**
@@ -198,7 +195,7 @@ public class MarkovChain {
 		}
 		
 		//finish the word
-		while(word.length() <= length) {			
+		while(word.length() < length) {			
 			double choice = rand.nextDouble();
 			for(ProbabilityRange range : ranges) {				
 				if(range.pp.pairing[0] == word.toLowerCase().charAt(word.length()-1) && range.isInRange(choice)) {

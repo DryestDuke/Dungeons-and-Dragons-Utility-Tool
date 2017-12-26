@@ -868,7 +868,6 @@ public class Model {
 		}
 	}
 	
-
 	/**
 	 * For all creatures in this.creatures, it chooses a number of them based off of the xpBudget given.
 	 * It tries to find a number of bosses (xp > 50% * xpBudget) = numberBosses, and a number of minions
@@ -1000,13 +999,16 @@ public class Model {
 		ArrayList<String> generic = null;
 		for(ArrayList<String> namesList : names) {
 			if(race_.contains(namesList.get(0)) || namesList.get(0).contains(race_)) {
+				MarkovChain nameChain = new MarkovChain(namesList);
+				
 				for(int c=0;c<chosenNumber;c++) {
 					if(name.equals("")) {
-						name = getRandomElement(namesList, 1);
+						name = nameChain.generateWord(0, true);
 					}else {
-						name += " " + getRandomElement(namesList, 1);
+						name += " " + nameChain.generateWord(0, true);
 					}
 				}
+				
 				return name;
 			}
 			if(namesList.get(0).contains("Generic")) {
