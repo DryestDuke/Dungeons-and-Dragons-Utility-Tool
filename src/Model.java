@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JTextPane;
 
 public class Model {
 	
@@ -23,6 +24,8 @@ public class Model {
 	ArrayList<String> skills;
 	ArrayList<String> trades;
 	
+	ArrayList<String> rpEncounters;
+	
 	static Random random = new Random();
 	
 	public Model() {
@@ -37,6 +40,8 @@ public class Model {
 		ideals = loadFile("files\\Ideals_List.txt");
 		skills = loadFiles(new String[] {"files\\Skills\\Skills_List - BEA.txt", "files\\Skills\\Skills_List - CHA.txt", "files\\Skills\\Skills_List - CON.txt", "files\\Skills\\Skills_List - DEX.txt", "files\\Skills\\Skills_List - INT.txt", "files\\Skills\\Skills_List - STR.txt", "files\\Skills\\Skills_List - WIS.txt"});
 		trades = loadFile("files\\Jobs_List.txt");
+		
+		rpEncounters = loadFiles(new String[] {"files\\Encounters\\Encounters_List - On the Road.txt", "files\\Encounters\\Encounters_List - Through the City.txt", "files\\Encounters\\Encounters_List - By the Sea.txt", "files\\Encounters\\Encounters_List - In the Mountains.txt", "files\\Rumor_List.txt"});
 	}
 
 	/**
@@ -80,7 +85,7 @@ public class Model {
 	 * @param filename The name of the file.
 	 * @return An ArrayList<String> of all lines in the file.
 	 */
-	private ArrayList<String> loadFile(String filename) {
+	public static ArrayList<String> loadFile(String filename) {
 		try{
 			ArrayList<String> output = new ArrayList<String>();
 			
@@ -705,34 +710,49 @@ public class Model {
 	
 	/**
 	 * Passes through the creatures object in this object, and compiles a list of all creatures whose attributes match those given in attributes.
-	 * @param attributes - the values must be in order of the criteria given for creatures. The order is Environment, Name, Type, XP, Book, Page Number.
-	 * However, you cannot use page number to select/sort creatures.
+	 * @param attributes - the values must be in order of the criteria given for creatures. The order is Environment, Name, XP, Book, Page Number.
+	 * XP must be in the format of (< || > || <= || >= || == || !=) && (some XP value).
+	 * Also, you cannot use page number to select/sort creatures.
+	 * @param types This is an ArrayList<String> of all the types of creatures you wish to discover (i.e.; the list of all possible values for the attribute
+	 * Creature.type).
 	 * For the names, it checks the name being searched for (from attributes) is contained by the name of any creature we look at.
 	 * @param sortBy - this is the attribute by which the creatures will be sorted. The values are any of the attributes, including "Book + PageNumber". If it set as null, we do not sort.
+	 * Appended to the end of this (split by a comma) is Ascending or Descending - in the form of "Attribute,Ascending/Descending".
 	 * @return a list of all creatures whose attributes fit the values given in attributes.
 	 */
-	public ArrayList<Creature> searchCreatures(ArrayList<String> attributes, String sortBy) {
+	public ArrayList<Creature> searchCreatures(ArrayList<String> attributes, ArrayList<String> types, String sortBy) {
 		String chosenEnvironment = attributes.get(0);
 		String chosenName = attributes.get(1);
-		String chosenType = attributes.get(2);
 		
-		int chosenXP = -1;
-		if(!attributes.get(3).equals("Any")) {
-			chosenXP = Integer.parseInt(attributes.get(3));
+		int xpValue = -1;
+		if(!attributes.get(2).equals("Any")) {
+			xpValue = Integer.parseInt(attributes.get(2).split(",")[1]);
 		} 
 		
-		String chosenBook = attributes.get(4);
+		String chosenBook = attributes.get(3);
 		
 		ArrayList<Creature> output = new ArrayList<Creature>(creatures.size()/2);
 		
 		for(Creature creature : creatures) {
 			if((creature.environment.equals(chosenEnvironment) || chosenEnvironment.equals("Any")) && 
 					(creature.name.contains(chosenName) || chosenName.equals("Any")) &&
-					(creature.type.equals(chosenType) || chosenType.equals("Any")) &&
-					(creature.xp == chosenXP || chosenXP == -1) &&
+					(types.contains(creature.type)) &&
 					(creature.book.equals(chosenBook) || chosenBook.equals("Any"))) {
-				output.add(creature);
+				
+				if(!attributes.get(2).equals("Any")) {
+					if(withinXPBounds(creature, xpValue, attributes.get(2).split(",")[0])) {
+						output.add(creature);
+					}
+				}else {
+					output.add(creature);
+				}
 			}
+		}
+		
+		boolean ascending = true;
+		if(sortBy != null) {
+			ascending = sortBy.split(",")[1].equals("Ascending");
+			sortBy = sortBy.split(",")[0];
 		}
 		
 		if(sortBy == null) {
@@ -814,7 +834,38 @@ public class Model {
 		}
 		
 		output = temp;
+		
+		//the sort defaults to ascending
+		if(!ascending && sortBy !=  null) {
+			Collections.reverse(output);
+		}
+		
 		return output;
+	}
+	
+	/**
+	 * For some creature, it checks that their XP has the correct relationship to the xpValue given, utilizing the bound given by bound.
+	 * @param creature This is some creature.
+	 * @param xpValue This is some xpValue.
+	 * @param bound This is a string with the value of ">", ">=", "==", "!=", "<=", or "<".
+	 * @return Whether or not ('creature.xp' 'bound' 'xpValue') == true.
+	 */
+	private boolean withinXPBounds(Creature creature, int xpValue, String bound) {
+		if(bound.equals(">")) {
+			return creature.xp > xpValue;
+		}else if(bound.equals(">=")) {
+			return creature.xp >= xpValue;
+		}else if(bound.equals("==")) {
+			return creature.xp == xpValue;
+		}else if(bound.equals("!=")) {
+			return creature.xp != xpValue;
+		}else if(bound.equals("<=")) {
+			return creature.xp <= xpValue;
+		}else if(bound.equals("<")) {
+			return creature.xp < xpValue;
+		}else {
+			return false;
+		}
 	}
 	
 	/**
@@ -831,7 +882,7 @@ public class Model {
 	 */
 	public ArrayList<Creature> generateEncounter(int numberBosses, int numberMinions, int xpBudget, ArrayList<Creature> creatures) {
 		ArrayList<Creature> chosenCreatures = creatures;
-		if(creatures == null) {
+		if(creatures.size() == 0 || creatures == null) {
 			chosenCreatures = this.creatures;
 		}
 		
@@ -856,10 +907,9 @@ public class Model {
 			}
 		}
 		
-		while(xpBudget > 0) {
-			//we need more creatures
+		while(xpBudget > 0) {			
 			if(random.nextBoolean()) {
-				if(numberBosses > actualNumberBosses) {
+				if(numberBosses > actualNumberBosses && bosses.size() > 0) {
 					//we need more bosses
 					int max = bosses.size()-1;
 					int min = 0;
@@ -869,7 +919,7 @@ public class Model {
 					actualNumberBosses++;
 				}
 			}else {
-				if(numberMinions > actualNumberMinions) {
+				if(numberMinions > actualNumberMinions && minions.size() > 0) {
 					//we need more minions
 					int max = minions.size()-1;
 					int min = 0;
@@ -949,13 +999,16 @@ public class Model {
 		ArrayList<String> generic = null;
 		for(ArrayList<String> namesList : names) {
 			if(race_.contains(namesList.get(0)) || namesList.get(0).contains(race_)) {
+				MarkovChain nameChain = new MarkovChain(namesList);
+				
 				for(int c=0;c<chosenNumber;c++) {
 					if(name.equals("")) {
-						name = getRandomElement(namesList, 1);
+						name = nameChain.generateWord(0, true);
 					}else {
-						name += " " + getRandomElement(namesList, 1);
+						name += " " + nameChain.generateWord(0, true);
 					}
 				}
+				
 				return name;
 			}
 			if(namesList.get(0).contains("Generic")) {
@@ -1284,6 +1337,222 @@ public class Model {
 			}
 		}
 		return npc;
+	}
+	
+	/**
+	 * This method, given some list of creatures, returns every single unique type of creature in that list.
+	 * @param creatures an ArrayList<Creature> consisting of all creatures. Only creatures with unique types *have* to be in this list.
+	 * @return all of the unique types (Creature.type) of all creatures in creatures.
+	 */
+	public ArrayList<String> getTypes(ArrayList<Creature> creatures){
+		ArrayList<String> output = new ArrayList<String>();
+		for(Creature creature : creatures) {
+			if(!output.contains(creature.type)) {
+				output.add(creature.type);
+			}
+		}
+		return output;
+	}
+
+	/**
+	 * This method returns the total xp (sum of all XPs) of all creature in creatures.
+	 * @param creatures The list of all creatures for which you want the XP total summed.
+	 * @return The sum of all XPs of all creatures. Defaults to zero.
+	 */
+	public int getTotalXP(ArrayList<Creature> creatures) {
+		int output = 0;
+		
+		for(Creature creature : creatures) {
+			output += creature.xp;
+		}
+		
+		return output;
+	}
+
+	/**
+	 * This method takes some text pane, and removes some NPC from it given by some serial number.
+	 * @param textPane The text pane from which the NPC will be removed.
+	 * @param sn The serial number of the NPC, as given by the system (and by generateNPC(...)).
+	 */
+	public void removeFromTextField(JTextPane textPane, int sn) {
+		String text = textPane.getText();
+		String npcToString = "";
+		for(NPC npc : npcs) {
+			if(npc.serialNumber == sn) {
+				npcToString = npc.toString();
+			}
+		}
+		textPane.setText(text.replace(npcToString, ""));
+		//also replace all double line breaks
+		text = textPane.getText();
+		textPane.setText(text.replace("\n-----------------------\n\n-----------------------\n", "\n-----------------------\n"));
+		
+	}
+
+	/**
+	 * This method returns a random element from rpEncounters.
+	 */
+	public String getRPEncounter() {
+		return getRandomElement(rpEncounters);
+	}
+
+	/**
+	 * This method takes in some list of creatures, and some encounter, and it will try to find either one creature to split into two or two creatures
+	 * to combine into one.
+	 * @param allCreatures The list of all creatures for the encounter. If this is set as null, this.creatures will be used instead.
+	 * @param encounter The given encounter. This will not be changed in this method.
+	 * @param split If this is set as true, two creatures in allCreatures will be chosen whose combined XP values is the closest to some given
+	 * creature in encounter. If it is set as false, one creature in allCreatures will be chosen whose XP value is closest to the combined
+	 * XP values of some two creatures in encounter.
+	 * @return The new encounter!
+	 */
+	public ArrayList<Creature> changeEncounter(ArrayList<Creature> allCreatures, ArrayList<Creature> encounter, boolean split) {
+		if(allCreatures == null) {
+			allCreatures = creatures;
+		}
+		
+		ArrayList<Creature> newEncounter = new ArrayList<Creature>(encounter);
+		
+		if(split) {
+			Creature bestCreatureToSplit = null;
+			Creature bestFirstCR = null;
+			Creature bestSecondCR = null;
+			for(Creature creature : encounter) {
+				//look for two creatures in allCreatures whose combined XP is closest to that of creature's
+				int bestCombinedXP = 0;
+
+				Creature firstCR = null;
+				Creature secondCR = null;
+
+				for(Creature creature_one : allCreatures) {
+					for(Creature creature_two : allCreatures) {
+						if((Math.abs(creature_one.xp + creature_two.xp - creature.xp)) < (Math.abs(bestCombinedXP - creature.xp))) {
+							//we've found a better combination - update the values appropriately
+							firstCR = creature_one;
+							secondCR = creature_two;
+							bestCombinedXP = firstCR.xp + secondCR.xp;
+						}
+						
+						if(firstCR == null) {
+							firstCR = creature_one;
+						}
+						
+						if(secondCR == null) {
+							secondCR = creature_two;
+						}
+					}
+				}
+				
+				if(bestCreatureToSplit == null) {
+					bestCreatureToSplit = creature;
+					bestFirstCR = firstCR;
+					bestSecondCR = secondCR;
+				}else {
+					if((Math.abs(creature.xp - (firstCR.xp + secondCR.xp))) < (Math.abs(bestCreatureToSplit.xp - (bestFirstCR.xp + bestSecondCR.xp)))) {
+						bestCreatureToSplit = creature;
+						bestFirstCR = firstCR;
+						bestSecondCR = secondCR;
+					}
+				}
+			}
+			
+			newEncounter.remove(bestCreatureToSplit);
+			newEncounter.add(bestFirstCR);
+			newEncounter.add(bestSecondCR);
+		}else {
+			
+			Creature bestFirstCreature = null;
+			Creature bestSecondCreature = null;
+			Creature bestCreatureToAdd = null;
+			
+			//for each creature in allCreatures
+			for(Creature cr : allCreatures) {
+				//for each creature in encounter
+				for(Creature crOne : encounter) {
+					//look for some other creature in encounter whose combined XP is the closest to that creature
+					for(Creature crTwo : encounter) {
+						if(bestCreatureToAdd == null) {
+							bestFirstCreature = crOne;
+							bestSecondCreature = crTwo;
+							bestCreatureToAdd = cr;
+						}else {
+							if((Math.abs(cr.xp - (crOne.xp + crTwo.xp))) < (Math.abs(bestCreatureToAdd.xp - (bestFirstCreature.xp + bestSecondCreature.xp)))) {
+								bestFirstCreature = crOne;
+								bestSecondCreature = crTwo;
+								bestCreatureToAdd = cr;
+							}
+						}
+					}
+				}
+			
+			}
+			
+			newEncounter.remove(bestFirstCreature);
+			newEncounter.remove(bestSecondCreature);
+			newEncounter.add(bestCreatureToAdd);
+		}
+		return newEncounter;
+	}
+
+	/**
+	 * For some encounter, it creates a list of all creatures whose XP value matches the XP value of some creature in encounter, and it randomly
+	 * replaces that creature with some creature in that list.
+	 * @param allCreatures The list of all creatures for this encounter. If allCreatures == null, this.creatures is used instead.
+	 * @param encounter The encounter to be changed - this ArrayList will not be modified, I promise.
+	 * @return The new encounter.
+	 */
+	public ArrayList<Creature> randomizeEncounter(ArrayList<Creature> allCreatures, ArrayList<Creature> encounter) {
+		ArrayList<Creature> newEncounter = new ArrayList<Creature>();
+		
+		//this is an ArrayList of ArrayLists of creatures, and in each ArrayList<Creature> all creatures have the same XP value
+		ArrayList<ArrayList<Creature>> xpLists = new ArrayList<ArrayList<Creature>>();
+		
+		for(Creature cr :  allCreatures) {
+			boolean added = false;
+			//go through all lists looking for the appropriate one, then add the creature to it
+			for(ArrayList<Creature> list : xpLists) {
+				if(list.get(0).xp == cr.xp) {
+					list.add(cr);
+					added = true;
+				}
+			}
+			//no proper ArrayList existed, so create one
+			if(!added) {
+				ArrayList<Creature> list = new ArrayList<Creature>();
+				list.add(cr);
+				xpLists.add(list);
+			}
+		}
+		
+		//for each creature in encounter, find the appropriate list in xpLists and replace that creature with a randomly selected creature from that list
+		for(Creature cr : encounter) {
+			for(ArrayList<Creature> list : xpLists) {
+				if(list.get(0).xp == cr.xp) {
+					int max = list.size()-1;
+					int min = 0;
+					newEncounter.add(list.get(random.nextInt((max - min) + 1) + min));
+				}
+			}
+		}
+		
+		return newEncounter;
+	}
+
+	/**
+	 * For some folder, it returns a string array of all file names.
+	 * @param folderPath Correct usage is, for example, "files\\" or "files\\Languages\\".
+	 */
+	public String[] getAllFilenames(String folderPath) {
+		File folder = new File(folderPath);
+		String[] output = new String[folder.listFiles().length];
+	
+		int c = 0;
+		for(File file : folder.listFiles()) {
+			output[c] = file.getName();
+			c++;
+		}
+		
+		return output;
 	}
 
 }

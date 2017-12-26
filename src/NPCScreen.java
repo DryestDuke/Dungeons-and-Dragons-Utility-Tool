@@ -3,6 +3,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,6 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class NPCScreen extends JFrame {
 
@@ -71,7 +75,7 @@ public class NPCScreen extends JFrame {
 		JLabel lblNewLabel = new JLabel("Saved to File");
 		lblNewLabel.setFont(new Font("Courier New", Font.PLAIN, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(93, 12, 104, 17);
+		lblNewLabel.setBounds(51, 12, 104, 17);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Generate an NPC");
@@ -309,7 +313,7 @@ public class NPCScreen extends JFrame {
 		JLabel lblSavedForSession = new JLabel("Generated NPCs");
 		lblSavedForSession.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSavedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblSavedForSession.setBounds(665, 12, 136, 17);
+		lblSavedForSession.setBounds(733, 12, 136, 17);		
 		contentPane.add(lblSavedForSession);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -317,6 +321,22 @@ public class NPCScreen extends JFrame {
 		contentPane.add(scrollPane_1);
 		
 		JTextPane textPane_savedForSession = new JTextPane();
+		textPane_savedForSession.setFont(new Font("Courier New", Font.PLAIN, 14));
+		
+		temp = "";
+		for(NPC npc : model.npcs) {
+			if(model.savedNPCs.contains(npc)) {
+				continue;
+			}
+			
+			if(temp.equals("")) {
+				temp += npc.toString();
+			}else {
+				temp += "\n-----------------------\n" + npc.toString();
+			}
+		}
+		textPane_savedForSession.setText(temp);
+		
 		scrollPane_1.setViewportView(textPane_savedForSession);
 		
 		JButton btn_deleteSaved = new JButton("Delete Saved NPC");
@@ -616,5 +636,84 @@ public class NPCScreen extends JFrame {
 		btn_saveToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_saveToFile.setBounds(478, 504, 104, 23);
 		contentPane.add(btn_saveToFile);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("Courier New", Font.PLAIN, 14));
+		menuBar.setBounds(0, 0, 41, 21);
+		contentPane.add(menuBar);
+		
+		JMenu menu_edit = new JMenu("Edit");
+		menu_edit.setFont(new Font("Courier New", Font.PLAIN, 14));
+		menu_edit.setHorizontalAlignment(SwingConstants.CENTER);
+		menuBar.add(menu_edit);
+		
+		JMenuItem item_load = new JMenuItem("Load an NPC");
+		item_load.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NPC npc = model.getNPC(Integer.parseInt(textField_sn.getText()));
+				textField_header.setText(npc.header);
+				textField_name.setText(npc.name);
+				textField_race.setText(npc.race);
+				textField_age.setText(npc.age);
+				textField_gender.setText(npc.gender);
+				textField_sexuality.setText(npc.sexuality);
+				textField_stats.setText(npc.stats);
+				textField_moral.setText(npc.moral);
+				textField_ideal.setText(npc.ideal);
+				textField_trait.setText(npc.trait);
+				textField_emotion.setText(npc.emotion);
+				textField_trade.setText(npc.trade);
+				textField_skill.setText(npc.skill);
+				textField_worth.setText(npc.worth);
+			}
+		});
+		item_load.setHorizontalAlignment(SwingConstants.CENTER);
+		item_load.setFont(new Font("Courier New", Font.PLAIN, 14));
+		menu_edit.add(item_load);
+		
+		JMenuItem item_clear = new JMenuItem("Clear Fields");
+		item_clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_header.setText("");
+				textField_name.setText("");
+				textField_race.setText("");
+				textField_age.setText("");
+				textField_gender.setText("");
+				textField_sexuality.setText("");
+				textField_stats.setText("");
+				textField_moral.setText("");
+				textField_ideal.setText("");
+				textField_trait.setText("");
+				textField_emotion.setText("");
+				textField_trade.setText("");
+				textField_skill.setText("");
+				textField_worth.setText("");
+			}
+		});
+		item_clear.setHorizontalAlignment(SwingConstants.CENTER);
+		item_clear.setFont(new Font("Courier New", Font.PLAIN, 14));
+		menu_edit.add(item_clear);
+		
+		JButton btn_removeSavedToFile = new JButton("Remove");
+		btn_removeSavedToFile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.removeFromTextField(textPane_savedToFile, Integer.parseInt(textField_sn.getText()));	
+			}
+		});
+		btn_removeSavedToFile.setToolTipText("Click this to remove some NPC given by some SN from this pane (but not to delete them from the system or the file).");
+		btn_removeSavedToFile.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_removeSavedToFile.setBounds(176, 9, 81, 22);
+		contentPane.add(btn_removeSavedToFile);
+		
+		JButton btn_removeGeneratedNPCs = new JButton("Remove");
+		btn_removeGeneratedNPCs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.removeFromTextField(textPane_savedForSession, Integer.parseInt(textField_sn.getText()));	
+			}
+		});
+		btn_removeGeneratedNPCs.setToolTipText("Click this to remove some NPC given by some SN from this pane (but not to delete them from the system or the file).");
+		btn_removeGeneratedNPCs.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_removeGeneratedNPCs.setBounds(628, 9, 81, 22);
+		contentPane.add(btn_removeGeneratedNPCs);
 	}
 }
