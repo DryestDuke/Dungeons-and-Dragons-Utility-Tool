@@ -81,13 +81,17 @@ public class WordGenerator extends JFrame {
 		comboBox_language.setToolTipText("To add more languages to this list, add a new text file with example words for that language in Files\\Language, following the example given by the other lists in the folder.");
 		
 		String[] fns = model.getAllFilenames("files\\Languages\\");
-		
+		int indexFantasy = 0;
 		for(int c=0;c<fns.length;c++) {
 			fns[c] = fns[c].replace(".txt", "");
+			if(fns[c].contains("Fantasy")) {
+				indexFantasy = c;
+			}
 		}
 		
 		comboBox_language.setModel(new DefaultComboBoxModel<String>(fns));
 		comboBox_language.setBounds(12, 11, 100, 22);
+		comboBox_language.setSelectedIndex(indexFantasy);
 		contentPane.add(comboBox_language);
 		
 		JSpinner spinner_lengthWords = new JSpinner();
