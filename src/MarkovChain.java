@@ -192,19 +192,16 @@ public class MarkovChain {
 		}
 		
 		//choose a first letter
-		word += Character.toString(pickFirstLetter()); 
-		word = word.toUpperCase();
+		word += Character.toString(pickFirstLetter());
+		if(capitalize) {
+			word = word.toUpperCase();
+		}
 		
 		//finish the word
 		while(word.length() <= length) {			
 			double choice = rand.nextDouble();
 			for(ProbabilityRange range : ranges) {				
-				if(word.equals("") && range.isInRange(choice)) {
-					word += Character.toString(range.pp.pairing[0]) + Character.toString(range.pp.pairing[1]);
-					break;
-				}else if(word.length() == 0) {
-					continue;
-				}else if(range.pp.pairing[0] == word.charAt(word.length()-1) && range.isInRange(choice)) {
+				if(range.pp.pairing[0] == word.toLowerCase().charAt(word.length()-1) && range.isInRange(choice)) {
 					word += Character.toString(range.pp.pairing[1]);
 					break;
 				}

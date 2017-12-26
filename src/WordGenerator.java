@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
 
 public class WordGenerator extends JFrame {
 
@@ -58,14 +59,14 @@ public class WordGenerator extends JFrame {
 		JButton btn_generateWords = new JButton("Generate Words");
 		btn_generateWords.setToolTipText("Click this to generate some number of words given the language you've selected.");
 		btn_generateWords.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btn_generateWords.setBounds(197, 12, 120, 23);
+		btn_generateWords.setBounds(126, 12, 120, 23);
 		contentPane.add(btn_generateWords);
 		
 		spinner_numberWords = new JSpinner();
 		spinner_numberWords.setToolTipText("This is the number of words to generate.");
-		spinner_numberWords.setModel(new SpinnerNumberModel(1, 0, 100, 1));
+		spinner_numberWords.setModel(new SpinnerNumberModel(5, 0, 100, 1));
 		spinner_numberWords.setFont(new Font("Courier New", Font.PLAIN, 14));
-		spinner_numberWords.setBounds(329, 12, 46, 24);
+		spinner_numberWords.setBounds(258, 12, 31, 24);
 		contentPane.add(spinner_numberWords);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -86,24 +87,24 @@ public class WordGenerator extends JFrame {
 		}
 		
 		comboBox_language.setModel(new DefaultComboBoxModel<String>(fns));
-		comboBox_language.setBounds(86, 11, 100, 22);
+		comboBox_language.setBounds(12, 11, 100, 22);
 		contentPane.add(comboBox_language);
-		
-		JLabel lblNewLabel = new JLabel("Language:");
-		lblNewLabel.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 13, 72, 17);
-		contentPane.add(lblNewLabel);
 		
 		JSpinner spinner_lengthWords = new JSpinner();
 		spinner_lengthWords.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		spinner_lengthWords.setToolTipText("This is the length of the words - leave at 0 or 1 to let the system randomly choose a size.");
 		spinner_lengthWords.setFont(new Font("Courier New", Font.PLAIN, 14));
-		spinner_lengthWords.setBounds(387, 12, 45, 24);
+		spinner_lengthWords.setBounds(301, 12, 31, 24);
 		contentPane.add(spinner_lengthWords);
+		
+		JRadioButton radio_capitalized = new JRadioButton("Capitalized");
+		radio_capitalized.setBounds(340, 9, 92, 26);
+		contentPane.add(radio_capitalized);
 		
 		btn_generateWords.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean capitalize = radio_capitalized.isSelected();
+								
 				int numberWords = (Integer) spinner_numberWords.getValue();
 				
 				MarkovChain mc = new MarkovChain("files\\Languages\\" + (String) comboBox_language.getSelectedItem() + ".txt");
@@ -111,7 +112,7 @@ public class WordGenerator extends JFrame {
 				String words = "";
 				
 				for(int c=0;c<numberWords;c++) {
-					words += mc.generateWord((Integer) spinner_lengthWords.getValue(), true) + ", ";
+					words += mc.generateWord((Integer) spinner_lengthWords.getValue(), capitalize) + ", ";
 				}
 				
 				if(words.charAt(words.length()-2) == ',') {
