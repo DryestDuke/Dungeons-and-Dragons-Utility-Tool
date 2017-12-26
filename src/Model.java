@@ -85,7 +85,7 @@ public class Model {
 	 * @param filename The name of the file.
 	 * @return An ArrayList<String> of all lines in the file.
 	 */
-	private ArrayList<String> loadFile(String filename) {
+	public static ArrayList<String> loadFile(String filename) {
 		try{
 			ArrayList<String> output = new ArrayList<String>();
 			
@@ -1534,6 +1534,23 @@ public class Model {
 		}
 		
 		return newEncounter;
+	}
+
+	/**
+	 * For some folder, it returns a string array of all file names.
+	 * @param folderPath Correct usage is, for example, "files\\" or "files\\Languages\\".
+	 */
+	public String[] getAllFilenames(String folderPath) {
+		File folder = new File(folderPath);
+		String[] output = new String[folder.listFiles().length];
+	
+		int c = 0;
+		for(File file : folder.listFiles()) {
+			output[c] = file.getName();
+			c++;
+		}
+		
+		return output;
 	}
 
 }

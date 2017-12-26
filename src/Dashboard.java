@@ -240,5 +240,16 @@ public class Dashboard extends JFrame {
 		btn_openNpcScreen.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_openNpcScreen.setBounds(12, 187, 169, 24);
 		contentPane.add(btn_openNpcScreen);
+		
+		JButton btn_wordGenerator = new JButton("Word Generator");
+		btn_wordGenerator.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WordGenerator.main(model);
+			}
+		});
+		btn_wordGenerator.setToolTipText("Given some series of words as a seed, here you can generate words that sound the same!");
+		btn_wordGenerator.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_wordGenerator.setBounds(263, 186, 169, 24);
+		contentPane.add(btn_wordGenerator);
 	}
 }
