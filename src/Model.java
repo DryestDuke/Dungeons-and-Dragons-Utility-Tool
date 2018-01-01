@@ -68,7 +68,7 @@ public class Model {
 	 * for example: "Dragonborn, Surnames" or "Generic, Either" (& etc).
 	 */
 	private ArrayList<ArrayList<String>> loadNames() {
-		String[] filenames = {"Names_List - Dragon.txt", "Names_List - Dwarf.txt", "Names_List - Elf.txt", "Names_List - Generic.txt", "Names_List - Orc.txt", "Names_List - Tiefling.txt"};
+		String[] filenames = {"Names_List - Halfling.txt", "Names_List - Dragon.txt", "Names_List - Dwarf.txt", "Names_List - Elf.txt", "Names_List - Generic.txt", "Names_List - Orc.txt", "Names_List - Tiefling.txt"};
 		ArrayList<ArrayList<String>> output = new ArrayList<ArrayList<String>>();
 		
 		for(String fn : filenames) {
