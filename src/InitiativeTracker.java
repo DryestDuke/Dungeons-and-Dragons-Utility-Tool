@@ -24,6 +24,7 @@ import javax.swing.JList;
 public class InitiativeTracker extends JFrame {
 
 	private JPanel contentPane;
+	private ArrayList<CharacterRolls> currentConditions;
 
 	/**
 	 * Launch the application.
@@ -45,6 +46,8 @@ public class InitiativeTracker extends JFrame {
 	 * Create the frame.
 	 */
 	public InitiativeTracker(Model model) {
+		currentConditions = new ArrayList<CharacterRolls>();
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Initiative Tracker");
@@ -55,19 +58,8 @@ public class InitiativeTracker extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Number of Characters:");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblNewLabel.setBounds(12, 14, 168, 17);
-		contentPane.add(lblNewLabel);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(new Integer(2), new Integer(2), null, new Integer(1)));
-		spinner.setBounds(192, 9, 41, 24);
-		contentPane.add(spinner);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 45, 126, 211);
+		scrollPane.setBounds(12, 12, 86, 211);
 		contentPane.add(scrollPane);
 		
 		JTextPane textPane_characterNames = new JTextPane();
@@ -75,26 +67,15 @@ public class InitiativeTracker extends JFrame {
 		scrollPane.setViewportView(textPane_characterNames);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(150, 45, 126, 211);
+		scrollPane_1.setBounds(110, 12, 86, 211);
 		contentPane.add(scrollPane_1);
 		
 		JTextPane textPane_theirRolls = new JTextPane();
-		textPane_theirRolls.setFont(new Font("Courier New", Font.PLAIN, 14));
 		scrollPane_1.setViewportView(textPane_theirRolls);
-		
-		JButton btn_help = new JButton("Help");
-		btn_help.setToolTipText("Click for help.");
-		btn_help.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new JErrorPane("Select the number of character. Then, on the left hand side, write in on each line the name of a character. On the right hand side, write in their initiative roll.");
-			}
-		});
-		btn_help.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btn_help.setBounds(392, 11, 40, 23);
-		contentPane.add(btn_help);
+		textPane_theirRolls.setFont(new Font("Courier New", Font.PLAIN, 14));
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(288, 45, 144, 211);
+		scrollPane_2.setBounds(208, 12, 224, 211);
 		contentPane.add(scrollPane_2);
 		
 		JList<String> list_initOrder = new JList<String>();
@@ -109,7 +90,7 @@ public class InitiativeTracker extends JFrame {
 				
 				int[] rollResults = new int[rolls.length];
 				
-				for(int c=0;c<(int) spinner.getValue();c++) {
+				for(int c=0;c<(int) characters.length;c++) {
 					rollResults[c] = model.roll(rolls[c].trim()).total;
 				}
 				
@@ -118,7 +99,7 @@ public class InitiativeTracker extends JFrame {
 				//order characters by their initiative value, display them in list_initOrder
 				ArrayList<CharacterRolls> chars = new ArrayList<CharacterRolls>();
 				
-				for(int c=0;c<(int) spinner.getValue();c++) {
+				for(int c=0;c<characters.length;c++) {
 					chars.add(new CharacterRolls(characters[c], rollResults[c]));
 				}
 				
@@ -135,12 +116,57 @@ public class InitiativeTracker extends JFrame {
 					initOrdering.add(c.character);
 				}
 				
+				ArrayList<CharacterRolls> nonendedConditions = new ArrayList<CharacterRolls>(currentConditions);				
+				for(CharacterRolls c : currentConditions) {
+					c.init--;
+					
+					if(!(c.init < 0)) {
+						initOrdering.add(c.character + " | " + c.init);
+					}else {
+						nonendedConditions.remove(c);
+					}
+				}
+				
+				currentConditions = nonendedConditions;
+				
 				Model.setListString(initOrdering, list_initOrder);
 			}
 		});
 		btnOrderInitiative.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btnOrderInitiative.setBounds(244, 11, 136, 23);
+		btnOrderInitiative.setBounds(296, 234, 136, 23);
 		contentPane.add(btnOrderInitiative);
+		
+		JLabel lblNewLabel = new JLabel("# Rounds:");
+		lblNewLabel.setFont(new Font("Courier New", Font.PLAIN, 14));
+		lblNewLabel.setBounds(12, 237, 72, 17);
+		contentPane.add(lblNewLabel);
+		
+		JSpinner spinner_ = new JSpinner();
+		spinner_.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinner_.setBounds(90, 232, 48, 24);
+		contentPane.add(spinner_);
+		
+		JTextField textField_statusEffectName = new JTextField();
+		textField_statusEffectName.setToolTipText("Enter name of status effect here (e.g.; \"poisoned\"). Then select the number of rounds it will last. Then click \"Add\".");
+		textField_statusEffectName.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_statusEffectName.setBounds(144, 233, 86, 22);
+		contentPane.add(textField_statusEffectName);
+		textField_statusEffectName.setColumns(10);
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//get number of rounds from spinner, name from textField_statusEffectName
+				int numberRounds = (int) spinner_.getValue();
+				String name = textField_statusEffectName.getText();
+				//add this to the list of all current conditions
+				CharacterRolls c = new CharacterRolls(name, numberRounds);
+				currentConditions.add(c);
+			}
+		});
+		btnAdd.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btnAdd.setBounds(244, 234, 32, 23);
+		contentPane.add(btnAdd);
 	}
 }
 
