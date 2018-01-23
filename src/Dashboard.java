@@ -251,5 +251,16 @@ public class Dashboard extends JFrame {
 		btn_wordGenerator.setFont(new Font("Courier New", Font.PLAIN, 14));
 		btn_wordGenerator.setBounds(263, 186, 169, 24);
 		contentPane.add(btn_wordGenerator);
+		
+		JButton btn_initTracker = new JButton("Initiative Tracker");
+		btn_initTracker.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InitiativeTracker.main(model);
+			}
+		});
+		btn_initTracker.setToolTipText("Keeps track of iniative.");
+		btn_initTracker.setFont(new Font("Courier New", Font.PLAIN, 14));
+		btn_initTracker.setBounds(266, 135, 169, 24);
+		contentPane.add(btn_initTracker);
 	}
 }
