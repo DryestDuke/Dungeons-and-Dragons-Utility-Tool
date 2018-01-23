@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 
@@ -24,7 +25,7 @@ public class WordGenerator extends JFrame {
 
 	private JPanel contentPane;
 	private JSpinner spinner_numberWords;
-	private MarkovChain mcFantasy;
+	private ArrayList<MarkovChain> mcs;
 
 	/**
 	 * Launch the application.
@@ -46,11 +47,7 @@ public class WordGenerator extends JFrame {
 	 * Create the frame.
 	 */
 	public WordGenerator(Model model) {
-		try {
-			mcFantasy = MarkovChain.create(("files\\Languages\\Fantasy.txt"));
-		}catch (Exception e) {
-			mcFantasy = null;
-		}
+		mcs = new ArrayList<MarkovChain>();
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -95,6 +92,11 @@ public class WordGenerator extends JFrame {
 			}
 		}
 		
+		//now, for each filename, create a MC for that filename using MarkovChain.create(String filename)
+		for(String fn : model.getAllFilenames("files\\Languages\\")) {
+			mcs.add(MarkovChain.create("files\\Languages\\" + fn));
+		}
+		
 		comboBox_language.setModel(new DefaultComboBoxModel<String>(fns));
 		comboBox_language.setBounds(12, 11, 100, 22);
 		comboBox_language.setSelectedIndex(indexFantasy);
@@ -117,12 +119,18 @@ public class WordGenerator extends JFrame {
 								
 				int numberWords = (Integer) spinner_numberWords.getValue();
 				
-				MarkovChain mc;
+				String filename = "files\\Languages\\" + (String) comboBox_language.getSelectedItem() + ".txt";
 				
-				if(mcFantasy != null && ((String) comboBox_language.getSelectedItem()).equals("Fantasy")) {
-					mc = mcFantasy;
-				}else {
-					mc = MarkovChain.create(("files\\Languages\\" + (String) comboBox_language.getSelectedItem() + ".txt"));
+				MarkovChain mc = null;
+				
+				for(MarkovChain markchai : mcs) {
+					if(markchai.identifier.equals(filename)) {
+						mc = markchai;
+					}
+				}
+				
+				if(mc == null) {
+					System.err.println("Error, error");
 				}
 				
 				String words = "";

@@ -81,6 +81,8 @@ public class MarkovChain {
 	private ArrayList<ProbabilityPairing> pairings;
 	private ArrayList<TotalOccurrences> occurrences;
 	
+	String identifier = "N/A";
+	
 	public MarkovChain(ArrayList<String> words) {		
 		char[] letters = new char[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 		
@@ -123,7 +125,9 @@ public class MarkovChain {
 	}
 	
 	public static MarkovChain create(String filename) {
-		return new MarkovChain(Model.loadFile(filename));
+		MarkovChain mc = new MarkovChain(Model.loadFile(filename));
+		mc.identifier = filename;
+		return mc;
 	}
 	
 	/**
