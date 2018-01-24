@@ -2,6 +2,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -28,7 +30,7 @@ public class Encounter extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(Model model, ArrayList<Creature> encounter, int numberBosses, int numberMinions, ArrayList<String> attributes, ArrayList<String> types, int xpBudget) {
+	public static void main(Model model, ArrayList<Creature> encounter, ArrayList<String> attributes, ArrayList<String> types, int xpBudget) {
 		try {
 			UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");
 		} catch (Throwable e) {
@@ -37,7 +39,7 @@ public class Encounter extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Encounter frame = new Encounter(model, encounter, numberBosses, numberMinions, attributes, types, xpBudget);
+					Encounter frame = new Encounter(model, encounter, attributes, types, xpBudget);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +51,7 @@ public class Encounter extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Encounter(Model model, ArrayList<Creature> encounter_, int numberBosses, int numberMinions, ArrayList<String> attributes, ArrayList<String> types, int xpBudget) {
+	public Encounter(Model model, ArrayList<Creature> encounter_, ArrayList<String> attributes, ArrayList<String> types, int xpBudget) {
 		encounter = encounter_;
 		
 		setResizable(false);
@@ -105,6 +107,13 @@ public class Encounter extends JFrame {
 					}
 				}
 
+				Collections.sort(enc, new Comparator<Creature>() {
+				    @Override
+				    public int compare(Creature o1, Creature o2) {
+				        return new Integer(o1.xp).compareTo(new Integer(o2.xp));
+				    }
+				});
+				
 				encounter = enc;
 				
 				Model.setListCreature(enc, list);
@@ -119,16 +128,32 @@ public class Encounter extends JFrame {
 		JButton btnNewButton_2 = new JButton("More Creatures");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				encounter = model.changeEncounter(model.searchCreatures(attributes, types, null), encounter, true);
-				encounter = model.randomizeEncounter(model.searchCreatures(attributes, types, null), encounter);
+				ArrayList<Creature> biggerEncounter = null;
+				
+				while(biggerEncounter == null) {
+					biggerEncounter = model.generateEncounter(xpBudget, model.searchCreatures(attributes, types, null));
+					if(biggerEncounter.size() > encounter.size()) {
+						break;
+					}else {
+						biggerEncounter = null;
+					}
+				}
 				
 				int totalXP = 0;
 
-				for (Creature c : encounter){
+				for (Creature c : biggerEncounter){
 					totalXP += c.xp;
 				}
 				
-				Model.setListCreature(encounter, list);
+				Collections.sort(biggerEncounter, new Comparator<Creature>() {
+				    @Override
+				    public int compare(Creature o1, Creature o2) {
+				        return new Integer(o1.xp).compareTo(new Integer(o2.xp));
+				    }
+				});
+				
+				Model.setListCreature(biggerEncounter, list);
+				encounter = biggerEncounter;
 				lblNewLabel.setText("XP Budget: " + xpBudget + " | Actual XP Total: " + totalXP);
 			}
 		});
@@ -140,16 +165,37 @@ public class Encounter extends JFrame {
 		JButton btnLessCreatures = new JButton("Less Creatures");
 		btnLessCreatures.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				encounter = model.changeEncounter(model.searchCreatures(attributes, types, null), encounter, false);
-				encounter = model.randomizeEncounter(model.searchCreatures(attributes, types, null), encounter);
+				
+				if(encounter.size() == 0) {
+					new JErrorPane("Minimum size of an encounter is 1.");
+					return;
+				}
+				
+				ArrayList<Creature> smallerEncounter = null;
+				
+				while(smallerEncounter == null) {
+					smallerEncounter = model.generateEncounter(xpBudget, model.searchCreatures(attributes, types, null));
+					if(smallerEncounter.size() < encounter.size()) {
+						break;
+					}else {
+						smallerEncounter = null;
+					}
+				}
 				
 				int totalXP = 0;
 
-				for (Creature c : encounter){
+				for (Creature c : smallerEncounter){
 					totalXP += c.xp;
 				}
 				
-				Model.setListCreature(encounter, list);
+				Collections.sort(smallerEncounter, new Comparator<Creature>() {
+				    @Override
+				    public int compare(Creature o1, Creature o2) {
+				        return new Integer(o1.xp).compareTo(new Integer(o2.xp));
+				    }
+				});
+				Model.setListCreature(smallerEncounter, list);
+				encounter = smallerEncounter;
 				lblNewLabel.setText("XP Budget: " + xpBudget + " | Actual XP Total: " + totalXP);
 			}
 		});

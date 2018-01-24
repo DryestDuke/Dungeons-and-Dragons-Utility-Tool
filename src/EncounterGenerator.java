@@ -4,6 +4,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -26,10 +28,6 @@ public class EncounterGenerator extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField_xpBudget;
-	private JLabel lblAnd;
-	private JTextField textField_numBosses;
-	private JLabel lblAreBossesAnd;
-	private JTextField textField_numMinions;
 	private JButton btn_generateEncounter;
 	private JLabel lblAlsoTheCreatures;
 	private JLabel lblEnvironment;
@@ -41,7 +39,6 @@ public class EncounterGenerator extends JFrame {
 	private JTextField textField_name;
 	private JTextField textField_xpIndividual;
 	private JComboBox<String> comboBox_book;
-	private JLabel lblBossesAnd;
 	private JButton btn_types;
 	private ArrayList<String> types;
 	private JComboBox comboBox_xp;
@@ -92,67 +89,41 @@ public class EncounterGenerator extends JFrame {
 		contentPane.add(textField_xpBudget);
 		textField_xpBudget.setColumns(10);
 		
-		lblAnd = new JLabel("In this encounter, try to have");
-		lblAnd.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblAnd.setBounds(12, 42, 240, 17);
-		contentPane.add(lblAnd);
-		
-		textField_numBosses = new JTextField();
-		textField_numBosses.setToolTipText("The number of bosses in the encounter (whose XP >= 50% XP budget).");
-		textField_numBosses.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_numBosses.setFont(new Font("Courier New", Font.PLAIN, 14));
-		textField_numBosses.setColumns(10);
-		textField_numBosses.setBounds(256, 40, 59, 22);
-		contentPane.add(textField_numBosses);
-		
-		lblAreBossesAnd = new JLabel("minions.");
-		lblAreBossesAnd.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblAreBossesAnd.setBounds(76, 76, 112, 17);
-		contentPane.add(lblAreBossesAnd);
-		
-		textField_numMinions = new JTextField();
-		textField_numMinions.setToolTipText("The number of minions in the encounter (whose XP <= 50% XP budget).");
-		textField_numMinions.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_numMinions.setFont(new Font("Courier New", Font.PLAIN, 14));
-		textField_numMinions.setColumns(10);
-		textField_numMinions.setBounds(12, 74, 53, 22);
-		contentPane.add(textField_numMinions);
-		
 		lblAlsoTheCreatures = new JLabel("Specify Constraints:");
 		lblAlsoTheCreatures.setFont(new Font("Courier New", Font.BOLD, 14));
-		lblAlsoTheCreatures.setBounds(12, 131, 160, 17);
+		lblAlsoTheCreatures.setBounds(12, 91, 160, 17);
 		contentPane.add(lblAlsoTheCreatures);
 		
 		lblEnvironment = new JLabel("Environment:");
 		lblEnvironment.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblEnvironment.setBounds(12, 154, 96, 17);
+		lblEnvironment.setBounds(12, 123, 96, 17);
 		contentPane.add(lblEnvironment);
 		
 		lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblName.setBounds(12, 183, 40, 17);
+		lblName.setBounds(12, 152, 40, 17);
 		contentPane.add(lblName);
 		
 		lblType = new JLabel("Type:");
 		lblType.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblType.setBounds(12, 212, 40, 17);
+		lblType.setBounds(12, 181, 40, 17);
 		contentPane.add(lblType);
 		
 		lblBook = new JLabel("Book:");
 		lblBook.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblBook.setBounds(174, 183, 40, 17);
+		lblBook.setBounds(12, 243, 40, 17);
 		contentPane.add(lblBook);
 		
 		lblXp = new JLabel("XP:");
 		lblXp.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblXp.setBounds(12, 241, 24, 17);
+		lblXp.setBounds(12, 210, 24, 17);
 		contentPane.add(lblXp);
 		
 		comboBox_environment = new JComboBox<String>();
 		comboBox_environment.setToolTipText("Select one.");
 		comboBox_environment.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "Arctic", "Coastal", "Desert", "Forest", "Grassland", "Hill", "Mountain", "Swamp", "Underdark", "Underwater", "Urban"}));
 		comboBox_environment.setFont(new Font("Courier New", Font.PLAIN, 14));
-		comboBox_environment.setBounds(114, 150, 106, 22);
+		comboBox_environment.setBounds(114, 119, 106, 22);
 		contentPane.add(comboBox_environment);
 		
 		textField_name = new JTextField();
@@ -160,7 +131,7 @@ public class EncounterGenerator extends JFrame {
 		textField_name.setText("Any");
 		textField_name.setToolTipText("Type in the name you're looking for.");
 		textField_name.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_name.setBounds(68, 180, 96, 22);
+		textField_name.setBounds(68, 149, 96, 22);
 		contentPane.add(textField_name);
 		textField_name.setColumns(10);
 		
@@ -168,7 +139,7 @@ public class EncounterGenerator extends JFrame {
 		comboBox_xp.setFont(new Font("Courier New", Font.PLAIN, 14));
 		comboBox_xp.setModel(new DefaultComboBoxModel(new String[] {"<", "<=", "==", "!=", ">=", ">"}));
 		comboBox_xp.setSelectedIndex(2);
-		comboBox_xp.setBounds(53, 239, 45, 20);
+		comboBox_xp.setBounds(53, 208, 45, 20);
 		contentPane.add(comboBox_xp);
 		
 		textField_xpIndividual = new JTextField();
@@ -176,7 +147,7 @@ public class EncounterGenerator extends JFrame {
 		textField_xpIndividual.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_xpIndividual.setFont(new Font("Courier New", Font.PLAIN, 14));
 		textField_xpIndividual.setText("Any");
-		textField_xpIndividual.setBounds(114, 238, 74, 22);
+		textField_xpIndividual.setBounds(114, 207, 74, 22);
 		contentPane.add(textField_xpIndividual);
 		textField_xpIndividual.setColumns(10);
 		
@@ -184,7 +155,7 @@ public class EncounterGenerator extends JFrame {
 		comboBox_book.setModel(new DefaultComboBoxModel<String>(new String[] {"Any", "MM", "VGtM", "ToB"}));
 		comboBox_book.setToolTipText("Select one.");
 		comboBox_book.setFont(new Font("Courier New", Font.PLAIN, 14));
-		comboBox_book.setBounds(167, 209, 53, 22);
+		comboBox_book.setBounds(62, 240, 53, 22);
 		contentPane.add(comboBox_book);
 		
 		if(initialXPBudget > -1) {
@@ -200,25 +171,6 @@ public class EncounterGenerator extends JFrame {
 				}catch(Exception e1) {
 					new JErrorPane("Invalid value in the XP field. Please fix.");
 					return;
-				}
-				int numberBosses = 0;
-				int numberMinions = 0;
-				try {
-					numberBosses = Integer.parseInt(textField_numBosses.getText());
-					numberMinions = Integer.parseInt(textField_numMinions.getText());
-				}catch (Exception e2) {
-					if(textField_numBosses.getText().equals("") && textField_numMinions.getText().equals("")) {
-						System.err.println("No values entered for minions/bosses, defaulting to Integer.MAX_VALUE.");
-						numberBosses = Integer.MAX_VALUE;
-						numberMinions = Integer.MAX_VALUE;
-					}else {
-						System.err.println("You failed to input correct numbers to the bosses/minions fields.");
-					}
-				}
-				
-				if(numberBosses <= 0 && numberMinions <= 0) {
-					numberBosses = Integer.MAX_VALUE;
-					numberMinions = Integer.MAX_VALUE;
 				}
 				
 				ArrayList<String> attributes = new ArrayList<String>();
@@ -240,19 +192,21 @@ public class EncounterGenerator extends JFrame {
 				ArrayList<Creature> encounter = model.generateEncounter(xpBudget, 
 						model.searchCreatures(attributes, types, null));
 				
+				Collections.sort(encounter, new Comparator<Creature>() {
+				    @Override
+				    public int compare(Creature o1, Creature o2) {
+				        return new Integer(o1.xp).compareTo(new Integer(o2.xp));
+				    }
+				});
+				
 				//run it
-				Encounter.main(model, encounter, numberBosses, numberMinions, attributes, types, xpBudget);
+				Encounter.main(model, encounter, attributes, types, xpBudget);
 			}
 		});
 		btn_generateEncounter.setToolTipText("Click this to generate the encounter based off of the fields you've provided.");
 		btn_generateEncounter.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btn_generateEncounter.setBounds(12, 104, 152, 23);
+		btn_generateEncounter.setBounds(36, 46, 152, 23);
 		contentPane.add(btn_generateEncounter);
-		
-		lblBossesAnd = new JLabel("bosses, and");
-		lblBossesAnd.setFont(new Font("Courier New", Font.PLAIN, 14));
-		lblBossesAnd.setBounds(320, 40, 112, 17);
-		contentPane.add(lblBossesAnd);
 		
 		btn_types = new JButton("Types");
 		btn_types.addActionListener(new ActionListener() {
@@ -266,11 +220,11 @@ public class EncounterGenerator extends JFrame {
 		});
 		btn_types.setToolTipText("Click this to select the types of the creatures you want for your encounter. Click this and immediately exit to reset the list of chosen types back to default (all types).");
 		btn_types.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btn_types.setBounds(68, 209, 96, 23);
+		btn_types.setBounds(68, 178, 96, 23);
 		contentPane.add(btn_types);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(231, 131, 213, 140);
+		scrollPane.setBounds(231, 45, 213, 226);
 		contentPane.add(scrollPane);
 		
 		textPane_rp = new JTextPane();
@@ -288,7 +242,7 @@ public class EncounterGenerator extends JFrame {
 		});
 		btnGenerateRpEncounter.setToolTipText("Click this to randomly select a role-playing encounter (or the seed for some role-playing encounter) from the lists of encounters b& rumors.");
 		btnGenerateRpEncounter.setFont(new Font("Courier New", Font.PLAIN, 14));
-		btnGenerateRpEncounter.setBounds(255, 103, 177, 25);
+		btnGenerateRpEncounter.setBounds(257, 9, 177, 25);
 		contentPane.add(btnGenerateRpEncounter);
 		
 	}
