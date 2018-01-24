@@ -97,7 +97,7 @@ public class Encounter extends JFrame {
 				}
 				
 				while(enc == null) {
-					ArrayList<Creature> newEncounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, model.searchCreatures(attributes, types, null));
+					ArrayList<Creature> newEncounter = model.generateEncounter(xpBudget, model.searchCreatures(attributes, types, null));
 					int newTotalXP = model.getTotalXP(newEncounter);
 					if(Math.abs(newTotalXP-xpBudget) < Math.abs(totalXP-xpBudget) || newTotalXP == xpBudget) {
 						totalXP = newTotalXP;

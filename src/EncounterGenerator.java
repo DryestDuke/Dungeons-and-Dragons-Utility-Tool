@@ -195,13 +195,11 @@ public class EncounterGenerator extends JFrame {
 		btn_generateEncounter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int xpBudget = initialXPBudget;
-				if(initialXPBudget == -1) {
-					try{
-						xpBudget = Integer.parseInt(textField_xpBudget.getText());
-					}catch(Exception e1) {
-						new JErrorPane("Invalid value in the XP field. Please fix.");
-						return;
-					}
+				try{
+					xpBudget = Integer.parseInt(textField_xpBudget.getText());
+				}catch(Exception e1) {
+					new JErrorPane("Invalid value in the XP field. Please fix.");
+					return;
 				}
 				int numberBosses = 0;
 				int numberMinions = 0;
@@ -239,7 +237,7 @@ public class EncounterGenerator extends JFrame {
 				attributes.add((String) comboBox_book.getSelectedItem());
 
 				//generate the encounter
-				ArrayList<Creature> encounter = model.generateEncounter(numberBosses, numberMinions, xpBudget, 
+				ArrayList<Creature> encounter = model.generateEncounter(xpBudget, 
 						model.searchCreatures(attributes, types, null));
 				
 				//run it

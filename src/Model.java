@@ -949,7 +949,85 @@ public class Model {
 		
 		return encounter;
 	}
+
+	/**
+	 * For an arraylist of numbers, it returns the sum of those numbers.
+	 * @param vals
+	 * @return
+	 */
+	private int totalValue(ArrayList<Integer> vals) {
+		int output = 0;
+		for(Integer val : vals) {
+			output += val;
+		}
+		return output;
+	}
 	
+	/**
+	 * With the creatures given, or the default creatures in Model, it figures out a functional xp budget breakdown and then assigns creatures to them.
+	 * @param xpBudget
+	 * @param creatures
+	 * @return The encounter, in the form of an ArrayList of Creatures.
+	 */
+	public ArrayList<Creature> generateEncounter(int xpBudget, ArrayList<Creature> creatures) {
+		ArrayList<Creature> chosenCreatures = creatures;
+		if(creatures.size() == 0 || creatures == null) {
+			chosenCreatures = this.creatures;
+		}
+		
+		//assembling a list of all unique xp values
+		ArrayList<Integer> xps = new ArrayList<Integer>();
+		
+		for(Creature c : creatures) {
+			if(!xps.contains(c.xp)) {
+				xps.add(c.xp);
+			}
+		}
+		
+		//figure out XPs that get to within 90% to 110% of the XP budget
+		ArrayList<Integer> chosenXPs = new ArrayList<Integer>();
+		
+		while(!(xpBudget < (1.1*totalValue(chosenXPs)) && xpBudget > (0.9*totalValue(chosenXPs)))) {
+			//if over, randomly remove one
+			if(!(xpBudget < (1.1*totalValue(chosenXPs)))) {
+				chosenXPs.add(getRandomElement_(xps));
+			}
+			//if under, randomly add one
+			if(!(xpBudget > (0.9*totalValue(chosenXPs)))) {
+				chosenXPs.remove(getRandomElement_(chosenXPs));
+			}
+		}
+		
+		//now that we have the good xps (chosenXPs), we need to assign a monster to each of them
+		ArrayList<Creature> encounter = new ArrayList<Creature>();
+		
+		for(int xp : chosenXPs) {
+			ArrayList<Creature> candidates = new ArrayList<Creature>();
+			
+			for(Creature c : creatures) {
+				if(c.xp == xp) {
+					candidates.add(c);
+				}
+			}
+			
+			encounter.add(getRandomCreature(candidates));
+		}
+		
+		return encounter;
+	}
+	
+	/**
+	 * Returns a random element from list.
+	 * @param list
+	 * @return
+	 */
+	private Creature getRandomCreature(ArrayList<Creature> list) {
+		int max = list.size()-1;
+		int min = 0;
+		return list.get(random.nextInt((max - min) + 1) + min);
+	}
+
+
 	/**
 	 * Given some ArrayList<String>, it returns a random element from that list.
 	 * @param list
@@ -957,6 +1035,17 @@ public class Model {
 	 */
 	private String getRandomElement(ArrayList<String> list) {
 		return getRandomElement(list, 0);
+	}
+	
+	/**
+	 * Given some ArrayList<Integer>, it returns a random element from that list.
+	 * @param list
+	 * @return
+	 */
+	private Integer getRandomElement_(ArrayList<Integer> list) {
+		int max = list.size()-1;
+		int min = 0;
+		return list.get(random.nextInt((max - min) + 1) + min);
 	}
 	
 	/**
